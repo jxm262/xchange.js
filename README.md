@@ -39,4 +39,4 @@ npm install nodemon
 ```
   
   
-We're currently in the process of figuring out what should be in the scope of this project and what tasks are being split up.  Pleae PM what of the contributors if you'd like to get on the mailing list.
+We're currently in the process of figuring out what should be in the scope of this project and what tasks are being split up.  Please PM what of the contributors if you'd like to get on the mailing list.
