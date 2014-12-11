@@ -1,5 +1,6 @@
-xchange.js
-==========
+xchange.js  [![Build Status](https://travis-ci.org/jxm262/xchange.js.svg?branch=master)](https://travis-ci.org/jxm262/xchange.js)  
+==========  
+
 
 Bitcoin and Altcoin exchange api
 
