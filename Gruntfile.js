@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 			tasks : ['jshint']
 		},
 		mocha : {
-			all : ["test/app_test.js"]
+			all : ["test/*.js"]
 		}
 	});
 
@@ -41,6 +41,6 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-mocha');
 
 	// Default task.
-	grunt.registerTask('default', ['jshint', 'mocha']);
+	grunt.registerTask('default', ['jshint']);
 
 };
