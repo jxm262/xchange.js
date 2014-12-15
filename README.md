@@ -23,13 +23,13 @@ npm install
 
 To use, just require the module you'd like to work with and call the getTicker function with your own callback.  
 
-Example
+Usage
 =======
 ```
-var bitstamp = require('bitstamp');
-var coinbase = require('coinbase');
+var xchange = require('xchange.js');
 
-bitstamp.getTicker(function(error, response, body)){
+
+xchange.bitstamp.getTicker(function(error, response, body)){
   if(error || response.statusCode != 200) {
      console.log('there was an error');
   }
@@ -37,7 +37,7 @@ bitstamp.getTicker(function(error, response, body)){
   console.log(body);
 });
 
-coinbase.getTicker(function(error, response, body)){
+xchange.coinbase.getTicker(function(error, response, body)){
   if(error || response.statusCode != 200) {
      console.log('there was an error');
   }
