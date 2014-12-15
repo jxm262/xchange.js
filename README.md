@@ -5,7 +5,7 @@ Note!!  This is highly in the Alpha stage.
 
   
   
-Bitcoin and Altcoin spot price  api.  Aggregates different exchanges api's into a convenient wrapper.
+A Bitcoin spot price api.  Aggregates different alt-currency exchange api's into a convenient javascript wrapper.
 
 
 ## Installation
