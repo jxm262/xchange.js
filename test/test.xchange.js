@@ -8,6 +8,8 @@
  * 	To follow up and read - 	http://chaijs.com/plugins/chai-json-schema
  */
 
+'use strict';
+
 var xchange = require('../xchange.js')
 	,assert = require("assert")
 	,chai = require('chai')
@@ -60,6 +62,32 @@ describe('coinbase object', function() {
 			ticker.should.have.property("amount");
 			ticker.should.have.property("currency");
 
+			done();
+		});
+	});
+});
+
+describe('bitfinex object', function() {
+	var bitfinex = xchange.bitfinex;
+	
+	it('should have a getTicker function', function() {
+		assert.equal(typeof bitfinex.getTicker, 'function');
+	});
+	
+	it('coinbase ticker should return 200, contain coinbase ticker json', function(done) {
+		bitfinex.getTicker(function(error, response, body){
+			var ticker = JSON.parse(body);
+			
+			response.statusCode.should.equal(200);
+			ticker.should.have.property("mid");
+			ticker.should.have.property("bid");
+			ticker.should.have.property("ask");
+			ticker.should.have.property("last_price");
+			ticker.should.have.property("low");
+			ticker.should.have.property("high");
+			ticker.should.have.property("volume");
+			ticker.should.have.property("timestamp");
+			
 			done();
 		});
 	});
