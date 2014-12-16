@@ -1,12 +1,14 @@
 xchange.js  [![Build Status](https://travis-ci.org/jxm262/xchange.js.svg?branch=master)](https://travis-ci.org/jxm262/xchange.js)  
 ==========  
+  
+  A Bitcoin spot price api.  Aggregates different alt-currency exchange api's into a convenient javascript wrapper.  
+  Note!!  This is highly in the Alpha stage.
 
-Note!!  This is highly in the Alpha stage.  
+
+[![NPM](https://nodei.co/npm/xchange.js.png)](https://npmjs.org/package/xchange.js)  
+
 
   
-  
-A Bitcoin spot price api.  Aggregates different alt-currency exchange api's into a convenient javascript wrapper.
-
 
 ## Installation
 
