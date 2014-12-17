@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 			tasks : ['jshint']
 		},
 		mocha : {
-			all : ["test/*.js"]
+			all : ["test/**/.js"]
 		}
 	});
 
@@ -40,7 +40,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-mocha');
 
-	// Default task.
 	grunt.registerTask('default', ['jshint']);
+	grunt.registerTask('test', ['mocha']);
 
 };
