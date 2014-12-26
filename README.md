@@ -28,7 +28,7 @@ To use, just require the module you'd like to work with and call the getTicker f
 var xchange = require('xchange.js');
 
 
-xchange.bitstamp.getTicker(function(error, response, body)){
+xchange.bitstamp.getTicker(function(error, response, body){
   if(error || response.statusCode != 200) {
      console.log('there was an error');
   }
@@ -36,7 +36,7 @@ xchange.bitstamp.getTicker(function(error, response, body)){
   console.log(body);
 });
 
-xchange.coinbase.getTicker(function(error, response, body)){
+xchange.coinbase.getTicker(function(error, response, body){
   if(error || response.statusCode != 200) {
      console.log('there was an error');
   }
