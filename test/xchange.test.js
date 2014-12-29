@@ -34,10 +34,8 @@ describe("xchange.js", function(){
 		var callback = sinon.spy();
 		this.stub(request, "get").yields("error", null, "null");
 		
-		for(var apiName in apis){
-			xchange[apiName](callback);
-			callback.should.have.been.calledWith("error");
-		}
+		xchange.bitstamp(callback);
+		callback.should.have.been.calledWith("error");
 	}));
 	
 	it("each exchanges spot price function should send statusCode to callback when not 200", sinon.test(function(){
@@ -45,10 +43,8 @@ describe("xchange.js", function(){
 		var response = {statusCode : 500};
 		this.stub(request, "get").yields(null, response, "null");
 		
-		for(var apiName in apis){
-			xchange[apiName](callback);
-			callback.should.have.been.calledWith("response.statusCode = 500");
-		}
+		xchange.bitstamp(callback);
+		callback.should.have.been.calledWith("response.statusCode = 500");
 	}));
 	
 	it("each exchanges spot price function should retrieve valid json when successful", sinon.test(function(){
@@ -58,7 +54,7 @@ describe("xchange.js", function(){
 		this.stub(request, "get").yields(null, response, "some test body");
 
 		for(var apiName in apis){
-			xchange[apiName](callback);
+			xchange.bitstamp(callback);
 			callback.should.have.been.calledWith(null, "some test body");
 		}
 	}));
