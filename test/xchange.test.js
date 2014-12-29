@@ -1,99 +1,66 @@
 /**
- * Todo: Note, these are actually integration tests. Need switched to true unit
- * tests after I read up on mocking and stubbing nested asynchronous calls.
+ * Notes: 
  * 
- * my so question -
- * http://stackoverflow.com/questions/27462799/sinon-how-to-stub-nested-function
+ * Note the use auto-managed sandboxes in sinon.test - http://sinonjs.org/docs/#sinon-test
  * 
- * Also need to refactor how to validate json schema To follow up and read -
+ * Should maybe refactor and read on how to validate json schemas more easily - 
  * http://chaijs.com/plugins/chai-json-schema
  */
 
-'use strict';
+"use strict";
 
-var xchange = require('../lib/xchange.js')
+var xchange = require("../lib/xchange.js")
+	,apis = require("../apis/apis")
+	,request = require("request")
 	,assert = require("assert")
-	,chai = require('chai')
-	,sinon = require('sinon')
+	,chai = require("chai")
+	,sinon = require("sinon")
+	,sinonChai = require('sinon-chai')
 	,should = chai.should()
 	,expect = chai.expect;
 
-var request = require('request');
+chai.use(sinonChai);
 
-describe('xchange library', function() {
-	it('should have a bistamp object', function() {
-		assert.equal(typeof xchange.bitstamp, 'object');
-	});
-});
-
-describe('bitstamp object', function() {
-	var bitstamp = xchange.bitstamp;
-
-	it('should have a getTicker function', function() {
-		assert.equal(typeof bitstamp.getTicker, 'function');
-	});
-
-	it('bitstamp ticker should return 200, contain bitstamp ticker json', function(done) {
-		bitstamp.getTicker(function(error, response, body){
-			var ticker = JSON.parse(body);
-
-			response.statusCode.should.equal(200);
-			ticker.should.have.property("high");
-			ticker.should.have.property("last");
-			ticker.should.have.property("timestamp");
-			ticker.should.have.property("volume");
-			ticker.should.have.property("low");
-			ticker.should.have.property("ask");
-			
-			done();
-		});
-	});
-});
-
-describe('coinbase object', function() {
-	var coinbase = xchange.coinbase;
+describe("xchange.js", function(){
 	
-	before(function() {
-		sinon.stub(request, 'get').yields(null, JSON.stringify({price: '100 USD'}));
-	});
-
-	it('should have a getTicker function', function() {
-		assert.equal(typeof coinbase.getTicker, 'function');
+	it("should contain all exchanges and corresponding function to retrieve spot price", function(){
+		for(var apiName in apis){
+			xchange.should.have.property(apiName);
+			xchange[apiName].should.be.a("function");
+		}
 	});
 	
-	it('request.get() function should be called and the callback invoked', function(){
+	it("each exchanges spot price function should send error to callback when errored", sinon.test(function(){
 		var callback = sinon.spy();
-
-		coinbase.getTicker(callback);
+		this.stub(request, "get").yields("error", null, "null");
 		
-		request.get.should.have.been.called;
-		callback.should.have.been.called;
-	});
+		for(var apiName in apis){
+			xchange[apiName](callback);
+			callback.should.have.been.calledWith("error");
+		}
+	}));
 	
-});
+	it("each exchanges spot price function should send statusCode to callback when not 200", sinon.test(function(){
+		var callback = sinon.spy();
+		var response = {statusCode : 500};
+		this.stub(request, "get").yields(null, response, "null");
+		
+		for(var apiName in apis){
+			xchange[apiName](callback);
+			callback.should.have.been.calledWith("response.statusCode = 500");
+		}
+	}));
+	
+	it("each exchanges spot price function should retrieve valid json when successful", sinon.test(function(){
+		var callback = sinon.spy();
+		var response = {statusCode : 200};
 
-describe('bitfinex object', function() {
-	var bitfinex = xchange.bitfinex;
+		this.stub(request, "get").yields(null, response, "some test body");
+
+		for(var apiName in apis){
+			xchange[apiName](callback);
+			callback.should.have.been.calledWith(null, "some test body");
+		}
+	}));
 	
-	it('should have a getTicker function', function() {
-		assert.equal(typeof bitfinex.getTicker, 'function');
-	});
-	
-	it('coinbase ticker should return 200, contain coinbase ticker json', function(done) {
-		bitfinex.getTicker(function(error, response, body){
-			var ticker = JSON.parse(body);
-			
-			response.statusCode.should.equal(200);
-			ticker.should.have.property("mid");
-			ticker.should.have.property("bid");
-			ticker.should.have.property("ask");
-			ticker.should.have.property("last_price");
-			ticker.should.have.property("low");
-			ticker.should.have.property("high");
-			ticker.should.have.property("volume");
-			ticker.should.have.property("timestamp");
-			
-			done();
-		});
-	});
 });

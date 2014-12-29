@@ -4,10 +4,9 @@ var apis = require('../apis/apis.js')
 	,assert = require("assert")
 	,chai = require('chai')
 	,sinon = require('sinon')
-	,should = chai.should()
-	,expect = chai.expect;
+	,should = chai.should();
 
-describe('apis', function(){
+describe('apis.js', function(){
 	it('should contain map of exchange names and corresponding REST api for the spot price', function(){
 		apis.should.have.property("bitstamp", "https://www.bitstamp.net/api/ticker/");
 		apis.should.have.property("coinbase", "https://api.coinbase.com/v1/prices/spot_rate");
