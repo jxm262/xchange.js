@@ -2,7 +2,7 @@
   "name": "xchange.js",
   "version": "0.1.1",
   "description": "A bitcoin-altcoin spot price api.  Covers different alt currency exchanges and aggregates their api's into a convenient wrapper",
-  "main": "xchange.js",
+  "main": "./lib/xchange.js",
   "scripts": {
     "test": "mocha test"
   },
@@ -24,7 +24,7 @@
   "dependencies": {
     "body-parser": "~1.8.1",
     "cookie-parser": "~1.3.3",
-	"request": "^2.51.0",
+    "request": "^2.51.0",
     "istanbul": "^0.3.5"
   },
   "devDependencies": {
@@ -34,6 +34,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha": "^0.4.11",
     "mocha": "^2.0.1",
-    "sinon": "^1.12.2"
+    "sinon": "^1.12.2",
+    "sinon-chai": "^2.6.0"
   }
 }
