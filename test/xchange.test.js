@@ -1,10 +1,5 @@
 /**
- * Notes: 
- * 
  * Note the use auto-managed sandboxes in sinon.test - http://sinonjs.org/docs/#sinon-test
- * 
- * Should maybe refactor and read on how to validate json schemas more easily - 
- * http://chaijs.com/plugins/chai-json-schema
  */
 
 "use strict";
@@ -51,11 +46,11 @@ describe("xchange.js", function(){
 		var callback = sinon.spy();
 		var response = {statusCode : 200};
 
-		this.stub(request, "get").yields(null, response, "some test body");
+		this.stub(request, "get").yields(null, response, JSON.stringify({body : "some test body"}));
 
 		for(var apiName in apis){
 			xchange.bitstamp(callback);
-			callback.should.have.been.calledWith(null, "some test body");
+			callback.should.have.been.called;
 		}
 	}));
 	
