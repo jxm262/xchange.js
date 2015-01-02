@@ -28,23 +28,23 @@ module.exports = {
 	"okcoin" : {
 		"tickerUrl" : "https://www.okcoin.com/api/ticker.do?ok=1",
 		"jsonSchema" : {
-			"buy" : "bid",
-			"sell" : "ask",
-			"low" : "low",
-			"high" : "high",
-			"vol" : "volume",
+			"ticker.buy" : "bid",
+			"ticker.sell" : "ask",
+			"ticker.low" : "low",
+			"ticker.high" : "high",
+			"ticker.vol" : "volume",
 			"date" : "timestamp"
 		}
 	},
 	"btce" : {
 		"tickerUrl" : "https://btc-e.com/api/3/ticker/btc_usd",
 		"jsonSchema" : {
-			"buy" : "bid",
-			"sell" : "ask",
-			"low" : "low",
-			"high" : "high",
-			"vol" : "volume",
-			"updated" : "timestamp"
+			"btc_usd.buy" : "bid",
+			"btc_usd.sell" : "ask",
+			"btc_usd.low" : "low",
+			"btc_usd.high" : "high",
+			"btc_usd.vol" : "volume",
+			"btc_usd.updated" : "timestamp"
 		}
 	},
 	"cexio" : {
@@ -61,11 +61,11 @@ module.exports = {
 	"btc38" : {
 		"tickerUrl" : "http://api.btc38.com/v1/ticker.php?c=btc",
 		"jsonSchema" : {
-			"buy" : "bid",
-			"sell" : "ask",
-			"low" : "low",
-			"high" : "high",
-			"vol" : "volume"
+			"ticker.buy" : "bid",
+			"ticker.sell" : "ask",
+			"ticker.low" : "low",
+			"ticker.high" : "high",
+			"ticker.vol" : "volume"
 		}
 	},
 	"bter" : {
@@ -103,10 +103,10 @@ module.exports = {
 	"ccex" : {
 		"tickerUrl" : "https://c-cex.com/t/btc-usd.json",
 		"jsonSchema" : {
-			"buy" : "bid",
-			"sell" : "ask",
-			"low" : "low",
-			"high" : "high"
+			"ticker.buy" : "bid",
+			"ticker.sell" : "ask",
+			"ticker.low" : "low",
+			"ticker.high" : "high"
 		}
 	}
 }

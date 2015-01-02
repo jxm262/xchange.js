@@ -48,4 +48,40 @@ describe("apidecorator.js", function(){
 		);
 	});
 	
+	it("spotPrice converts exchange's response (nested) into the decorated spot price response", function(){
+		var resp = 
+			{"ticker" : 
+				{
+					"result" : "true",
+					"last" : 311,
+					"high" : 314.352,
+					"low" : 311,
+					"avg" : 311.597,
+					"sell" : 314.29,
+					"buy" : 311,
+					"vol_btc" : 0.1252,
+					"vol_usd" : 39.012
+				}
+			}
+		
+		var jsonSchema = 
+			{
+				"ticker.buy" : "bid",
+				"ticker.sell" : "ask",
+				"ticker.low" : "low",
+				"ticker.high" : "high",
+				"ticker.vol_usd" : "volume"
+			};
+		
+		apidecorator.spotPrice(resp, jsonSchema).should.deep.equal(
+				{
+					"bid" : 311,
+					"ask" : 314.29,
+					"low": 311,
+					"high" : 314.352,
+					"volume" : 39.012,
+					"timestamp" : ""
+				}
+		);
+	});	
 });
