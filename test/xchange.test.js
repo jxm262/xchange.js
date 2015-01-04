@@ -21,7 +21,7 @@ describe("xchange.js", function(){
 	it("should contain all exchanges and corresponding function to retrieve spot price", function(){
 		for(var apiName in apis){
 			xchange.should.have.property(apiName);
-			xchange[apiName].should.be.a("function");
+			xchange[apiName].ticker.should.be.a("function");
 		}
 	});
 	
@@ -29,7 +29,7 @@ describe("xchange.js", function(){
 		var callback = sinon.spy();
 		this.stub(request, "get").yields("error", null, "null");
 		
-		xchange.bitstamp(callback);
+		xchange.bitstamp.ticker(callback);
 		callback.should.have.been.calledWith("error");
 	}));
 	
@@ -38,7 +38,7 @@ describe("xchange.js", function(){
 		var response = {statusCode : 500};
 		this.stub(request, "get").yields(null, response, "null");
 		
-		xchange.bitstamp(callback);
+		xchange.bitstamp.ticker(callback);
 		callback.should.have.been.calledWith("response.statusCode = 500");
 	}));
 	
@@ -49,7 +49,7 @@ describe("xchange.js", function(){
 		this.stub(request, "get").yields(null, response, JSON.stringify({body : "some test body"}));
 
 		for(var apiName in apis){
-			xchange.bitstamp(callback);
+			xchange.bitstamp.ticker(callback);
 			callback.should.have.been.called;
 		}
 	}));
