@@ -8,20 +8,7 @@ Note!!  This is highly in the Alpha stage.
 Bitcoin and Altcoin spot price  api.  Aggregates different exchanges api's into a convenient wrapper.
 
 
-## Working on xchange.js
-
-To help work on xchange.js, you'll need to 
-- have Node installed.  
-- Then clone the repo  
-- install dependencies  
-
-```
-git clone https://github.com/jxm262/xchange.js.git
-cd xchange.js
-npm install
-```
-
-To use, just require the module you'd like to work with and call the getTicker function with your own callback.  
+To use, just import the module and provide your own callback to the ticker function for a given exchange.  
 
 Usage
 =======
@@ -40,6 +27,19 @@ xchange.bitfinex.ticker(function(error, resp){
   
 ```
   
+  
+## Working on xchange.js
+
+To help work on xchange.js, you'll need to 
+- have Node installed.  
+- Then clone the repo  
+- install dependencies  
+
+```
+git clone https://github.com/jxm262/xchange.js.git
+cd xchange.js
+npm install
+```
   
 
 To run tests (using mocha chai)
