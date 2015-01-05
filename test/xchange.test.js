@@ -10,7 +10,7 @@ var xchange = require("../lib/xchange.js")
 	,assert = require("assert")
 	,chai = require("chai")
 	,sinon = require("sinon")
-	,sinonChai = require('sinon-chai')
+	,sinonChai = require("sinon-chai")
 	,should = chai.should()
 	,expect = chai.expect;
 

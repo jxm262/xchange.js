@@ -47,17 +47,6 @@ module.exports = {
 			"btc_usd.updated" : "timestamp"
 		}
 	},
-	"cexio" : {
-		"tickerUrl" : "https://cex.io/api/ticker/GHS/BTC",
-		"jsonSchema" : {
-			"bid" : "bid",
-			"ask" : "ask",
-			"low" : "low",
-			"high" : "high",
-			"volume" : "volume",
-			"timestamp" : "timestamp"
-		}
-	},
 	"btc38" : {
 		"tickerUrl" : "http://api.btc38.com/v1/ticker.php?c=btc",
 		"jsonSchema" : {
@@ -80,17 +69,6 @@ module.exports = {
 	},
 	"hitbtc" : {
 		"tickerUrl" : "http://api.hitbtc.com/api/1/public/BTCUSD/ticker",
-		"jsonSchema" : {
-			"bid" : "bid",
-			"ask" : "ask",
-			"low" : "low",
-			"high" : "high",
-			"volume" : "volume",
-			"timestamp" : "timestamp"
-		}
-	},
-	"quadrigacx" : {
-		"tickerUrl" : "https://api.quadrigacx.com/v2/ticker?book=btc_usd",
 		"jsonSchema" : {
 			"bid" : "bid",
 			"ask" : "ask",

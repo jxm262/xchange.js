@@ -1,40 +1,33 @@
-/**
- * Should maybe refactor and read on how to validate json schemas more easily - 
- * http://chaijs.com/plugins/chai-json-schema
- */
+"use strict";
 
-'use strict';
-
-var apis = require('../apis/apis.js')
+var apis = require("../apis/apis.js")
 	,assert = require("assert")
-	,chai = require('chai')
-	,sinon = require('sinon')
+	,chai = require("chai")
+	,sinon = require("sinon")
 	,should = chai.should();
 
-describe('apis.js', function(){
-	it('should contain map of exchange objects', function(){
+describe("apis.js", function(){
+	it("should contain map of exchange objects", function(){
 		apis.should.have.property("okcoin");
 		apis.should.have.property("bitfinex");
 		apis.should.have.property("bitstamp");
 		apis.should.have.property("btce");
-		apis.should.have.property("cexio");
 		apis.should.have.property("btc38");
 		apis.should.have.property("bter");
 		apis.should.have.property("hitbtc");
-		apis.should.have.property("quadrigacx");
 		apis.should.have.property("ccex");
 	});
 });
 
-describe('exchange objects', function(){
-	it('should contain tickerUrl String', function(){
+describe("exchange objects", function(){
+	it("should contain tickerUrl String", function(){
 		for(var obj in apis){
 			apis[obj].tickerUrl.should.be.a("string");
 		}
 	});
 
 	//is this part even worth testing?
-	it('should contain a jsonSchema definition', function(){
+	it("should contain a jsonSchema definition", function(){
 		for(var obj in apis){
 			var jsonSchema = apis[obj].jsonSchema;
 			jsonSchema.should.be.an("object");

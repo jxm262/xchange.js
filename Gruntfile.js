@@ -5,6 +5,9 @@ module.exports = function (grunt) {
 		jshint : {
 			src : ['Gruntfile.js', 'lib/**/*.js', 'src/config.js', 'test/node/**/*.js'],
 			options : {
+				node : true,
+				expr: true,
+				laxcomma : true,
 				curly : true,
 				eqeqeq : true,
 				immed : true,
