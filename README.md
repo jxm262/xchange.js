@@ -23,12 +23,11 @@ xchange.bitfinex.ticker(function(error, resp){
 		console.log(resp);
 	}
 });
-  
-  
 ```
   
   
-## Working on xchange.js
+Working on xchange.js
+=====================
 
 To help work on xchange.js, you'll need to 
 - have Node installed.  
@@ -42,8 +41,7 @@ npm install
 ```
   
 
-To run tests (using mocha chai)
-===============================  
+## To run tests (using mocha chai)
 
 ```
 npm test
