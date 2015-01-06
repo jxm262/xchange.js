@@ -7,7 +7,7 @@
 var xchange = require("../lib/xchange.js");
 
 //prints bitfinex spot price
-xchange.bitfinex.ticker(function(error, resp){
+xchange.btc38.ticker(function(error, resp){
 	if(!error){
 		console.log(resp);
 	}
