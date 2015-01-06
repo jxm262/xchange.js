@@ -4,6 +4,8 @@
 
 "use strict";
 
+var tickerResponse = require("./response/ticker");
+
 function ApiDecorator(){
 	this.ApiDecorator = ApiDecorator;
 }
@@ -35,22 +37,13 @@ var flattenObject = function(ob) {
 
 ApiDecorator.prototype.spotPrice = function(jsonBody, jsonSchema) {
 	var bodyFlattened = flattenObject(jsonBody);
-	
-	var decoratedJson = {
-		"bid" : "",
-		"ask" : "",
-		"low" : "",
-		"high" : "",
-		"volume" : "",
-		"timestamp" : ""
-	};
 
-	for(var key in jsonSchema){
+		for(var key in jsonSchema){
 		var mappedKey = jsonSchema[key];
-		decoratedJson[mappedKey] = bodyFlattened[key];
+		tickerResponse[mappedKey] = bodyFlattened[key];
 	}
 	
-	return decoratedJson;
+	return tickerResponse;
 },
 
 module.exports = new ApiDecorator();

@@ -1,6 +1,6 @@
 'use strict';
 
-var apidecorator = require("../lib/apidecorator.js")
+var apidecorator = require("../response_decorator/apidecorator.js")
 	,request = require("request")
 	,assert = require("assert")
 	,chai = require("chai")
