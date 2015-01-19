@@ -10,7 +10,8 @@ function ApiDecorator(){
 	this.ApiDecorator = ApiDecorator;
 }
 
-//todo: look to see if there"s some exising library that can already do this
+//TODO: look to see if there"s some exising library that can already do this, similar to flatten() in scala.
+//Or even better something that flattens and filters , sort of like flatten().filter(x => ..) 
 var flattenObject = function(ob) {
 	var toReturn = {};
 	
@@ -38,7 +39,7 @@ var flattenObject = function(ob) {
 ApiDecorator.prototype.spotPrice = function(jsonBody, jsonSchema) {
 	var bodyFlattened = flattenObject(jsonBody);
 
-		for(var key in jsonSchema){
+	for(var key in jsonSchema){
 		var mappedKey = jsonSchema[key];
 		tickerResponse[mappedKey] = bodyFlattened[key];
 	}
