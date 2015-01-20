@@ -43,7 +43,7 @@ describe("apidecorator.js", function(){
 					"low": 311,
 					"high" : 314.352,
 					"volume" : 39.012,
-					"timestamp" : ""
+					"timestamp" : 0
 				}
 		);
 	});
@@ -80,7 +80,7 @@ describe("apidecorator.js", function(){
 					"low": 311,
 					"high" : 314.352,
 					"volume" : 39.012,
-					"timestamp" : ""
+					"timestamp" : 0
 				}
 		);
 	});	
