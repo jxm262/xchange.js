@@ -41,7 +41,7 @@ ApiDecorator.prototype.spotPrice = function(jsonBody, jsonSchema) {
 
 	for(var key in jsonSchema){
 		var mappedKey = jsonSchema[key];
-		tickerResponse[mappedKey] = bodyFlattened[key];
+		tickerResponse[mappedKey] = parseFloat(bodyFlattened[key]);
 	}
 	
 	return tickerResponse;
