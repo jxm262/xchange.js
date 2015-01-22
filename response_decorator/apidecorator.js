@@ -4,7 +4,7 @@
 
 "use strict";
 
-var tickerResponse = require("./response/ticker");
+var tickerResponse = require("./responses/ticker");
 
 function ApiDecorator(){
 	this.ApiDecorator = ApiDecorator;
