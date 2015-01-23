@@ -4,10 +4,10 @@
 
 "use strict";
 
-var tickerResponse = require("./responses/ticker");
+var tickerResponse = require("./response/ticker");
 
-function ApiDecorator(){
-	this.ApiDecorator = ApiDecorator;
+function ResponseDecorator(){
+	this.ResponseDecorator = ResponseDecorator;
 }
 
 //TODO: look to see if there"s some exising library that can already do this, similar to flatten() in scala.
@@ -36,7 +36,7 @@ var flattenObject = function(ob) {
 	return toReturn;
 };
 
-ApiDecorator.prototype.spotPrice = function(jsonBody, jsonSchema) {
+ResponseDecorator.prototype.ticker = function(jsonBody, jsonSchema) {
 	var bodyFlattened = flattenObject(jsonBody);
 
 	for(var key in jsonSchema){
@@ -47,4 +47,4 @@ ApiDecorator.prototype.spotPrice = function(jsonBody, jsonSchema) {
 	return tickerResponse;
 },
 
-module.exports = new ApiDecorator();
+module.exports = new ResponseDecorator();

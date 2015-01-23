@@ -1,6 +1,6 @@
 'use strict';
 
-var apidecorator = require("../response_decorator/apidecorator.js")
+var decorator = require("../response_decorator/response-decorator.js")
 	,request = require("request")
 	,assert = require("assert")
 	,chai = require("chai")
@@ -11,9 +11,9 @@ var apidecorator = require("../response_decorator/apidecorator.js")
 
 chai.use(sinonChai);
 
-describe("apidecorator.js", function(){
+describe("decorator.js", function(){
 	
-	it("spotPrice converts exchange's response into the decorated spot price response", function(){
+	it("ticker converts exchange's response into the decorated spot price response", function(){
 		var resp = 
 			{
 				"result" : "true",
@@ -36,7 +36,7 @@ describe("apidecorator.js", function(){
 				"vol_usd" : "volume"
 			};
 		
-		apidecorator.spotPrice(resp, jsonSchema).should.deep.equal(
+		decorator.ticker(resp, jsonSchema).should.deep.equal(
 				{
 					"bid" : 311,
 					"ask" : 314.29,
@@ -48,7 +48,7 @@ describe("apidecorator.js", function(){
 		);
 	});
 	
-	it("spotPrice converts exchange's response (nested) into the decorated spot price response", function(){
+	it("ticker converts exchange's response (nested) into the decorated spot price response", function(){
 		var resp = 
 			{"ticker" : 
 				{
@@ -73,7 +73,7 @@ describe("apidecorator.js", function(){
 				"ticker.vol_usd" : "volume"
 			};
 		
-		apidecorator.spotPrice(resp, jsonSchema).should.deep.equal(
+		decorator.ticker(resp, jsonSchema).should.deep.equal(
 				{
 					"bid" : 311,
 					"ask" : 314.29,
