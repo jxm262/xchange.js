@@ -1,8 +1,10 @@
-module.exports = {
-	"bid" : 0,
-	"ask" : 0,
-	"low" : 0,
-	"high" : 0,
-	"volume" : 0,
-	"timestamp" : 0
-}
+function Ticker() {
+	this.bid = 0;
+	this.ask = 0;
+	this.low = 0;
+	this.high = 0;
+	this.volume = 0;
+	this.timestamp = 0;
+};
+
+module.exports = Ticker;

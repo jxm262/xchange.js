@@ -37,14 +37,15 @@ var flattenObject = function(ob) {
 };
 
 ResponseDecorator.prototype.ticker = function(jsonBody, jsonSchema) {
+	var resp = new tickerResponse();
 	var bodyFlattened = flattenObject(jsonBody);
-
+	
 	for(var key in jsonSchema){
 		var mappedKey = jsonSchema[key];
-		tickerResponse[mappedKey] = parseFloat(bodyFlattened[key]);
+		resp[mappedKey] = parseFloat(bodyFlattened[key]);
 	}
 	
-	return tickerResponse;
+	return resp;
 },
 
 module.exports = new ResponseDecorator();
