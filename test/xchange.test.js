@@ -4,7 +4,7 @@
 
 "use strict";
 
-var xchange = require("../lib/xchange.js")
+var xchange = require("../lib/xchange")
 	,apis = require("../apis/apis")
 	,request = require("request")
 	,assert = require("assert")
