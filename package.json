@@ -22,7 +22,7 @@
     }
   ],
   "dependencies": {
-    "request": "^2.51.0"
+    "superagent": "^0.21.0"
   },
   "devDependencies": {
     "chai": "^1.10.0",
@@ -33,6 +33,6 @@
     "mocha": "^2.0.1",
     "sinon": "^1.12.2",
     "sinon-chai": "^2.6.0",
-	"istanbul": "^0.3.5"
+    "istanbul": "^0.3.5"
   }
 }
