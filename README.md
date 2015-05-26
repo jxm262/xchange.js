@@ -19,8 +19,10 @@ var xchange = require('xchange.js');
 
   
 xchange.bitfinex.ticker(function(err, res){
-	if(error){return err;}
+	
+	if(err){return err;}
 	console.log(res);
+	
 });
 ```
   
