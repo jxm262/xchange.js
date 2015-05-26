@@ -18,10 +18,9 @@ Usage
 var xchange = require('xchange.js');
 
   
-xchange.bitfinex.ticker(function(error, resp){
-	if(!error){
-		console.log(resp);
-	}
+xchange.bitfinex.ticker(function(err, res){
+	if(error){return err;}
+	console.log(res);
 });
 ```
   
