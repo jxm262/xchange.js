@@ -16,6 +16,7 @@ describe("apis.js", function(){
 		apis.should.have.property("bter");
 		apis.should.have.property("hitbtc");
 		apis.should.have.property("ccex");
+		apis.should.have.property("kraken");
 	});
 });
 
