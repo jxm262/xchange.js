@@ -1,16 +1,14 @@
 xchange.js  [![Build Status](https://travis-ci.org/jxm262/xchange.js.svg?branch=master)](https://travis-ci.org/jxm262/xchange.js)  
 ==========  
 
-Note!!  This is highly in the Alpha stage.  
+Please be careful, this module is still in the Alpha stage.  
 
-  
-  
-Bitcoin and Altcoin spot price  api.  Aggregates different exchanges api's into a convenient wrapper.
+Aggregates different Bitcoin exchanges api's into a convenient wrapper.
 
 
-To use, just import the module and provide your own callback to the ticker function for a given exchange.  
+To use just import the module and provide your own callback to the ticker function for a given exchange.  
 
-Usage
+Code example
 =======
 ```  
 //Example print the spot price from bitfinex  
@@ -27,13 +25,15 @@ xchange.bitfinex.ticker(function(err, res){
 ```
   
   
-Working on xchange.js
-=====================
+## Contributors
 
-To help work on xchange.js, you'll need to 
-- have Node installed.  
-- Then clone the repo  
+
+To help make xchange.js better please
+
+- install Node & NPM
+- clone the repo
 - install dependencies  
+
 
 ```
 git clone https://github.com/jxm262/xchange.js.git
@@ -47,7 +47,11 @@ npm install
 ```
 npm test
 ```  
-  
+ 
+## License
+MIT 
+
+Please refer to the LICENSE file for details.
   
 About the Project
 =================
