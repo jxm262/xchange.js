@@ -41,7 +41,8 @@ cd xchange.js
 npm install
 ```
   
-
+To keep with the latest news on xchange.js development feel free to [participate in the mailing list](https://groups.google.com/forum/#!forum/xchange)
+  
 ## To run tests (using mocha chai)
 
 ```
@@ -55,4 +56,4 @@ Please refer to the LICENSE file for details.
   
 About the Project
 =================
-We're currently in the process of figuring out what should be in the scope of this project and what tasks are being split up.  Please PM me if you'd like to get on the mailing list.
+We're currently in the process of figuring out what should be in the scope of this project and what tasks are being split up.
