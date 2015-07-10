@@ -83,7 +83,7 @@ describe("decorator.js", function(){
 				}
 		);
 	});
-	it("ticker converts kraken exchange response into the decorated spot price response corerctly", function(){
+	it("ticker converts kraken exchange response into the decorated spot price response correctly", function(){
 		var resp = {
 			"error":[],
 			"result":{
