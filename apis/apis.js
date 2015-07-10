@@ -86,5 +86,15 @@ module.exports = {
 			"ticker.low" : "low",
 			"ticker.high" : "high"
 		}
+	},
+	"kraken" : {
+		"tickerUrl" : "https://api.kraken.com/0/public/Ticker?pair=XBTUSD",
+		"jsonSchema" : {
+			"result.XXBTZUSD.a.0" : "ask",
+			"result.XXBTZUSD.b.0" : "bid",
+			"result.XXBTZUSD.l.1" : "low",
+			"result.XXBTZUSD.h.1" : "high",
+			"result.XXBTZUSD.v.1" : "volume"
+		}
 	}
 }
