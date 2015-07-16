@@ -82,5 +82,42 @@ describe("decorator.js", function(){
 					"timestamp" : 0
 				}
 		);
+	});
+	it("ticker converts kraken exchange response into the decorated spot price response correctly", function(){
+		var resp = {
+			"error":[],
+			"result":{
+				"XXBTZUSD":{
+					"a":["285.14594","1"],
+					"b":["284.50000","6"],
+					"c":["284.50000","0.10000000"],
+					"v":["132.85652194","159.76976414"],
+					"p":["283.92955","281.84728"],
+					"t":[348,413],
+					"l":["268.95604","268.00001"],
+					"h":["297.00000","297.00000"],
+					"o":"271.99975"}
+				}
+		}
+		
+		var jsonSchema = 
+			{
+			"result.XXBTZUSD.a.0" : "ask",
+			"result.XXBTZUSD.b.0" : "bid",
+			"result.XXBTZUSD.l.1" : "low",
+			"result.XXBTZUSD.h.1" : "high",
+			"result.XXBTZUSD.v.1" : "volume"
+		}
+		
+		decorator.ticker(resp, jsonSchema).should.deep.equal(
+				{
+					"bid" : 284.50000,
+					"ask" : 285.14594,
+					"low": 268.00001,
+					"high" : 297.00000,
+					"volume" : 159.76976414,
+					"timestamp" : 0
+				}
+		);
 	});	
 });
