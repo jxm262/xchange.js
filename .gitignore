@@ -31,3 +31,6 @@ node_modules
 
 #if you are using WebStorm
 .idea
+
+#unit testing coverage
+reports
