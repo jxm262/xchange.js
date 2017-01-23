@@ -6,7 +6,6 @@ module.exports = {
 	"bitfinex" : {
 		"tickerUrl" : "https://api.bitfinex.com/v1/pubticker/btcusd",
 		"jsonSchema" : {
-			"bid" : "bid",
 			"ask" : "ask",
 			"low" : "low",
 			"high" : "high",
