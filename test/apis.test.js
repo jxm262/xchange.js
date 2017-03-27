@@ -1,6 +1,6 @@
 "use strict";
 
-var apis = require("../apis/apis")
+var apis = require("../lib/apis")
 	,assert = require("assert")
 	,chai = require("chai")
 	,sinon = require("sinon")

@@ -5,7 +5,7 @@
 "use strict";
 
 var xchange = require("../lib/xchange")
-    , apis = require("../apis/apis")
+    , apis = require("../lib/apis")
     , superagent = require("superagent")
     , assert = require("assert")
     , chai = require("chai")

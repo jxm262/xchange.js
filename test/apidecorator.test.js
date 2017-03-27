@@ -1,6 +1,6 @@
 'use strict';
 
-var decorator = require("../response_decorator/response-decorator")
+var decorator = require("../lib/response-decorator/response-decorator")
 	,assert = require("assert")
 	,chai = require("chai")
 	,sinon = require("sinon")
