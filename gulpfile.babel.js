@@ -1,7 +1,9 @@
-var gulp   = require('gulp');
-var mocha = require('gulp-mocha');
-var jshint = require('gulp-jshint');
-var istanbul = require('gulp-istanbul');
+import gulp from 'gulp'
+import mocha from 'gulp-mocha'
+import jshint from 'gulp-jshint'
+import istanbul from 'gulp-istanbul'
+import babel from 'gulp-babel'
+import sourcemaps from 'gulp-sourcemaps'
 
 
 gulp.task('lint', function() {
@@ -24,4 +26,11 @@ gulp.task('test', function () {
                     reportOpts: { dir: './reports/unit-test-coverage'}
                 }));
         });
+});
+
+gulp.task('build', function () {
+    return gulp.src('./lib/**/*.js')
+        .pipe(sourcemaps.init())
+        .pipe(babel())
+        .pipe(gulp.dest('dist'));
 });
