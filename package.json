@@ -4,7 +4,7 @@
   "description": "A bitcoin-altcoin spot price api.  Covers different alt currency exchanges and aggregates their api's into a convenient wrapper",
   "main": "./lib/xchange.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "gulp test"
   },
   "repository": {
     "type": "git",
