@@ -4,8 +4,8 @@
 
 "use strict";
 
-var xchange = require("../lib/xchange")
-    , apis = require("../lib/apis")
+var xchange = require("../lib/legacy/xchange")
+    , apis = require("../lib/legacy/apis")
     , superagent = require("superagent")
     , assert = require("assert")
     , chai = require("chai")
