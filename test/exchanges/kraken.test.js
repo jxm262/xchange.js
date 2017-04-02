@@ -29,9 +29,20 @@ nock('https://api.kraken.com')
     .replyWithError(errMsg);
 
 
-function failure(err) {
-    console.log('err ', err);
+function success(expected, done) {
+    return function(resp) {
+        resp.body.should.deep.equal(expected);
+        done();
+    }
 }
+
+function failure(done) {
+    return function(err) {
+        err.should.deep.equal(errMsg);
+        done();
+    }
+}
+
 
 describe.only('xchange.js', function () {
 
@@ -51,6 +62,24 @@ describe.only('xchange.js', function () {
                         err.should.deep.equal(errMsg)
                         done();
                     });
+                });
+            });
+
+            context('using promises', function () {
+                it('retrieves server time on success', function (done) {
+                    kraken.serverTime().then(
+                        success(serverTimeResp, done),
+                        failure
+                    );
+
+                });
+
+                it('returns back error on failure', function (done) {
+                    kraken.serverTime().then(
+                        success,
+                        failure(done)
+                    );
+
                 });
             });
         });

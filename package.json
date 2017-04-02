@@ -23,7 +23,7 @@
   ],
   "dependencies": {
     "lodash": "^4.17.4",
-    "superagent": "^0.21.0"
+    "superagent": "^3.5.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
@@ -52,7 +52,6 @@
     "mocha": "^2.0.1",
     "nock": "^9.0.11",
     "sinon": "^1.12.2",
-    "sinon-chai": "^2.6.0",
-    "supertest": "^3.0.0"
+    "sinon-chai": "^2.6.0"
   }
 }
