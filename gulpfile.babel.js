@@ -39,9 +39,15 @@ gulp.task('test', function () {
         });
 });
 
+gulp.task('it:test', function () {
+    return gulp.src('./test/integration/**/**.js')
+        .pipe(mocha({reporter: 'spec'}));
+});
+
 gulp.task('build', function () {
     return gulp.src('./lib/**/*.js')
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(gulp.dest('dist'));
 });
+

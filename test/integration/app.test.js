@@ -1,31 +1,33 @@
-import xchange from "../../lib/xchange";
+import { xchangeFactory } from "../../lib/xchange";
 import request from 'supertest';
 import app from "./it-server";
-import config from '../../lib/config'
-
-const env = config('LOCAL');
 
 
 describe.only('xchange.js', function() {
 
+    const xchange = xchangeFactory('LOCAL');
+
+	function failure(err) {
+	  console.log('err ', err);
+	}
+
 	describe('kraken', function() {
-		const urls = env.kraken;
 
 		describe('serverTime', function() {
 		  it('retrieves server time', function() {
 
-			  request(app)
-				  .get(urls.serverTime)
-				  .set('Accept', 'application/json')
-				  .expect('Content-Type', /json/)
-				  .expect(function(res) {
-					  console.log('res... ', res.body);
-
-					  //res.body.id = 'some fixed id';
-					  //res.body.name = res.body.name.toUpperCase();
-				  })
-				  .expect(200, done);
-
+				console.log('--- ', xchange.kraken);
+			  //xchange.kraken.serverTime.then((resp) => {
+				//	resp.body.should.deep.equal({
+				//		"error": [],
+				//		"result": {
+				//			"unixtime": 1491077507,
+				//			"rfc1123": "Sat,  1 Apr 17 20:11:47 +0000"
+				//		}
+				//	});
+				//
+				//  done();
+			  //}, failure);
 
 		  });
 		});
