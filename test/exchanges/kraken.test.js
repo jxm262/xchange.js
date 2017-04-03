@@ -22,16 +22,18 @@ const kraken = krakenModule(config);
 
 nock('https://api.kraken.com')
     .get('/0/public/Time')
+    .twice()
     .reply(200, serverTimeResp);
 
 nock('https://api.kraken.com')
     .get('/0/public/Time')
+    .twice()
     .replyWithError(errMsg);
 
 
 function success(expected, done) {
     return function (resp) {
-        resp.body.should.deep.equal(expected);
+        resp.should.deep.equal(expected);
         done();
     }
 }
@@ -48,37 +50,35 @@ describe.only('kraken', function () {
 
     describe('serverTime', function () {
 
-        context('using callback', function () {
-            it('retrieves server time on success', function (done) {
+        context('success call', function () {
+            it('retrieves server time using cb', function (done) {
                 kraken.serverTime(function (err, resp) {
-                    resp.body.should.deep.equal(serverTimeResp);
+                    resp.should.deep.equal(serverTimeResp);
                     done();
                 });
             });
 
-            it('returns back error on failure', function (done) {
+            it('retrieves server time using promise', function (done) {
+                kraken.serverTime().then(
+                    success(serverTimeResp, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
                 kraken.serverTime(function (err, resp) {
                     err.should.deep.equal(errMsg)
                     done();
                 });
             });
-        });
 
-        context('using promises', function () {
-            it('retrieves server time on success', function (done) {
-                kraken.serverTime().then(
-                    success(serverTimeResp, done),
-                    failure
-                );
-
-            });
-
-            it('returns back error on failure', function (done) {
+            it('retrieves error using promise', function (done) {
                 kraken.serverTime().then(
                     success,
                     failure(done)
                 );
-
             });
         });
 
