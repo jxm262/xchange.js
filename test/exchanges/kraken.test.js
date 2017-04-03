@@ -30,78 +30,75 @@ nock('https://api.kraken.com')
 
 
 function success(expected, done) {
-    return function(resp) {
+    return function (resp) {
         resp.body.should.deep.equal(expected);
         done();
     }
 }
 
 function failure(done) {
-    return function(err) {
+    return function (err) {
         err.should.deep.equal(errMsg);
         done();
     }
 }
 
 
-describe.only('xchange.js', function () {
+describe.only('kraken', function () {
 
-    describe('kraken', function () {
+    describe('serverTime', function () {
 
-        describe('serverTime', function () {
-            context('using callback', function () {
-                it('retrieves server time on success', function (done) {
-                    kraken.serverTime(function (err, resp) {
-                        resp.body.should.deep.equal(serverTimeResp);
-                        done();
-                    });
-                });
-
-                it('returns back error on failure', function (done) {
-                    kraken.serverTime(function (err, resp) {
-                        err.should.deep.equal(errMsg)
-                        done();
-                    });
+        context('using callback', function () {
+            it('retrieves server time on success', function (done) {
+                kraken.serverTime(function (err, resp) {
+                    resp.body.should.deep.equal(serverTimeResp);
+                    done();
                 });
             });
 
-            context('using promises', function () {
-                it('retrieves server time on success', function (done) {
-                    kraken.serverTime().then(
-                        success(serverTimeResp, done),
-                        failure
-                    );
-
-                });
-
-                it('returns back error on failure', function (done) {
-                    kraken.serverTime().then(
-                        success,
-                        failure(done)
-                    );
-
+            it('returns back error on failure', function (done) {
+                kraken.serverTime(function (err, resp) {
+                    err.should.deep.equal(errMsg)
+                    done();
                 });
             });
         });
 
-        //describe('ticker', function () {
-        //	it('returns ticker info on good resp', function(done) {
-        //		xchange.kraken.ticker(function(error, resp){
-        //			console.log("--here.. ", resp);
-        //			if(!error){
-        //				console.log(resp);
-        //			}
-        //			done();
-        //		});
-        //	});
-        //
-        //	it('returns error on bad response', function() {
-        //		//todo
-        //	});
-        //
-        //});
+        context('using promises', function () {
+            it('retrieves server time on success', function (done) {
+                kraken.serverTime().then(
+                    success(serverTimeResp, done),
+                    failure
+                );
+
+            });
+
+            it('returns back error on failure', function (done) {
+                kraken.serverTime().then(
+                    success,
+                    failure(done)
+                );
+
+            });
+        });
 
     });
 
+    //describe('ticker', function () {
+    //	it('returns ticker info on good resp', function(done) {
+    //		xchange.kraken.ticker(function(error, resp){
+    //			console.log("--here.. ", resp);
+    //			if(!error){
+    //				console.log(resp);
+    //			}
+    //			done();
+    //		});
+    //	});
+    //
+    //	it('returns error on bad response', function() {
+    //		//todo
+    //	});
+    //
+    //});
 
 });
