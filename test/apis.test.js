@@ -1,6 +1,6 @@
 "use strict";
 
-var apis = require("../apis/apis")
+var apis = require("../lib/legacy/apis")
 	,assert = require("assert")
 	,chai = require("chai")
 	,sinon = require("sinon")
@@ -32,7 +32,7 @@ describe("exchange objects", function(){
 		for(var obj in apis){
 			var jsonSchema = apis[obj].jsonSchema;
 			jsonSchema.should.be.an("object");
-			
+
 			for(var key in jsonSchema){
 				jsonSchema[key].should.be.a("string");
 			}

@@ -4,7 +4,7 @@
 
 "use strict";
 
-var xchange = require("../lib/xchange");
+var xchange = require("../dist/xchange");
 
 //prints bitfinex spot price
 xchange.btc38.ticker(function(error, resp){
