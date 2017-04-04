@@ -4168,6 +4168,48 @@ const ohlcResp = {
     }
 };
 
+const orderBookResp = {
+    "error": [],
+    "result": {
+        "USDTZUSD": {
+            "asks": [
+                [
+                    "0.99990000",
+                    "1197.640",
+                    1491270406
+                ],
+                [
+                    "1.00000000",
+                    "139591.372",
+                    1491264957
+                ],
+                [
+                    "1.00050000",
+                    "8000.000",
+                    1491252461
+                ]
+            ],
+            "bids": [
+                [
+                    "0.99910000",
+                    "193.814",
+                    1491271114
+                ],
+                [
+                    "0.99900000",
+                    "11840.887",
+                    1491269156
+                ],
+                [
+                    "0.99850000",
+                    "17000.000",
+                    1491269350
+                ]
+            ]
+        }
+    }
+};
+
 const errMsg = {msg: "test-error"};
 
 
@@ -4209,10 +4251,21 @@ nock('https://api.kraken.com')
     })
     .twice()
     .reply(200, ohlcResp);
-    //.reply(200, ohlcResp);
 
 nock('https://api.kraken.com')
     .post('/0/public/OHLC')
+    .twice()
+    .replyWithError(errMsg);
+
+nock('https://api.kraken.com')
+    .post('/0/public/Depth', {
+        "pair": "USDTZUSD"
+    })
+    .twice()
+    .reply(200, orderBookResp);
+
+nock('https://api.kraken.com')
+    .post('/0/public/Depth')
     .twice()
     .replyWithError(errMsg);
 
@@ -4373,6 +4426,45 @@ describe.only('kraken', function () {
 
             it('retrieves error using promise', function (done) {
                 kraken.ohlc().then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+
+    });
+
+    describe('orderBook', function () {
+
+        const data = { "pair": "USDTZUSD" };
+
+        context('success call', function () {
+            it('retrieves array of pair name and market depth using cb', function (done) {
+
+                kraken.orderBook(data, function (err, resp) {
+                    resp.should.deep.equal(orderBookResp);
+                    done();
+                });
+            });
+
+            it('retrieves array of pair name and market depth using promise', function (done) {
+                kraken.orderBook(data).then(
+                    success(orderBookResp, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                kraken.orderBook(null, function (err, resp) {
+                    err.should.deep.equal(errMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                kraken.orderBook().then(
                     success,
                     failure(done)
                 );
