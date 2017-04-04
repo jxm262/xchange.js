@@ -4243,6 +4243,30 @@ const recentTradesResp = {
     }
 };
 
+const recentSpreadResp = {
+    "error": [],
+    "result": {
+        "USDTZUSD": [
+            [
+                1491208373,
+                "0.99800000",
+                "0.99890000"
+            ],
+            [
+                1491208878,
+                "0.99810000",
+                "0.99890000"
+            ],
+            [
+                1491209034,
+                "0.99800000",
+                "0.99890000"
+            ]
+        ],
+        "last": 1491271114
+    }
+};
+
 const errMsg = {msg: "test-error"};
 
 
@@ -4311,6 +4335,18 @@ nock('https://api.kraken.com')
 
 nock('https://api.kraken.com')
     .post('/0/public/Trades')
+    .twice()
+    .replyWithError(errMsg);
+
+nock('https://api.kraken.com')
+    .post('/0/public/Spread', {
+        "pair": "USDTZUSD"
+    })
+    .twice()
+    .reply(200, recentSpreadResp);
+
+nock('https://api.kraken.com')
+    .post('/0/public/Spread')
     .twice()
     .replyWithError(errMsg);
 
@@ -4549,6 +4585,45 @@ describe.only('kraken', function () {
 
             it('retrieves error using promise', function (done) {
                 kraken.recentTrades().then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+
+    });
+
+    describe('recentSpread', function () {
+
+        const data = { "pair": "USDTZUSD" };
+
+        context('success call', function () {
+            it('retrieves array of pair name and recent spread data using cb', function (done) {
+
+                kraken.recentSpread(data, function (err, resp) {
+                    resp.should.deep.equal(recentSpreadResp);
+                    done();
+                });
+            });
+
+            it('retrieves array of pair name and recent spread data using promise', function (done) {
+                kraken.recentSpread(data).then(
+                    success(recentSpreadResp, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                kraken.recentSpread(null, function (err, resp) {
+                    err.should.deep.equal(errMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                kraken.recentSpread().then(
                     success,
                     failure(done)
                 );
