@@ -182,22 +182,6 @@ const assetPairsResp = {
                 [
                     50000,
                     0.16
-                ],
-                [
-                    100000,
-                    0.12
-                ],
-                [
-                    250000,
-                    0.08
-                ],
-                [
-                    500000,
-                    0.04
-                ],
-                [
-                    1000000,
-                    0
                 ]
             ],
             "fees_maker": [
@@ -209,22 +193,6 @@ const assetPairsResp = {
                     50000,
                     0.16
                 ],
-                [
-                    100000,
-                    0.12
-                ],
-                [
-                    250000,
-                    0.08
-                ],
-                [
-                    500000,
-                    0.04
-                ],
-                [
-                    1000000,
-                    0
-                ]
             ],
             "fee_volume_currency": "ZUSD",
             "margin_call": 80,
@@ -254,34 +222,6 @@ const assetPairsResp = {
                 [
                     50000,
                     0.24
-                ],
-                [
-                    100000,
-                    0.22
-                ],
-                [
-                    250000,
-                    0.2
-                ],
-                [
-                    500000,
-                    0.18
-                ],
-                [
-                    1000000,
-                    0.16
-                ],
-                [
-                    2500000,
-                    0.14
-                ],
-                [
-                    5000000,
-                    0.12
-                ],
-                [
-                    10000000,
-                    0.1
                 ]
             ],
             "fees_maker": [
@@ -292,34 +232,6 @@ const assetPairsResp = {
                 [
                     50000,
                     0.14
-                ],
-                [
-                    100000,
-                    0.12
-                ],
-                [
-                    250000,
-                    0.1
-                ],
-                [
-                    500000,
-                    0.08
-                ],
-                [
-                    1000000,
-                    0.06
-                ],
-                [
-                    2500000,
-                    0.04
-                ],
-                [
-                    5000000,
-                    0.02
-                ],
-                [
-                    10000000,
-                    0
                 ]
             ],
             "fee_volume_currency": "ZUSD",
@@ -352,34 +264,6 @@ const assetPairsResp = {
                 [
                     50000,
                     0.24
-                ],
-                [
-                    100000,
-                    0.22
-                ],
-                [
-                    250000,
-                    0.2
-                ],
-                [
-                    500000,
-                    0.18
-                ],
-                [
-                    1000000,
-                    0.16
-                ],
-                [
-                    2500000,
-                    0.14
-                ],
-                [
-                    5000000,
-                    0.12
-                ],
-                [
-                    10000000,
-                    0.1
                 ]
             ],
             "fees_maker": [
@@ -390,34 +274,6 @@ const assetPairsResp = {
                 [
                     50000,
                     0.14
-                ],
-                [
-                    100000,
-                    0.12
-                ],
-                [
-                    250000,
-                    0.1
-                ],
-                [
-                    500000,
-                    0.08
-                ],
-                [
-                    1000000,
-                    0.06
-                ],
-                [
-                    2500000,
-                    0.04
-                ],
-                [
-                    5000000,
-                    0.02
-                ],
-                [
-                    10000000,
-                    0
                 ]
             ],
             "fee_volume_currency": "ZUSD",
@@ -448,34 +304,6 @@ const assetPairsResp = {
                 [
                     50000,
                     0.24
-                ],
-                [
-                    100000,
-                    0.22
-                ],
-                [
-                    250000,
-                    0.2
-                ],
-                [
-                    500000,
-                    0.18
-                ],
-                [
-                    1000000,
-                    0.16
-                ],
-                [
-                    2500000,
-                    0.14
-                ],
-                [
-                    5000000,
-                    0.12
-                ],
-                [
-                    10000000,
-                    0.1
                 ]
             ],
             "fees_maker": [
@@ -4311,6 +4139,35 @@ const assetPairsResp = {
     }
 };
 
+const ohlcResp = {
+    "error": [],
+    "result": {
+        "USDTZUSD": [
+            [
+                1491269700,
+                "0.9990",
+                "0.9990",
+                "0.9990",
+                "0.9990",
+                "0.0000",
+                "0.00000000",
+                0
+            ],
+            [
+                1491269760,
+                "0.9990",
+                "0.9990",
+                "0.9990",
+                "0.9990",
+                "0.0000",
+                "0.00000000",
+                0
+            ]
+        ],
+        "last": 1491269700
+    }
+};
+
 const errMsg = {msg: "test-error"};
 
 
@@ -4343,6 +4200,19 @@ nock('https://api.kraken.com')
 
 nock('https://api.kraken.com')
     .get('/0/public/AssetPairs')
+    .twice()
+    .replyWithError(errMsg);
+
+nock('https://api.kraken.com')
+    .post('/0/public/OHLC', {
+        "pair": "USDTZUSD"
+    })
+    .twice()
+    .reply(200, ohlcResp);
+    //.reply(200, ohlcResp);
+
+nock('https://api.kraken.com')
+    .post('/0/public/OHLC')
     .twice()
     .replyWithError(errMsg);
 
@@ -4464,6 +4334,45 @@ describe.only('kraken', function () {
 
             it('retrieves error using promise', function (done) {
                 kraken.assetPairs().then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+
+    });
+
+    describe('ohlc', function () {
+
+        const data = { "pair": "USDTZUSD" };
+
+        context('success call', function () {
+            it('retrieves array of pair name and ohlc using cb', function (done) {
+
+                kraken.ohlc(data, function (err, resp) {
+                    resp.should.deep.equal(ohlcResp);
+                    done();
+                });
+            });
+
+            it('retrieves array of pair name and ohlc using using promise', function (done) {
+                kraken.ohlc(data).then(
+                    success(ohlcResp, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                kraken.ohlc(null, function (err, resp) {
+                    err.should.deep.equal(errMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                kraken.ohlc().then(
                     success,
                     failure(done)
                 );
