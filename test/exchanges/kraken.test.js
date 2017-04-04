@@ -4,7 +4,6 @@ import sinon from 'sinon';
 import request from 'supertest';
 import krakenModule from '../../lib/exchanges/kraken'
 import config from '../../lib/config'
-const should = chai.should();
 
 
 const serverTimeResp = {
