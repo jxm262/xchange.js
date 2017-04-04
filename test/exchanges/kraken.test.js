@@ -4210,6 +4210,39 @@ const orderBookResp = {
     }
 };
 
+const recentTradesResp = {
+    "error": [],
+    "result": {
+        "USDTZUSD": [
+            [
+                "1.00100000",
+                "1000.00000000",
+                1491158215.0337,
+                "b",
+                "l",
+                ""
+            ],
+            [
+                "1.00100000",
+                "1000.00000000",
+                1491158215.8635,
+                "b",
+                "l",
+                ""
+            ],
+            [
+                "1.00100000",
+                "1000.00000000",
+                1491158216.5049,
+                "b",
+                "l",
+                ""
+            ]
+        ],
+        "last": "1491269156362842889"
+    }
+};
+
 const errMsg = {msg: "test-error"};
 
 
@@ -4266,6 +4299,18 @@ nock('https://api.kraken.com')
 
 nock('https://api.kraken.com')
     .post('/0/public/Depth')
+    .twice()
+    .replyWithError(errMsg);
+
+nock('https://api.kraken.com')
+    .post('/0/public/Trades', {
+        "pair": "USDTZUSD"
+    })
+    .twice()
+    .reply(200, recentTradesResp);
+
+nock('https://api.kraken.com')
+    .post('/0/public/Trades')
     .twice()
     .replyWithError(errMsg);
 
@@ -4465,6 +4510,45 @@ describe.only('kraken', function () {
 
             it('retrieves error using promise', function (done) {
                 kraken.orderBook().then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+
+    });
+
+    describe('recentTrades', function () {
+
+        const data = { "pair": "USDTZUSD" };
+
+        context('success call', function () {
+            it('retrieves array of pair name and recent trade data using cb', function (done) {
+
+                kraken.recentTrades(data, function (err, resp) {
+                    resp.should.deep.equal(recentTradesResp);
+                    done();
+                });
+            });
+
+            it('retrieves array of pair name and recent trade data using promise', function (done) {
+                kraken.recentTrades(data).then(
+                    success(recentTradesResp, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                kraken.recentTrades(null, function (err, resp) {
+                    err.should.deep.equal(errMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                kraken.recentTrades().then(
                     success,
                     failure(done)
                 );
