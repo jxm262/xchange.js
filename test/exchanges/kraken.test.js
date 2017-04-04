@@ -4,6 +4,7 @@ import sinon from 'sinon';
 import request from 'supertest';
 import krakenModule from '../../lib/exchanges/kraken'
 import config from '../../lib/config'
+const should = chai.should();
 
 
 const serverTimeResp = {
@@ -4365,7 +4366,7 @@ function failure(done) {
 }
 
 
-describe.only('kraken', function () {
+describe('kraken', function () {
 
     describe('serverTime', function () {
 
@@ -4407,14 +4408,14 @@ describe.only('kraken', function () {
 
         context('success call', function () {
             it('retrieves asset info using cb', function (done) {
-                kraken.assets(function (err, resp) {
+                kraken.assets(null, function (err, resp) {
                     resp.should.deep.equal(assetsResp);
                     done();
                 });
             });
 
             it('retrieves asset info using using promise', function (done) {
-                kraken.assets().then(
+                kraken.assets(null).then(
                     success(assetsResp, done),
                     failure
                 );
@@ -4423,7 +4424,7 @@ describe.only('kraken', function () {
 
         context('failure call', function () {
             it('retrieves error using cb', function (done) {
-                kraken.assets(function (err, resp) {
+                kraken.assets(null, function (err, resp) {
                     err.should.deep.equal(errMsg)
                     done();
                 });
