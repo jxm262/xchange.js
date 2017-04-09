@@ -1,8 +1,7 @@
 import nock from 'nock';
 import chai from 'chai';
 import sinon from 'sinon';
-import kraken from '../../lib/exchanges/kraken'
-import config from '../../lib/config'
+import kraken, { rootUrl, endpoints } from '../../lib/exchanges/kraken'
 const should = chai.should();
 
 
@@ -4269,81 +4268,81 @@ const recentSpreadResp = {
 const errMsg = {msg: "test-error"};
 
 
-nock('https://api.kraken.com')
-    .get('/0/public/Time')
+nock(rootUrl)
+    .get(endpoints.serverTime)
     .twice()
     .reply(200, serverTimeResp);
 
-nock('https://api.kraken.com')
-    .get('/0/public/Time')
+nock(rootUrl)
+    .get(endpoints.serverTime)
     .twice()
     .replyWithError(errMsg);
 
-nock('https://api.kraken.com')
-    .get('/0/public/Assets')
+nock(rootUrl)
+    .get(endpoints.assets)
     .twice()
     .reply(200, assetsResp);
 
-nock('https://api.kraken.com')
-    .get('/0/public/Assets')
+nock(rootUrl)
+    .get(endpoints.assets)
     .twice()
     .replyWithError(errMsg);
 
-nock('https://api.kraken.com')
-    .get('/0/public/AssetPairs')
+nock(rootUrl)
+    .get(endpoints.assetPairs)
     .twice()
     .reply(200, assetPairsResp);
 
-nock('https://api.kraken.com')
-    .get('/0/public/AssetPairs')
+nock(rootUrl)
+    .get(endpoints.assetPairs)
     .twice()
     .replyWithError(errMsg);
 
-nock('https://api.kraken.com')
-    .post('/0/public/OHLC', {
+nock(rootUrl)
+    .post(endpoints.ohlc, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, ohlcResp);
 
-nock('https://api.kraken.com')
-    .post('/0/public/OHLC')
+nock(rootUrl)
+    .post(endpoints.ohlc)
     .twice()
     .replyWithError(errMsg);
 
-nock('https://api.kraken.com')
-    .post('/0/public/Depth', {
+nock(rootUrl)
+    .post(endpoints.orderBook, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, orderBookResp);
 
-nock('https://api.kraken.com')
-    .post('/0/public/Depth')
+nock(rootUrl)
+    .post(endpoints.orderBook)
     .twice()
     .replyWithError(errMsg);
 
-nock('https://api.kraken.com')
-    .post('/0/public/Trades', {
+nock(rootUrl)
+    .post(endpoints.recentTrades, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, recentTradesResp);
 
-nock('https://api.kraken.com')
-    .post('/0/public/Trades')
+nock(rootUrl)
+    .post(endpoints.recentTrades)
     .twice()
     .replyWithError(errMsg);
 
-nock('https://api.kraken.com')
-    .post('/0/public/Spread', {
+nock(rootUrl)
+    .post(endpoints.recentSpread, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, recentSpreadResp);
 
-nock('https://api.kraken.com')
-    .post('/0/public/Spread')
+nock(rootUrl)
+    .post(endpoints.recentSpread)
     .twice()
     .replyWithError(errMsg);
 
