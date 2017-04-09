@@ -4269,80 +4269,80 @@ const errMsg = {msg: "test-error"};
 
 
 nock(rootUrl)
-    .get(endpoints.serverTime)
+    .get(endpoints.unauthenticated.serverTime.url)
     .twice()
     .reply(200, serverTimeResp);
 
 nock(rootUrl)
-    .get(endpoints.serverTime)
+    .get(endpoints.unauthenticated.serverTime.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .get(endpoints.assets)
+    .get(endpoints.unauthenticated.assets.url)
     .twice()
     .reply(200, assetsResp);
 
 nock(rootUrl)
-    .get(endpoints.assets)
+    .get(endpoints.unauthenticated.assets.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .get(endpoints.assetPairs)
+    .get(endpoints.unauthenticated.assetPairs.url)
     .twice()
     .reply(200, assetPairsResp);
 
 nock(rootUrl)
-    .get(endpoints.assetPairs)
+    .get(endpoints.unauthenticated.assetPairs.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.ohlc, {
+    .post(endpoints.unauthenticated.ohlc.url, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, ohlcResp);
 
 nock(rootUrl)
-    .post(endpoints.ohlc)
+    .post(endpoints.unauthenticated.ohlc.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.orderBook, {
+    .post(endpoints.unauthenticated.orderBook.url, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, orderBookResp);
 
 nock(rootUrl)
-    .post(endpoints.orderBook)
+    .post(endpoints.unauthenticated.orderBook.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.recentTrades, {
+    .post(endpoints.unauthenticated.recentTrades.url, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, recentTradesResp);
 
 nock(rootUrl)
-    .post(endpoints.recentTrades)
+    .post(endpoints.unauthenticated.recentTrades.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.recentSpread, {
+    .post(endpoints.unauthenticated.recentSpread.url, {
         "pair": "USDTZUSD"
     })
     .twice()
     .reply(200, recentSpreadResp);
 
 nock(rootUrl)
-    .post(endpoints.recentSpread)
+    .post(endpoints.unauthenticated.recentSpread.url)
     .twice()
     .replyWithError(errMsg);
 
@@ -4368,7 +4368,7 @@ describe('kraken', function () {
 
         context('success call', function () {
             it('retrieves server time using cb', function (done) {
-                kraken.serverTime(function (err, resp) {
+                kraken.serverTime(null, function (err, resp) {
                     resp.should.deep.equal(serverTimeResp);
                     done();
                 });
@@ -4384,7 +4384,7 @@ describe('kraken', function () {
 
         context('failure call', function () {
             it('retrieves error using cb', function (done) {
-                kraken.serverTime(function (err, resp) {
+                kraken.serverTime(null, function (err, resp) {
                     err.should.deep.equal(errMsg)
                     done();
                 });
@@ -4397,7 +4397,6 @@ describe('kraken', function () {
                 );
             });
         });
-
     });
 
     describe('assets', function () {
@@ -4440,7 +4439,7 @@ describe('kraken', function () {
 
         context('success call', function () {
             it('retrieves asset pairs using cb', function (done) {
-                kraken.assetPairs(function (err, resp) {
+                kraken.assetPairs(null, function (err, resp) {
                     resp.should.deep.equal(assetPairsResp);
                     done();
                 });
@@ -4456,7 +4455,7 @@ describe('kraken', function () {
 
         context('failure call', function () {
             it('retrieves error using cb', function (done) {
-                kraken.assetPairs(function (err, resp) {
+                kraken.assetPairs(null, function (err, resp) {
                     err.should.deep.equal(errMsg)
                     done();
                 });
