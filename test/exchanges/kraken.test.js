@@ -1,7 +1,7 @@
 import nock from 'nock';
 import chai from 'chai';
 import sinon from 'sinon';
-import krakenModule from '../../lib/exchanges/kraken'
+import kraken from '../../lib/exchanges/kraken'
 import config from '../../lib/config'
 const should = chai.should();
 
@@ -4268,8 +4268,6 @@ const recentSpreadResp = {
 
 const errMsg = {msg: "test-error"};
 
-
-const kraken = krakenModule(config);
 
 nock('https://api.kraken.com')
     .get('/0/public/Time')
