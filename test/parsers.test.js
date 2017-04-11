@@ -1,37 +1,55 @@
-export function parseResponse(req, cb) {
-    if (!cb) {
-        return req
-            .then((resp) => {
-                return Promise.resolve(resp.body)
-            })
-            .catch((err) => {
-                return Promise.reject(err)
-            });
-    }
+import nock from 'nock';
+import chai from 'chai';
+import sinon from 'sinon';
+import { parsefilterToQueryParams } from '../lib/parsers'
 
-    req.end((err, res) => {
-        const response = (res) ? res.body : res;
-        cb.apply(this, [err, response]);
+
+describe('parsers', function () {
+    describe('parsefilterToQueryParams', function () {
+        it('parses array to csv', function () {
+            const body = {
+                data: ['a', 'b', 'c']
+            };
+
+            const expected = '?data=a,b,c';
+            const actual = parsefilterToQueryParams(body);
+
+            actual.should.equal(expected);
+        });
+
+        it('parses string value', function () {
+            const body = {
+                data: 'hello'
+            };
+
+            const expected = '?data=hello';
+            const actual = parsefilterToQueryParams(body);
+
+            actual.should.equal(expected);
+        });
+
+        it('parses numeric value', function () {
+            const body = {
+                data: -999
+            };
+
+            const expected = '?data=-999';
+            const actual = parsefilterToQueryParams(body);
+
+            actual.should.equal(expected);
+        });
+
+        it('parses and appends multiple values', function () {
+            const body = {
+                dataNumeric: -999,
+                dataCSV: ['a', 'b', 'c'],
+                dataString: 'hello'
+            };
+
+            const expected = '?dataNumeric=-999&dataCSV=a,b,c&dataString=hello';
+            const actual = parsefilterToQueryParams(body);
+
+            actual.should.equal(expected);
+        });
     });
-}
-
-export function createEndpoints() {
-    //todo authed
-    const unauth = endpoints.unauthenticated;
-
-    const mapped = mapValues(unauth, (next) => {
-
-        const url = rootUrl + next.url;
-
-        return (data, cb) => {
-
-            const req = request(next.type, url)
-                .set(userAgent)
-                .send(data);
-
-            return parseResponse(req, cb);
-        };
-    });
-
-    return mapped;
-}
+});
