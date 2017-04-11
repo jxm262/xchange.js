@@ -39,50 +39,42 @@ nock(rootUrl)
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.ohlc.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.ohlc.url + '?pair=USDTZUSD')
     .twice()
     .reply(200, apis.unauthenticated.ohlc.exampleResponse);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.ohlc.url)
+    .get(apis.unauthenticated.ohlc.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.orderBook.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.orderBook.url + '?pair=USDTZUSD')
     .twice()
     .reply(200, apis.unauthenticated.orderBook.exampleResponse);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.orderBook.url)
+    .get(apis.unauthenticated.orderBook.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.recentTrades.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.recentTrades.url + '?pair=USDTZUSD')
     .twice()
     .reply(200, apis.unauthenticated.recentTrades.exampleResponse);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.recentTrades.url)
+    .get(apis.unauthenticated.recentTrades.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.recentSpread.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.recentSpread.url + '?pair=USDTZUSD')
     .twice()
     .reply(200, apis.unauthenticated.recentSpread.exampleResponse);
 
 nock(rootUrl)
-    .post(apis.unauthenticated.recentSpread.url)
+    .get(apis.unauthenticated.recentSpread.url)
     .twice()
     .replyWithError(errMsg);
 
@@ -213,7 +205,7 @@ describe('kraken', function () {
 
     describe('ohlc', function () {
 
-        const data = { "pair": "USDTZUSD" };
+        const data = { "pair": ["USDTZUSD"] };
 
         context('success call', function () {
             it('retrieves array of pair name and ohlc using cb', function (done) {
@@ -367,6 +359,7 @@ describe('kraken', function () {
 
     });
 
+    //todo
     //describe('ticker', function () {
     //	it('returns ticker info on good resp', function(done) {
     //		xchange.kraken.ticker(function(error, resp){
@@ -379,7 +372,7 @@ describe('kraken', function () {
     //	});
     //
     //	it('returns error on bad response', function() {
-    //		//todo
+    //
     //	});
     //
     //});
