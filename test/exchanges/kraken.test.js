@@ -1,87 +1,80 @@
 import nock from 'nock';
 import chai from 'chai';
 import sinon from 'sinon';
-import kraken, { rootUrl, endpoints } from '../../lib/exchanges/kraken'
+import kraken, { apis } from '../../lib/exchanges/kraken'
 const should = chai.should();
 
 
 const errMsg = {msg: "test-error"};
+const rootUrl = apis.rootUrl;
 
 nock(rootUrl)
-    .get(endpoints.unauthenticated.serverTime.url)
+    .get(apis.unauthenticated.serverTime.url)
     .twice()
-    .reply(200, endpoints.unauthenticated.serverTime.exampleResponse);
+    .reply(200, apis.unauthenticated.serverTime.exampleResponse);
 
 nock(rootUrl)
-    .get(endpoints.unauthenticated.serverTime.url)
-    .twice()
-    .replyWithError(errMsg);
-
-nock(rootUrl)
-    .get(endpoints.unauthenticated.assets.url)
-    .twice()
-    .reply(200, endpoints.unauthenticated.assets.exampleResponse);
-
-nock(rootUrl)
-    .get(endpoints.unauthenticated.assets.url)
+    .get(apis.unauthenticated.serverTime.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .get(endpoints.unauthenticated.assetPairs.url)
+    .get(apis.unauthenticated.assets.url)
     .twice()
-    .reply(200, endpoints.unauthenticated.assetPairs.exampleResponse);
+    .reply(200, apis.unauthenticated.assets.exampleResponse);
 
 nock(rootUrl)
-    .get(endpoints.unauthenticated.assetPairs.url)
-    .twice()
-    .replyWithError(errMsg);
-
-nock(rootUrl)
-    .post(endpoints.unauthenticated.ohlc.url, {
-        "pair": "USDTZUSD"
-    })
-    .twice()
-    .reply(200, endpoints.unauthenticated.ohlc.exampleResponse);
-
-nock(rootUrl)
-    .post(endpoints.unauthenticated.ohlc.url)
+    .get(apis.unauthenticated.assets.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.unauthenticated.orderBook.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.assetPairs.url)
     .twice()
-    .reply(200, endpoints.unauthenticated.orderBook.exampleResponse);
+    .reply(200, apis.unauthenticated.assetPairs.exampleResponse);
 
 nock(rootUrl)
-    .post(endpoints.unauthenticated.orderBook.url)
+    .get(apis.unauthenticated.assetPairs.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.unauthenticated.recentTrades.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.ohlc.url + '?pair=USDTZUSD')
     .twice()
-    .reply(200, endpoints.unauthenticated.recentTrades.exampleResponse);
+    .reply(200, apis.unauthenticated.ohlc.exampleResponse);
 
 nock(rootUrl)
-    .post(endpoints.unauthenticated.recentTrades.url)
+    .get(apis.unauthenticated.ohlc.url)
     .twice()
     .replyWithError(errMsg);
 
 nock(rootUrl)
-    .post(endpoints.unauthenticated.recentSpread.url, {
-        "pair": "USDTZUSD"
-    })
+    .get(apis.unauthenticated.orderBook.url + '?pair=USDTZUSD')
     .twice()
-    .reply(200, endpoints.unauthenticated.recentSpread.exampleResponse);
+    .reply(200, apis.unauthenticated.orderBook.exampleResponse);
 
 nock(rootUrl)
-    .post(endpoints.unauthenticated.recentSpread.url)
+    .get(apis.unauthenticated.orderBook.url)
+    .twice()
+    .replyWithError(errMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.recentTrades.url + '?pair=USDTZUSD')
+    .twice()
+    .reply(200, apis.unauthenticated.recentTrades.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.recentTrades.url)
+    .twice()
+    .replyWithError(errMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.recentSpread.url + '?pair=USDTZUSD')
+    .twice()
+    .reply(200, apis.unauthenticated.recentSpread.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.recentSpread.url)
     .twice()
     .replyWithError(errMsg);
 
@@ -108,14 +101,14 @@ describe('kraken', function () {
         context('success call', function () {
             it('retrieves server time using cb', function (done) {
                 kraken.serverTime(null, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.serverTime.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.serverTime.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves server time using promise', function (done) {
                 kraken.serverTime().then(
-                    success(endpoints.unauthenticated.serverTime.exampleResponse, done),
+                    success(apis.unauthenticated.serverTime.exampleResponse, done),
                     failure
                 );
             });
@@ -143,14 +136,14 @@ describe('kraken', function () {
         context('success call', function () {
             it('retrieves asset info using cb', function (done) {
                 kraken.assets(null, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.assets.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.assets.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves asset info using using promise', function (done) {
                 kraken.assets(null).then(
-                    success(endpoints.unauthenticated.assets.exampleResponse, done),
+                    success(apis.unauthenticated.assets.exampleResponse, done),
                     failure
                 );
             });
@@ -179,14 +172,14 @@ describe('kraken', function () {
         context('success call', function () {
             it('retrieves asset pairs using cb', function (done) {
                 kraken.assetPairs(null, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.assetPairs.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.assetPairs.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves asset pairs using using promise', function (done) {
                 kraken.assetPairs().then(
-                    success(endpoints.unauthenticated.assetPairs.exampleResponse, done),
+                    success(apis.unauthenticated.assetPairs.exampleResponse, done),
                     failure
                 );
             });
@@ -212,20 +205,20 @@ describe('kraken', function () {
 
     describe('ohlc', function () {
 
-        const data = { "pair": "USDTZUSD" };
+        const data = { "pair": ["USDTZUSD"] };
 
         context('success call', function () {
             it('retrieves array of pair name and ohlc using cb', function (done) {
 
                 kraken.ohlc(data, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.ohlc.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.ohlc.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves array of pair name and ohlc using using promise', function (done) {
                 kraken.ohlc(data).then(
-                    success(endpoints.unauthenticated.ohlc.exampleResponse, done),
+                    success(apis.unauthenticated.ohlc.exampleResponse, done),
                     failure
                 );
             });
@@ -257,14 +250,14 @@ describe('kraken', function () {
             it('retrieves array of pair name and market depth using cb', function (done) {
 
                 kraken.orderBook(data, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.orderBook.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.orderBook.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves array of pair name and market depth using promise', function (done) {
                 kraken.orderBook(data).then(
-                    success(endpoints.unauthenticated.orderBook.exampleResponse, done),
+                    success(apis.unauthenticated.orderBook.exampleResponse, done),
                     failure
                 );
             });
@@ -296,14 +289,14 @@ describe('kraken', function () {
             it('retrieves array of pair name and recent trade data using cb', function (done) {
 
                 kraken.recentTrades(data, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.recentTrades.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.recentTrades.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves array of pair name and recent trade data using promise', function (done) {
                 kraken.recentTrades(data).then(
-                    success(endpoints.unauthenticated.recentTrades.exampleResponse, done),
+                    success(apis.unauthenticated.recentTrades.exampleResponse, done),
                     failure
                 );
             });
@@ -335,14 +328,14 @@ describe('kraken', function () {
             it('retrieves array of pair name and recent spread data using cb', function (done) {
 
                 kraken.recentSpread(data, function (err, resp) {
-                    resp.should.deep.equal(endpoints.unauthenticated.recentSpread.exampleResponse);
+                    resp.should.deep.equal(apis.unauthenticated.recentSpread.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves array of pair name and recent spread data using promise', function (done) {
                 kraken.recentSpread(data).then(
-                    success(endpoints.unauthenticated.recentSpread.exampleResponse, done),
+                    success(apis.unauthenticated.recentSpread.exampleResponse, done),
                     failure
                 );
             });
@@ -366,6 +359,7 @@ describe('kraken', function () {
 
     });
 
+    //todo
     //describe('ticker', function () {
     //	it('returns ticker info on good resp', function(done) {
     //		xchange.kraken.ticker(function(error, resp){
@@ -378,7 +372,7 @@ describe('kraken', function () {
     //	});
     //
     //	it('returns error on bad response', function() {
-    //		//todo
+    //
     //	});
     //
     //});
