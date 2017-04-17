@@ -9,6 +9,7 @@ describe('xchangeFactory', function () {
     it('contains all the exchanges overriden from the legacy app', function () {
         const exchanges = Object.keys(xchange).sort()
         exchanges.should.deep.equal([
+            'bitfinex',
             'coinbase',
             'kraken'
         ])
