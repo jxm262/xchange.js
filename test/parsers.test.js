@@ -8,9 +8,11 @@ import { mergeHeaders, parsefilterToQueryParams, dataToSegmentedUrl, dataToQuery
 describe('parsers', function () {
 
     describe('merge headers', function () {
-        it.only('merges custom headers into default ones', function () {
-            const headers = mergeHeaders({hello: 'world'});
-            console.log('headers ', headers);
+        it('merges custom headers into default ones', function () {
+            const expectedHeaders = { 'User-Agent': 'xchange.js', hello: 'world' };
+            const actualHeaders = mergeHeaders({hello: 'world'})
+
+            expectedHeaders.should.deep.equal(actualHeaders)
         })
     });
 
