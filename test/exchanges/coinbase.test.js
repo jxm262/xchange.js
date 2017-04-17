@@ -48,6 +48,15 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get('/prices/BTC-USD/spot')
+    .twice()
+    .reply(200, apis.unauthenticated.spotPrice.exampleResponse);
+
+nock(rootUrl)
+    .get('/prices/BTC-USD/spot')
+    .twice()
+    .replyWithError(testErrMsg);
 
 
 describe('coinbase', function () {
@@ -194,6 +203,41 @@ describe('coinbase', function () {
 
             it('retrieves error using promise', function (done) {
                 coinbase.sellPrice({currencyPair: 'BTC-USD'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('spot price', function () {
+
+        context('success call', function () {
+            it('retrieves current spot price of bitcoin or ether cb', function (done) {
+                coinbase.spotPrice({currencyPair: 'BTC-USD'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.spotPrice.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves spot price using promise', function (done) {
+                coinbase.spotPrice({currencyPair: 'BTC-USD'}).then(
+                    success(apis.unauthenticated.spotPrice.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                coinbase.spotPrice({currencyPair: 'BTC-USD'}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                coinbase.spotPrice({currencyPair: 'BTC-USD'}).then(
                     success,
                     failure(done)
                 );
