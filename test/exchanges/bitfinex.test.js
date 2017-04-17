@@ -68,6 +68,26 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.symbols.url)
+    .twice()
+    .reply(200, apis.unauthenticated.symbols.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.symbols.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.symbolsDetails.url)
+    .twice()
+    .reply(200, apis.unauthenticated.symbolsDetails.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.symbolsDetails.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 
 describe('bitfinex', function () {
@@ -275,6 +295,76 @@ describe('bitfinex', function () {
 
             it('retrieves error using promise', function (done) {
                 bitfinex.lends({currency: 'USD'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('symbols', function () {
+
+        context('success call', function () {
+            it('retrieves available symbols using cb', function (done) {
+                bitfinex.symbols(null, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.symbols.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves symbols data using promise', function (done) {
+                bitfinex.symbols().then(
+                    success(apis.unauthenticated.symbols.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                bitfinex.symbols(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                bitfinex.symbols().then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('symbols details', function () {
+
+        context('success call', function () {
+            it('retrieves available symbols using cb', function (done) {
+                bitfinex.symbolsDetails(null, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.symbolsDetails.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves symbols data using promise', function (done) {
+                bitfinex.symbolsDetails().then(
+                    success(apis.unauthenticated.symbolsDetails.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                bitfinex.symbolsDetails(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                bitfinex.symbolsDetails().then(
                     success,
                     failure(done)
                 );
