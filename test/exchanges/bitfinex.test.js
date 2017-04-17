@@ -48,6 +48,26 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get('/trades/BTCUSD')
+    .twice()
+    .reply(200, apis.unauthenticated.trades.exampleResponse);
+
+nock(rootUrl)
+    .get('/trades/BTCUSD')
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get('/lends/USD')
+    .twice()
+    .reply(200, apis.unauthenticated.lends.exampleResponse);
+
+nock(rootUrl)
+    .get('/lends/USD')
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 
 describe('bitfinex', function () {
@@ -185,6 +205,76 @@ describe('bitfinex', function () {
 
             it('retrieves error using promise', function (done) {
                 bitfinex.orderBook({symbol: 'BTCUSD'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('trades', function () {
+
+        context('success call', function () {
+            it('retrieves recent trades data using cb', function (done) {
+                bitfinex.trades({symbol: 'BTCUSD'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.trades.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves recent trades using promise', function (done) {
+                bitfinex.trades({symbol: 'BTCUSD'}).then(
+                    success(apis.unauthenticated.trades.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                bitfinex.trades({symbol: 'BTCUSD'}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                bitfinex.trades({symbol: 'BTCUSD'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('lends', function () {
+
+        context('success call', function () {
+            it('retrieves recent funding data using cb', function (done) {
+                bitfinex.lends({currency: 'USD'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.lends.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves recent funding data using promise', function (done) {
+                bitfinex.lends({currency: 'USD'}).then(
+                    success(apis.unauthenticated.lends.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                bitfinex.lends({currency: 'USD'}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                bitfinex.lends({currency: 'USD'}).then(
                     success,
                     failure(done)
                 );
