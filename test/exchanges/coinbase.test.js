@@ -18,11 +18,21 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.exchangeRate.url)
+    .twice()
+    .reply(200, apis.unauthenticated.exchangeRate.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.exchangeRate.url)
+    .twice()
+    .replyWithError(testErrMsg);
 
 
-describe('kraken', function () {
 
-    describe.only('currencies', function () {
+describe('coinbase', function () {
+
+    describe('currencies', function () {
 
         context('success call', function () {
             it('retrieves server time using cb', function (done) {
@@ -50,6 +60,41 @@ describe('kraken', function () {
 
             it('retrieves error using promise', function (done) {
                 coinbase.currencies().then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('exchange rate', function () {
+
+        context('success call', function () {
+            it('retrieves exchange rate using cb', function (done) {
+                coinbase.exchangeRate(null, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.exchangeRate.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves exchange rate using promise', function (done) {
+                coinbase.exchangeRate().then(
+                    success(apis.unauthenticated.exchangeRate.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                coinbase.exchangeRate(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                coinbase.exchangeRate().then(
                     success,
                     failure(done)
                 );
