@@ -38,6 +38,16 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get('/transactions/btcusd')
+    .twice()
+    .reply(200, apis.unauthenticated.transactions.exampleResponse);
+
+nock(rootUrl)
+    .get('/transactions/btcusd')
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe.only('bitstamp', function () {
 
@@ -139,6 +149,41 @@ describe.only('bitstamp', function () {
 
             it('retrieves error using promise', function (done) {
                 bitstamp.orderBook({currencyPair: 'btcusd'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('order book', function () {
+
+        context('success call', function () {
+            it('retrieves transactions data using cb', function (done) {
+                bitstamp.transactions({currencyPair: 'btcusd'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.transactions.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves transactions data using promise', function (done) {
+                bitstamp.transactions({currencyPair: 'btcusd'}).then(
+                    success(apis.unauthenticated.transactions.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                bitstamp.transactions({currencyPair: 'btcusd'}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                bitstamp.transactions({currencyPair: 'btcusd'}).then(
                     success,
                     failure(done)
                 );
