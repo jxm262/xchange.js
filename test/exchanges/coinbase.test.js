@@ -58,6 +58,16 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.time.url)
+    .twice()
+    .reply(200, apis.unauthenticated.time.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.time.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('coinbase', function () {
 
@@ -238,6 +248,41 @@ describe('coinbase', function () {
 
             it('retrieves error using promise', function (done) {
                 coinbase.spotPrice({currencyPair: 'BTC-USD'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('time', function () {
+
+        context('success call', function () {
+            it('retrieves coinbase api server time', function (done) {
+                coinbase.time(null, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.time.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves api server time using promise', function (done) {
+                coinbase.time().then(
+                    success(apis.unauthenticated.time.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                coinbase.time(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                coinbase.time().then(
                     success,
                     failure(done)
                 );
