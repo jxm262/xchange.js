@@ -1,10 +1,35 @@
 import nock from 'nock';
 import chai from 'chai';
 import sinon from 'sinon';
-import { parsefilterToQueryParams } from '../lib/parsers'
+import _ from 'lodash';
+import { mergeHeaders, parsefilterToQueryParams, dataToSegmentedUrl, dataToQueryStringUrl } from '../lib/parsers'
 
 
 describe('parsers', function () {
+
+    describe('merge headers', function () {
+        it('merges custom headers into default ones', function () {
+            const expectedHeaders = { 'User-Agent': 'xchange.js', hello: 'world' };
+            const actualHeaders = mergeHeaders({hello: 'world'})
+
+            expectedHeaders.should.deep.equal(actualHeaders)
+        })
+    });
+
+    describe('dataToSegmentedUrl', function() {
+        it('converts input data {data: "value"} and url /endpoint/data to new url /endpoint/value', function () {
+            const url = '/hello/<%=segment1%>/world/<%=segment2%>/test';
+            const templated = _.template(url);
+            const inputData = {
+                segment1: "hola",
+                segment2: "mundo"
+            };
+
+            const segmentedUrl = templated(inputData);
+            segmentedUrl.should.equal('/hello/hola/world/mundo/test');
+        });
+    });
+
     describe('parsefilterToQueryParams', function () {
         it('parses array to csv', function () {
             const body = {
