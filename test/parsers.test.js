@@ -2,14 +2,20 @@ import nock from 'nock';
 import chai from 'chai';
 import sinon from 'sinon';
 import _ from 'lodash';
-import { parsefilterToQueryParams, dataToSegmentedUrl } from '../lib/parsers'
+import { mergeHeaders, parsefilterToQueryParams, dataToSegmentedUrl, dataToQueryStringUrl } from '../lib/parsers'
 
 
 describe('parsers', function () {
 
+    describe('merge headers', function () {
+        it.only('merges custom headers into default ones', function () {
+            const headers = mergeHeaders({hello: 'world'});
+            console.log('headers ', headers);
+        })
+    });
 
     describe('dataToSegmentedUrl', function() {
-        it.only('converts input data {data: "value"} and url /endpoint/data to new url /endpoint/value', function () {
+        it('converts input data {data: "value"} and url /endpoint/data to new url /endpoint/value', function () {
             const url = '/hello/<%=segment1%>/world/<%=segment2%>/test';
             const templated = _.template(url);
             const inputData = {
