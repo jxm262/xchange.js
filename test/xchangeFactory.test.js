@@ -10,8 +10,10 @@ describe('xchangeFactory', function () {
         const exchanges = Object.keys(xchange).sort()
         exchanges.should.deep.equal([
             'bitfinex',
+            'bitstamp',
             'coinbase',
-            'kraken'
+            'kraken',
+            'okcoin'
         ])
     });
 });
