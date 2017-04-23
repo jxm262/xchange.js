@@ -146,6 +146,16 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.otcDepth.url + '?symbol=ltc_usd')
+    .twice()
+    .reply(200, apis.unauthenticated.otcDepth.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.otcDepth.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('okcoin', function () {
 
@@ -604,5 +614,39 @@ describe('okcoin', function () {
         });
     });
 
+    describe('otc depth', function () {
+
+        context('success call', function () {
+            it('retrieves otc depth data cb', function (done) {
+                okcoin.otcDepth({symbol: 'ltc_usd'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.otcDepth.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves otc depth data using promise', function (done) {
+                okcoin.otcDepth({symbol: 'ltc_usd'}).then(
+                    success(apis.unauthenticated.otcDepth.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.otcDepth(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.otcDepth(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
 
 });
