@@ -47,12 +47,32 @@ nock(rootUrl)
     .replyWithError(testErrMsg);
 
 nock(rootUrl)
-    .get(apis.unauthenticated.contractPrice.url + '?symbol=ltc_usd&contract_type=this_week')
+    .get(apis.unauthenticated.futureTicker.url + '?symbol=ltc_usd&contract_type=this_week')
     .twice()
-    .reply(200, apis.unauthenticated.contractPrice.exampleResponse);
+    .reply(200, apis.unauthenticated.futureTicker.exampleResponse);
 
 nock(rootUrl)
-    .get(apis.unauthenticated.contractPrice.url)
+    .get(apis.unauthenticated.futureTicker.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureTicker.url + '?symbol=ltc_usd&contract_type=this_week')
+    .twice()
+    .reply(200, apis.unauthenticated.futureTicker.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureTicker.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureDepth.url + '?symbol=ltc_usd&contract_type=this_week&size=1&merge=1')
+    .twice()
+    .reply(200, apis.unauthenticated.futureDepth.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureDepth.url)
     .twice()
     .replyWithError(testErrMsg);
 
@@ -199,19 +219,19 @@ describe('okcoin', function () {
         });
     });
 
-    describe('contractPrice', function () {
+    describe('futureTicker', function () {
 
         context('success call', function () {
-            it('retrieves latest contract data using cb', function (done) {
-                okcoin.contractPrice({symbol: 'ltc_usd', contractType: 'this_week'}, function (err, resp) {
-                    resp.should.deep.equal(apis.unauthenticated.contractPrice.exampleResponse);
+            it('retrieves latest future ticker data using cb', function (done) {
+                okcoin.futureTicker({symbol: 'ltc_usd', contractType: 'this_week'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureTicker.exampleResponse);
                     done();
                 });
             });
 
-            it('retrieves contract data using promise', function (done) {
-                okcoin.contractPrice({symbol: 'ltc_usd', contractType: 'this_week'}).then(
-                    success(apis.unauthenticated.contractPrice.exampleResponse, done),
+            it('retrieves futures ticker data using promise', function (done) {
+                okcoin.futureTicker({symbol: 'ltc_usd', contractType: 'this_week'}).then(
+                    success(apis.unauthenticated.futureTicker.exampleResponse, done),
                     failure
                 );
             });
@@ -219,14 +239,49 @@ describe('okcoin', function () {
 
         context('failure call', function () {
             it('retrieves error using cb', function (done) {
-                okcoin.contractPrice(null, function (err, resp) {
+                okcoin.futureTicker(null, function (err, resp) {
                     err.should.deep.equal(testErrMsg)
                     done();
                 });
             });
 
             it('retrieves error using promise', function (done) {
-                okcoin.contractPrice(null).then(
+                okcoin.futureTicker(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('futureDepth', function () {
+
+        context('success call', function () {
+            it('retrieves latest future depth data using cb', function (done) {
+                okcoin.futureDepth({symbol: 'ltc_usd', contractType: 'this_week', size: '1', merge: '1'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureDepth.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures depth data using promise', function (done) {
+                okcoin.futureDepth({symbol: 'ltc_usd', contractType: 'this_week', size: '1', merge: '1'}).then(
+                    success(apis.unauthenticated.futureDepth.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futureDepth(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futureDepth(null).then(
                     success,
                     failure(done)
                 );
