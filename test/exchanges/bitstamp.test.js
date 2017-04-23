@@ -49,7 +49,7 @@ nock(rootUrl)
     .replyWithError(testErrMsg);
 
 
-describe.only('bitstamp', function () {
+describe('bitstamp', function () {
 
     describe('ticker', function () {
 
