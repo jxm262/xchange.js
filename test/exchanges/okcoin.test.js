@@ -116,6 +116,26 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.futureKline.url + '?symbol=ltc_usd&type=30min&contract_type=this_week&size=3&since=1417536000000')
+    .twice()
+    .reply(200, apis.unauthenticated.futureKline.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureKline.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureHoldAmount.url + '?symbol=ltc_usd&contract_type=this_week')
+    .twice()
+    .reply(200, apis.unauthenticated.futureHoldAmount.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureHoldAmount.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('okcoin', function () {
 
@@ -462,6 +482,76 @@ describe('okcoin', function () {
 
             it('retrieves error using promise', function (done) {
                 okcoin.futureEstimatedPrice(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('future kline', function () {
+
+        context('success call', function () {
+            it('retrieves futures kline data cb', function (done) {
+                okcoin.futureKline({symbol: 'ltc_usd', type: '30min', contractType: 'this_week', 'size': '3', since: '1417536000000'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureKline.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures kline data using promise', function (done) {
+                okcoin.futureKline({symbol: 'ltc_usd', type: '30min', contractType: 'this_week', 'size': '3', since: '1417536000000'}).then(
+                    success(apis.unauthenticated.futureKline.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futureKline(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futureKline(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('future hold amount', function () {
+
+        context('success call', function () {
+            it('retrieves futures hold amount data cb', function (done) {
+                okcoin.futureHoldAmount({symbol: 'ltc_usd', contractType: 'this_week'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureHoldAmount.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures hold amount data using promise', function (done) {
+                okcoin.futureHoldAmount({symbol: 'ltc_usd', contractType: 'this_week'}).then(
+                    success(apis.unauthenticated.futureHoldAmount.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futureHoldAmount(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futureHoldAmount(null).then(
                     success,
                     failure(done)
                 );
