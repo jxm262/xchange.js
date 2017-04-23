@@ -7,12 +7,22 @@ import { success, failure, testErrMsg } from './testUtils'
 const rootUrl = apis.rootUrl;
 
 nock(rootUrl)
-    .get('/ticker.do?symbol=ltc_usd')
+    .get(apis.unauthenticated.ticker.url + '?symbol=ltc_usd')
     .twice()
     .reply(200, apis.unauthenticated.ticker.exampleResponse);
 
 nock(rootUrl)
-    .get('/ticker.do')
+    .get(apis.unauthenticated.ticker.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.depth.url + '?symbol=ltc_usd&size=1&merge=1')
+    .twice()
+    .reply(200, apis.unauthenticated.depth.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.depth.url)
     .twice()
     .replyWithError(testErrMsg);
 
@@ -37,21 +47,56 @@ describe.only('okcoin', function () {
             });
         });
 
-        //context('failure call', function () {
-        //    it('retrieves error using cb', function (done) {
-        //        okcoin.ticker({currencyPair: 'btcusd'}, function (err, resp) {
-        //            err.should.deep.equal(testErrMsg)
-        //            done();
-        //        });
-        //    });
-        //
-        //    it('retrieves error using promise', function (done) {
-        //        okcoin.ticker({currencyPair: 'btcusd'}).then(
-        //            success,
-        //            failure(done)
-        //        );
-        //    });
-        //});
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.ticker(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.ticker(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('depth', function () {
+
+        context('success call', function () {
+            it('retrieves depth data using cb', function (done) {
+                okcoin.depth({symbol: 'ltc_usd', size: '1', merge: '1'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.depth.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves depth using promise', function (done) {
+                okcoin.depth({symbol: 'ltc_usd', size: '1', merge: '1'}).then(
+                    success(apis.unauthenticated.depth.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.depth(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.depth(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
     });
 
 
