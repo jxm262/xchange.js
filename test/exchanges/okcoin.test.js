@@ -76,6 +76,46 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.futureTrades.url + '?symbol=ltc_usd&contract_type=this_week')
+    .twice()
+    .reply(200, apis.unauthenticated.futureTrades.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureTrades.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureIndex.url + '?symbol=ltc_usd')
+    .twice()
+    .reply(200, apis.unauthenticated.futureIndex.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureIndex.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.exchangeRate.url)
+    .twice()
+    .reply(200, apis.unauthenticated.exchangeRate.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.exchangeRate.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureEstimatedPrice.url + '?symbol=ltc_usd')
+    .twice()
+    .reply(200, apis.unauthenticated.futureEstimatedPrice.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futureEstimatedPrice.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('okcoin', function () {
 
@@ -282,6 +322,146 @@ describe('okcoin', function () {
 
             it('retrieves error using promise', function (done) {
                 okcoin.futureDepth(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('futureTrades', function () {
+
+        context('success call', function () {
+            it('retrieves latest futures trades data using cb', function (done) {
+                okcoin.futureTrades({symbol: 'ltc_usd', contractType: 'this_week'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureTrades.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures trades data using promise', function (done) {
+                okcoin.futureTrades({symbol: 'ltc_usd', contractType: 'this_week'}).then(
+                    success(apis.unauthenticated.futureTrades.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futureTrades(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futureTrades(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('futureIndex', function () {
+
+        context('success call', function () {
+            it('retrieves latest futures index price using cb', function (done) {
+                okcoin.futureIndex({symbol: 'ltc_usd'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureIndex.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures index price using promise', function (done) {
+                okcoin.futureIndex({symbol: 'ltc_usd'}).then(
+                    success(apis.unauthenticated.futureIndex.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futureIndex(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futureIndex(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('exchange rate', function () {
+
+        context('success call', function () {
+            it('retrieves latest okcoin exchange rate using cb', function (done) {
+                okcoin.exchangeRate(null, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.exchangeRate.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves exchnage rate using promise', function (done) {
+                okcoin.exchangeRate(null).then(
+                    success(apis.unauthenticated.exchangeRate.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.exchangeRate(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.exchangeRate(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('future estimated price', function () {
+
+        context('success call', function () {
+            it('retrieves futures estimated price using cb', function (done) {
+                okcoin.futureEstimatedPrice({symbol: 'ltc_usd'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futureEstimatedPrice.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures estimated price using promise', function (done) {
+                okcoin.futureEstimatedPrice({symbol: 'ltc_usd'}).then(
+                    success(apis.unauthenticated.futureEstimatedPrice.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futureEstimatedPrice(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futureEstimatedPrice(null).then(
                     success,
                     failure(done)
                 );
