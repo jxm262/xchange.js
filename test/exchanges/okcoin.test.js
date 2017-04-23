@@ -136,6 +136,16 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.futurePriceLimit.url + '?symbol=ltc_usd&contract_type=this_week')
+    .twice()
+    .reply(200, apis.unauthenticated.futurePriceLimit.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.futurePriceLimit.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('okcoin', function () {
 
@@ -552,6 +562,41 @@ describe('okcoin', function () {
 
             it('retrieves error using promise', function (done) {
                 okcoin.futureHoldAmount(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('future price limit', function () {
+
+        context('success call', function () {
+            it('retrieves futures price limit data cb', function (done) {
+                okcoin.futurePriceLimit({symbol: 'ltc_usd', contractType: 'this_week'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.futurePriceLimit.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves futures price limit data using promise', function (done) {
+                okcoin.futurePriceLimit({symbol: 'ltc_usd', contractType: 'this_week'}).then(
+                    success(apis.unauthenticated.futurePriceLimit.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.futurePriceLimit(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.futurePriceLimit(null).then(
                     success,
                     failure(done)
                 );
