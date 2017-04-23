@@ -46,6 +46,16 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.contractPrice.url + '?symbol=ltc_usd&contract_type=this_week')
+    .twice()
+    .reply(200, apis.unauthenticated.contractPrice.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.contractPrice.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('okcoin', function () {
 
@@ -182,6 +192,41 @@ describe('okcoin', function () {
 
             it('retrieves error using promise', function (done) {
                 okcoin.kline(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('contractPrice', function () {
+
+        context('success call', function () {
+            it('retrieves latest contract data using cb', function (done) {
+                okcoin.contractPrice({symbol: 'ltc_usd', contractType: 'this_week'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.contractPrice.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves contract data using promise', function (done) {
+                okcoin.contractPrice({symbol: 'ltc_usd', contractType: 'this_week'}).then(
+                    success(apis.unauthenticated.contractPrice.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.contractPrice(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.contractPrice(null).then(
                     success,
                     failure(done)
                 );
