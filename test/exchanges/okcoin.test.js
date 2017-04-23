@@ -26,8 +26,18 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.trades.url + '?symbol=ltc_usd&since=49161637')
+    .twice()
+    .reply(200, apis.unauthenticated.trades.exampleResponse);
 
-describe.only('okcoin', function () {
+nock(rootUrl)
+    .get(apis.unauthenticated.trades.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
+
+describe('okcoin', function () {
 
     describe('ticker', function () {
 
@@ -92,6 +102,41 @@ describe.only('okcoin', function () {
 
             it('retrieves error using promise', function (done) {
                 okcoin.depth(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('trades', function () {
+
+        context('success call', function () {
+            it('retrieves recent trades data using cb', function (done) {
+                okcoin.trades({symbol: 'ltc_usd', since: '49161637'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.trades.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves recent trades using promise', function (done) {
+                okcoin.trades({symbol: 'ltc_usd', since: '49161637'}).then(
+                    success(apis.unauthenticated.trades.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.trades(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.trades(null).then(
                     success,
                     failure(done)
                 );
