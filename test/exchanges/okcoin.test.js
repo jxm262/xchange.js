@@ -36,6 +36,16 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get(apis.unauthenticated.kline.url + '?symbol=ltc_usd&type=30min&size=3&since=1417536000000')
+    .twice()
+    .reply(200, apis.unauthenticated.kline.exampleResponse);
+
+nock(rootUrl)
+    .get(apis.unauthenticated.kline.url)
+    .twice()
+    .replyWithError(testErrMsg);
+
 
 describe('okcoin', function () {
 
@@ -137,6 +147,41 @@ describe('okcoin', function () {
 
             it('retrieves error using promise', function (done) {
                 okcoin.trades(null).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('kline', function () {
+
+        context('success call', function () {
+            it('retrieves kline data using cb', function (done) {
+                okcoin.kline({symbol: 'ltc_usd', type: '30min', 'size': '3', since: '1417536000000'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.kline.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves recent kline using promise', function (done) {
+                okcoin.kline({symbol: 'ltc_usd', type: '30min', 'size': '3', since: '1417536000000'}).then(
+                    success(apis.unauthenticated.kline.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                okcoin.kline(null, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                okcoin.kline(null).then(
                     success,
                     failure(done)
                 );
