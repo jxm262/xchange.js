@@ -11,6 +11,7 @@ describe('xchangeFactory', function () {
         exchanges.should.deep.equal([
             'bitfinex',
             'bitstamp',
+            'btce',
             'coinbase',
             'kraken',
             'okcoin'
