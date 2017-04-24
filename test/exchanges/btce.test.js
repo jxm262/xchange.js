@@ -29,15 +29,25 @@ nock(rootUrl)
 nock(rootUrl)
     .get('/depth/btc_usd?limit=1')
     .twice()
-    .reply(200, apis.unauthenticated.ticker.exampleResponse);
+    .reply(200, apis.unauthenticated.depth.exampleResponse);
 
 nock(rootUrl)
     .get('/depth/btc_usd?limit=1')
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get('/trades/btc_usd?limit=1')
+    .twice()
+    .reply(200, apis.unauthenticated.trades.exampleResponse);
 
-describe.only('btce', function () {
+nock(rootUrl)
+    .get('/trades/btc_usd?limit=1')
+    .twice()
+    .replyWithError(testErrMsg);
+
+
+describe('btce', function () {
 
     describe('info', function () {
 
@@ -137,6 +147,41 @@ describe.only('btce', function () {
 
             it('retrieves error using promise', function (done) {
                 btce.depth({currencyPair: 'btc_usd', limit: 1}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('trades', function () {
+
+        context('success call', function () {
+            it('retrieves trades data using cb', function (done) {
+                btce.trades({currencyPair: 'btc_usd', limit: 1}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.trades.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves trades data using promise', function (done) {
+                btce.trades({currencyPair: 'btc_usd', limit: 1}).then(
+                    success(apis.unauthenticated.trades.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                btce.trades({currencyPair: 'btc_usd', limit: 1}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                btce.trades({currencyPair: 'btc_usd', limit: 1}).then(
                     success,
                     failure(done)
                 );
