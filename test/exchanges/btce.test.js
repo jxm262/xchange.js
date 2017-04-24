@@ -16,8 +16,28 @@ nock(rootUrl)
     .twice()
     .replyWithError(testErrMsg);
 
+nock(rootUrl)
+    .get('/ticker/btc_usd')
+    .twice()
+    .reply(200, apis.unauthenticated.ticker.exampleResponse);
 
-describe('btce', function () {
+nock(rootUrl)
+    .get('/ticker/btc_usd')
+    .twice()
+    .replyWithError(testErrMsg);
+
+nock(rootUrl)
+    .get('/depth/btc_usd?limit=1')
+    .twice()
+    .reply(200, apis.unauthenticated.ticker.exampleResponse);
+
+nock(rootUrl)
+    .get('/depth/btc_usd?limit=1')
+    .twice()
+    .replyWithError(testErrMsg);
+
+
+describe.only('btce', function () {
 
     describe('info', function () {
 
@@ -47,6 +67,76 @@ describe('btce', function () {
 
             it('retrieves error using promise', function (done) {
                 btce.info({currencyPair: 'btc_usd'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('ticker', function () {
+
+        context('success call', function () {
+            it('retrieves ticker data on currency pair using cb', function (done) {
+                btce.ticker({currencyPair: 'btc_usd'}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.ticker.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves ticker data using promise', function (done) {
+                btce.ticker({currencyPair: 'btc_usd'}).then(
+                    success(apis.unauthenticated.ticker.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                btce.ticker({currencyPair: 'btc_usd'}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                btce.ticker({currencyPair: 'btc_usd'}).then(
+                    success,
+                    failure(done)
+                );
+            });
+        });
+    });
+
+    describe('depth', function () {
+
+        context('success call', function () {
+            it('retrieves depth data using cb', function (done) {
+                btce.depth({currencyPair: 'btc_usd', limit: 1}, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.depth.exampleResponse);
+                    done();
+                });
+            });
+
+            it('retrieves depth data using promise', function (done) {
+                btce.depth({currencyPair: 'btc_usd', limit: 1}).then(
+                    success(apis.unauthenticated.depth.exampleResponse, done),
+                    failure
+                );
+            });
+        });
+
+        context('failure call', function () {
+            it('retrieves error using cb', function (done) {
+                btce.depth({currencyPair: 'btc_usd', limit: 1}, function (err, resp) {
+                    err.should.deep.equal(testErrMsg)
+                    done();
+                });
+            });
+
+            it('retrieves error using promise', function (done) {
+                btce.depth({currencyPair: 'btc_usd', limit: 1}).then(
                     success,
                     failure(done)
                 );
