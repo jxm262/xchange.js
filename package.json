@@ -4,7 +4,8 @@
   "description": "A bitcoin-altcoin spot price api.  Covers different alt currency exchanges and aggregates their api's into a convenient wrapper",
   "main": "./lib/xchange.js",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "docs": "./node_modules/.bin/esdoc -c esdoc.json"
   },
   "repository": {
     "type": "git",
@@ -35,6 +36,7 @@
     "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.24.0",
     "chai": "^1.10.0",
+    "esdoc": "^0.5.2",
     "eslint": "^3.18.0",
     "eslint-config-airbnb": "^14.1.0",
     "eslint-plugin-import": "^2.2.0",

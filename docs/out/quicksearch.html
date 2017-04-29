@@ -1,0 +1,31 @@
+<html>
+<head>
+</head>
+<body style="background: transparent;">
+    <script src="scripts/docstrap.lib.js"></script>
+    <script src="scripts/lunr.min.js"></script>
+    <script src="scripts/fulltext-search.js"></script>
+
+    <script type="text/x-docstrap-searchdb">
+    {"modules.list.html":{"id":"modules.list.html","title":"Modules","body":" {string} Namespaces kraken Modules xchange.coinbase Modules Namespaces kraken × Search results Close {string} "},"namespaces.list.html":{"id":"namespaces.list.html","title":"Namespaces","body":" {string} Namespaces kraken Modules xchange.coinbase Namespaces Namespaces kraken × Search results Close {string} "},"index.html":{"id":"index.html","title":"Index","body":" {string} Namespaces kraken Modules xchange.coinbase × Search results Close {string} "},"kraken.html":{"id":"kraken.html","title":"Namespace: kraken","body":" {string} Namespaces kraken Modules xchange.coinbase Namespace: kraken kraken Source: kraken.js Methods &lt;static&gt; testFirstLvl( [data] [, cb]) Get Asset Info Parameters: Name Type Argument Description data Object &lt;optional&gt; Properties Name Type Argument Default Description info string &lt;optional&gt; all info to retrieve aclass string &lt;optional&gt; currency asset class asset string &lt;optional&gt; all comma delimited list of assets to get info on cb function &lt;optional&gt; node style callback Source: kraken.js Returns: array of asset names and their info Type Object × Search results Close {string} "},"xchange.module_coinbase.html":{"id":"xchange.module_coinbase.html","title":"Module: coinbase","body":" {string} Namespaces kraken Modules xchange.coinbase Module: coinbase Source: coinbase.js × Search results Close {string} "}}
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            Searcher.init();
+        });
+
+        $(window).on("message", function(msg) {
+            var msgData = msg.originalEvent.data;
+
+            if (msgData.msgid != "docstrap.quicksearch.start") {
+                return;
+            }
+
+            var results = Searcher.search(msgData.searchTerms);
+
+            window.parent.postMessage({"results": results, "msgid": "docstrap.quicksearch.done"}, "*");
+        });
+    </script>
+</body>
+</html>
