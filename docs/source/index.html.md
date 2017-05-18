@@ -13,18 +13,102 @@ search: true
 ---
 
 # Introduction
+```javascript
+import xchange from 'xchange.js';
+```  
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+> example usage (callbacks)
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+```javascript
+xchange.coinbase.sellPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+  if (!err)
+    console.log(response);  
+});
 
-This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+//example without params - pass null as 1st arg
+xchange.coinbase.ticker(null, (err, response) => {
+  if (!err)
+    console.log(res);
+});
+```
+
+> example usage (Promises)
+
+```javascript
+xchange.coinbase.sellPrice({currencyPair: 'BTC-USD'})
+  .then((response) => {
+    console.log(response);  
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+//example without params
+xchange.coinbase.ticker()
+  .then((response) => {
+    console.log(response);  
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+```
+Aggregates different Bitcoin exchanges api's into a convenient JS wrapper.  
+
+- Works both on the Client or Server
+- Can use either Callbacks or Promises (es6)  
+- Currently supports 6 different exchanges (with more to come)
+   - Bitfinex
+   - Bitstamp
+   - Coinbase
+   - BTC-e
+   - Kraken
+   - OkCoin
+
+
+
 
 # Coinbase
-Some coinbase description
+**Coinbase API**  
+```javascript
+import xchange from 'xchange';
 
-## Non-Authenticated
-Some non Authed docs
+xchange.coinbase[method](params)
+```
+Follows similar documentation to original api [found here](https://developers.coinbase.com/api/v2#data-endpoints)
+
+
+## Currencies  
+```javascript
+coinbase.currencies(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "data": [
+    {
+      "id": "AED",
+      "name": "United Arab Emirates Dirham",
+      "min_size": "0.01000000"
+    },
+    {
+      "id": "AFN",
+      "name": "Afghan Afghani",
+      "min_size": "0.01000000"
+    }
+  ]
+}
+```
+List known currencies
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+None
+
 
 ## Authenticated
 Some authed api docs
