@@ -110,8 +110,59 @@ Parameter | Default | Description
 None
 
 
-## Authenticated
-Some authed api docs
+## Exchange Rate  
+```javascript
+coinbase.exchangeRate(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "data": {
+    "currency": "BTC",
+    "rates": {
+      "AED": "36.73",
+      "AFN": "589.50",
+    }
+  }
+}
+```
+Get exchange rates for btc to different currencies
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+None
+
+
+## Buy Price  
+```javascript
+coinbase.buyPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "data": {
+    "amount": "1020.25",
+    "currency": "USD"
+  }
+}
+```
+Get the total price to buy one bitcoin or ether.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | | the currency for the exchange rate
+
+
 
 # Authentication
 
