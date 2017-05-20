@@ -527,6 +527,174 @@ currencyPair | - | the currency pair to retrieve data for
 time | hour | time interval for transactions, possible values are 'minute', 'hour', 'day'
 
 
+# BTC-E
+**BTC-E API**  
+
+```javascript
+import xchange from 'xchange';
+
+xchange.btce[method](params)
+```
+Uses BTC-E exchange API's [found here](https://btc-e.com/api/3/docs)
+
+
+## Info  
+```javascript
+xchange.btce.info({currencyPair: 'btc_usd'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "server_time": 1493005594,
+  "pairs": {
+    "btc_usd": {
+      "decimal_places": 3,
+      "min_price": 0.1,
+      "max_price": 10000,
+      "min_amount": 0.001,
+      "hidden": 0,
+      "fee": 0.2
+    },
+    "btc_rur": {
+      "decimal_places": 5,
+      "min_price": 1,
+      "max_price": 1000000,
+      "min_amount": 0.001,
+      "hidden": 0,
+      "fee": 0.2
+    },
+    "btc_eur": {
+      "decimal_places": 5,
+      "min_price": 0.1,
+      "max_price": 3200,
+      "min_amount": 0.001,
+      "hidden": 0,
+      "fee": 0.2
+    },
+    ...
+  }
+}
+```
+Get info.  This method provides all the information about currently active pairs, such as the maximum number of digits after the decimal point, the minimum price, the maximum price, the minimum transaction size, whether the pair is hidden, the commission for each pair.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+
+
+## Ticker  
+```javascript
+xchange.btce.ticker({currencyPair: 'btc_usd'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "btc_usd": {
+    "high": 1241.987,
+    "low": 1215.5,
+    "avg": 1228.7435,
+    "vol": 5842305.3252,
+    "vol_cur": 4736.91428,
+    "last": 1235.22,
+    "buy": 1240,
+    "sell": 1235.221,
+    "updated": 1493005768
+  },
+  ...
+}
+```
+Get Ticker.  This method provides all the information about currently active pairs, such as: the maximum price, the minimum price, average price, trade volume, trade volume in currency, the last trade, Buy and Sell price. All information is provided over the past 24 hours.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+
+
+## Depth  
+```javascript
+const params = {
+  currencyPair: 'btc_usd',
+  limit: 5
+}
+  
+xchange.btce.depth(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "btc_usd": {
+    "asks": [
+      [1240.476, 1.0708589],
+      ...
+    ],
+    "bids": [
+      [1236.077, 1.09385775],
+      ...
+    ]
+  },
+  ...
+}
+```
+Get Depth.  This method provides the information about active orders on the pair.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+limit | 150 | (Optional) indicates how many orders should be displayed. Must be less than 500
+
+
+## Trades  
+```javascript
+const params = {
+  currencyPair: 'btc_usd',
+  limit: 5
+}
+  
+xchange.btce.trades(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "btc_usd": {
+    "asks": [
+      [1240.476, 1.0708589],
+      ...
+    ],
+    "bids": [
+      [1236.077, 1.09385775],
+      ...
+    ]
+  }
+}
+```
+Get Trades.  This method provides the information about the last trades.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+limit | 150 | (Optional) indicates how many orders should be displayed. Must be less than 500
+
+
 # Coinbase
 **Coinbase API**  
 
@@ -535,7 +703,7 @@ import xchange from 'xchange';
 
 xchange.coinbase[method](params)
 ```
-Follows similar documentation to original api [found here](https://developers.coinbase.com/api/v2#data-endpoints)
+Uses Coinbase exchange API's [found here](https://developers.coinbase.com/api/v2#data-endpoints)
 
 
 ## Currencies  
