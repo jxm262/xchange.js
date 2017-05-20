@@ -65,10 +65,315 @@ Aggregates different Bitcoin exchanges api's into a convenient JS wrapper.
    - OkCoin
 
 
+# Bitfinex
+**Bitfinex API**  
+
+```javascript
+import xchange from 'xchange';
+
+xchange.bitfinex[method](params)
+```
+Uses bitfinex exchange API's [found here](http://docs.bitfinex.com/v1/docs/public-endpoints)
+
+
+## Ticker  
+```javascript
+xchange.bitfinex.ticker({symbol: 'BTCUSD'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "mid": "244.755",
+  "bid": "244.75",
+  "ask": "244.76",
+  "last_price": "244.82",
+  "low": "244.2",
+  "high": "248.19",
+  "volume": "7842.11542563",
+  "timestamp": "1444253422.348340958"
+}
+```
+Get Ticker price
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency symbol to retrieve data for
+
+
+## Stats
+```javascript
+xchange.bitfinex.stats({symbol: 'BTCUSD'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "period": 1,
+    "volume": "7967.96766158"
+  }, 
+  {
+    "period": 7,
+    "volume": "55938.67260266"
+  }, 
+  {
+    "period": 30,
+    "volume": "275148.09653645"
+  }
+]
+```
+Get statistics data about symbol
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency symbol to retrieve data for
+
+
+## Funding Book
+```javascript
+const params = {
+  currency: 'USD', 
+  limitBids: 10, 
+  limitAsks: 10
+}
+
+xchange.bitfinex.fundingBook(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "bids": [{
+    "rate": "9.1287",
+    "amount": "5000.0",
+    "period": 30,
+    "timestamp": "1444257541.0",
+    "frr": "No"
+  }],
+  "asks": [{
+    "rate": "8.3695",
+    "amount": "407.5",
+    "period": 2,
+    "timestamp": "1444260343.0",
+    "frr": "No"
+  }]
+}
+```
+Get the full margin funding book.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currency | - | the currency to retrieve data for
+limitBids | 50 | (Optional) limit the number of bids
+limitAsks | 50 | (Optional) limit the number of asks
+
+
+## Order Book
+```javascript
+const params = {
+  symbol: 'BTCUSD',
+  limitBids: 10, 
+  limitAsks: 10, 
+  group: 2
+}
+
+xchange.bitfinex.orderBook(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "bids": [{
+    "price": "574.61",
+    "amount": "0.1439327",
+    "timestamp": "1472506127.0"
+  }],
+  "asks": [{
+    "price": "574.62",
+    "amount": "19.1334",
+    "timestamp": "1472506126.0"
+  }]
+}
+```
+Get the full order book.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency symbol to retrieve data for
+limitBids | 50 | (Optional) limit the number of bids
+limitAsks | 50 | (Optional) limit the number of asks
+group | 1 | (Optional) If 1, orders are grouped by price in the orderbook. If 0, orders are not grouped and sorted individually
+
+
+## Trades
+```javascript
+const params = {
+  symbol: 'BTCUSD',
+  timestamp: '1472506126.0', 
+  limitTrades: 10 
+}
+
+xchange.bitfinex.trades(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "timestamp": 1444266681,
+    "tid": 11988919,
+    "price": "244.8",
+    "amount": "0.03297384",
+    "exchange": "bitfinex",
+    "type": "sell"
+  },
+  ...
+]
+```
+List most recent trades.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency symbol to retrieve data for
+timestamp | - | (Optional) Only show trades at or after this timestamp
+limitTrades | 50 | (Optional) Limit the number of trades returned. Must be >= 1
+
+
+## Lends
+```javascript
+const params = {
+  currency: 'USD',
+  timestamp: '1472506126.0',
+  limitLends: 10 
+}
+
+xchange.bitfinex.lends(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "rate": "9.8998",
+    "amount_lent": "22528933.77950878",
+    "amount_used": "0.0",
+    "timestamp": 1444264307
+  },
+  ...
+]
+```
+Get a list of the most recent funding data for the given currency: total amount provided and Flash Return Rate (in % by 365 days) over time.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currency | - | the currency to retrieve data for
+timestamp | - | (Optional) Only show trades at or after this timestamp
+limitLends | 50 | (Optional) Limit the amount of funding data returned. Must be >= 1
+
+
+## Symbols
+```javascript
+xchange.bitfinex.symbols(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  "btcusd",
+  "ltcusd",
+  "ltcbtc",
+  ...
+]
+```
+Get a list of available symbol names.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+None
+
+
+## Symbols Details
+```javascript
+xchange.bitfinex.symbolsDetails(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "pair": "btcusd",
+    "price_precision": 5,
+    "initial_margin": "30.0",
+    "minimum_margin": "15.0",
+    "maximum_order_size": "2000.0",
+    "minimum_order_size": "0.01",
+    "expiration": "NA"
+  }, 
+  {
+    "pair": "ltcusd",
+    "price_precision": 5,
+    "initial_margin": "30.0",
+    "minimum_margin": "15.0",
+    "maximum_order_size": "5000.0",
+    "minimum_order_size": "0.1",
+    "expiration": "NA"
+  }, 
+  {
+    "pair": "ltcbtc",
+    "price_precision": 5,
+    "initial_margin": "30.0",
+    "minimum_margin": "15.0",
+    "maximum_order_size": "5000.0",
+    "minimum_order_size": "0.1",
+    "expiration": "NA"
+  },
+  ...
+]
+```
+Get a list of symbol ID's and pair details.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+None
+
 
 
 # Coinbase
 **Coinbase API**  
+
 ```javascript
 import xchange from 'xchange';
 
@@ -79,7 +384,7 @@ Follows similar documentation to original api [found here](https://developers.co
 
 ## Currencies  
 ```javascript
-coinbase.currencies(null, (err, response) => {
+xchange.coinbase.currencies(null, (err, response) => {
   //response
 });
 ```
@@ -112,7 +417,7 @@ None
 
 ## Exchange Rate  
 ```javascript
-coinbase.exchangeRate(null, (err, response) => {
+xchange.coinbase.exchangeRate(null, (err, response) => {
   //response
 });
 ```
@@ -140,7 +445,7 @@ None
 
 ## Buy Price  
 ```javascript
-coinbase.buyPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+xchange.coinbase.buyPrice({currencyPair: 'BTC-USD'}, (err, response) => {
   //response
 });
 ```
@@ -165,7 +470,7 @@ currencyPair | | the currency for the exchange rate
 
 ## Sell Price  
 ```javascript
-coinbase.sellPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+xchange.coinbase.sellPrice({currencyPair: 'BTC-USD'}, (err, response) => {
   //response
 });
 ```
@@ -190,7 +495,7 @@ currencyPair | | the currency for the exchange rate
 
 ## Spot Price  
 ```javascript
-coinbase.spotPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+xchange.coinbase.spotPrice({currencyPair: 'BTC-USD'}, (err, response) => {
   //response
 });
 ```
@@ -215,7 +520,7 @@ currencyPair | | the currency for the exchange rate
 
 ## Time  
 ```javascript
-coinbase.time(null, (err, response) => {
+xchange.coinbase.time(null, (err, response) => {
   //response
 });
 ```
