@@ -370,6 +370,162 @@ Parameter | Default | Description
 None
 
 
+# Bitstamp
+**Bitstamp API**  
+
+```javascript
+import xchange from 'xchange';
+
+xchange.bitstamp[method](params)
+```
+Uses bitstamp exchange API's [found here](https://www.bitstamp.net/api/)
+
+
+## Ticker  
+```javascript
+xchange.bitstamp.ticker({currencyPair: 'btcusd'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "high": "1192.50",
+  "last": "1181.40",
+  "timestamp": "1492456833",
+  bid": "1178.55",
+  "vwap": "1178.25",
+  "volume": "3300.97957797",
+  "low": "1161.00",
+  "ask": "1181.39",
+  "open": "1162.31"
+}
+```
+Get Ticker price
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+
+
+## Hourly Ticker  
+```javascript
+xchange.bitstamp.hourlyTicker({currencyPair: 'btcusd'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "high": "1185.78",
+  "last": "1181.40",
+  "timestamp": "1492456970",
+  "bid": "1178.77",
+  "vwap": "1181.22",
+  "volume": "353.50490750",
+  "low": "1175.10",
+  "ask": "1181.40",
+  "open": "1162.31"
+}
+```
+Get Hourly Ticker
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+
+
+## Order Book  
+```javascript
+xchange.bitstamp.orderBook({currencyPair: 'btcusd'}, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "timestamp": "1492457113",
+  "bids": [
+    [
+      "1179.29",
+      "0.39000000"
+    ],
+    [
+      "1179.21",
+      "15.85206426"
+    ],
+    ...
+  ],
+  "asks": [
+    [
+      "1180.37",
+      "0.12000000"
+    ],
+    [
+      "1181.40",
+      "5.72200166"
+    ],
+    ...
+  ]
+}
+```
+Get Order Book
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+
+
+## Transactions  
+```javascript
+const params = {
+  currencyPair: 'btcusd',
+  time: 'hour'
+}
+
+xchange.bitstamp.transactions(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "date": "1492457365",
+    "tid": "14208001",
+    "price": "1180.36",
+    "type": "0",
+    "amount": "0.22949836"
+  },
+  {
+    "date": "1492457343",
+    "tid": "14207999",
+    "price": "1178.67",
+    "type": "1",
+    "amount": "3.00000000"
+  },
+  ...
+]
+```
+Get Transactions
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | - | the currency pair to retrieve data for
+time | hour | time interval for transactions, possible values are 'minute', 'hour', 'day'
+
 
 # Coinbase
 **Coinbase API**  
