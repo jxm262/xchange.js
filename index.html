@@ -1,0 +1,1795 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight .gh {
+  color: #999999;
+}
+.highlight .sr {
+  color: #f6aa11;
+}
+.highlight .go {
+  color: #888888;
+}
+.highlight .gp {
+  color: #555555;
+}
+.highlight .gs {
+}
+.highlight .gu {
+  color: #aaaaaa;
+}
+.highlight .nb {
+  color: #f6aa11;
+}
+.highlight .cm {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #75715e;
+}
+.highlight .c1 {
+  color: #75715e;
+}
+.highlight .cs {
+  color: #75715e;
+}
+.highlight .c, .highlight .cd {
+  color: #75715e;
+}
+.highlight .err {
+  color: #960050;
+}
+.highlight .gr {
+  color: #960050;
+}
+.highlight .gt {
+  color: #960050;
+}
+.highlight .gd {
+  color: #49483e;
+}
+.highlight .gi {
+  color: #49483e;
+}
+.highlight .ge {
+  color: #49483e;
+}
+.highlight .kc {
+  color: #66d9ef;
+}
+.highlight .kd {
+  color: #66d9ef;
+}
+.highlight .kr {
+  color: #66d9ef;
+}
+.highlight .no {
+  color: #66d9ef;
+}
+.highlight .kt {
+  color: #66d9ef;
+}
+.highlight .mf {
+  color: #ae81ff;
+}
+.highlight .mh {
+  color: #ae81ff;
+}
+.highlight .il {
+  color: #ae81ff;
+}
+.highlight .mi {
+  color: #ae81ff;
+}
+.highlight .mo {
+  color: #ae81ff;
+}
+.highlight .m, .highlight .mb, .highlight .mx {
+  color: #ae81ff;
+}
+.highlight .sc {
+  color: #ae81ff;
+}
+.highlight .se {
+  color: #ae81ff;
+}
+.highlight .ss {
+  color: #ae81ff;
+}
+.highlight .sd {
+  color: #e6db74;
+}
+.highlight .s2 {
+  color: #e6db74;
+}
+.highlight .sb {
+  color: #e6db74;
+}
+.highlight .sh {
+  color: #e6db74;
+}
+.highlight .si {
+  color: #e6db74;
+}
+.highlight .sx {
+  color: #e6db74;
+}
+.highlight .s1 {
+  color: #e6db74;
+}
+.highlight .s {
+  color: #e6db74;
+}
+.highlight .na {
+  color: #a6e22e;
+}
+.highlight .nc {
+  color: #a6e22e;
+}
+.highlight .nd {
+  color: #a6e22e;
+}
+.highlight .ne {
+  color: #a6e22e;
+}
+.highlight .nf {
+  color: #a6e22e;
+}
+.highlight .vc {
+  color: #ffffff;
+}
+.highlight .nn {
+  color: #ffffff;
+}
+.highlight .nl {
+  color: #ffffff;
+}
+.highlight .ni {
+  color: #ffffff;
+}
+.highlight .bp {
+  color: #ffffff;
+}
+.highlight .vg {
+  color: #ffffff;
+}
+.highlight .vi {
+  color: #ffffff;
+}
+.highlight .nv {
+  color: #ffffff;
+}
+.highlight .w {
+  color: #ffffff;
+}
+.highlight {
+  color: #ffffff;
+}
+.highlight .n, .highlight .py, .highlight .nx {
+  color: #ffffff;
+}
+.highlight .ow {
+  color: #f92672;
+}
+.highlight .nt {
+  color: #f92672;
+}
+.highlight .k, .highlight .kv {
+  color: #f92672;
+}
+.highlight .kn {
+  color: #f92672;
+}
+.highlight .kp {
+  color: #f92672;
+}
+.highlight .o {
+  color: #f92672;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange.js'</span><span class="p">;</span>
+</code></pre>
+<blockquote>
+<p>example usage (callbacks)</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>  
+<span class="p">});</span>
+
+<span class="c1">//example without params - pass null as 1st arg</span>
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">ticker</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>example usage (Promises)</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">})</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>  
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+
+<span class="c1">//example without params</span>
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">ticker</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>  
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">err</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre>
+<p>Aggregates different Bitcoin exchanges api&rsquo;s into a convenient JS wrapper.  </p>
+
+<ul>
+<li>Works both on the Client or Server</li>
+<li>Can use either Callbacks or Promises (es6)<br></li>
+<li>Currently supports 6 different exchanges (with more to come)
+
+<ul>
+<li>Bitfinex</li>
+<li>Bitstamp</li>
+<li>Coinbase</li>
+<li>BTC-e</li>
+<li>Kraken</li>
+<li>OkCoin</li>
+</ul></li>
+</ul>
+
+<h1 id="bitfinex">Bitfinex</h1>
+
+<p><strong>Bitfinex API</strong>  </p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange'</span><span class="p">;</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">params</span><span class="p">)</span>
+</code></pre>
+<p>Uses bitfinex exchange API&rsquo;s <a href="http://docs.bitfinex.com/v1/docs/public-endpoints">found here</a></p>
+
+<h2 id="ticker">Ticker</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">ticker</span><span class="p">({</span><span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"mid"</span><span class="p">:</span> <span class="s2">"244.755"</span><span class="p">,</span>
+  <span class="s2">"bid"</span><span class="p">:</span> <span class="s2">"244.75"</span><span class="p">,</span>
+  <span class="s2">"ask"</span><span class="p">:</span> <span class="s2">"244.76"</span><span class="p">,</span>
+  <span class="s2">"last_price"</span><span class="p">:</span> <span class="s2">"244.82"</span><span class="p">,</span>
+  <span class="s2">"low"</span><span class="p">:</span> <span class="s2">"244.2"</span><span class="p">,</span>
+  <span class="s2">"high"</span><span class="p">:</span> <span class="s2">"248.19"</span><span class="p">,</span>
+  <span class="s2">"volume"</span><span class="p">:</span> <span class="s2">"7842.11542563"</span><span class="p">,</span>
+  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1444253422.348340958"</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Ticker price</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency symbol to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="stats">Stats</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">stats</span><span class="p">({</span><span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"period"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s2">"volume"</span><span class="p">:</span> <span class="s2">"7967.96766158"</span>
+  <span class="p">},</span> 
+  <span class="p">{</span>
+    <span class="s2">"period"</span><span class="p">:</span> <span class="mi">7</span><span class="p">,</span>
+    <span class="s2">"volume"</span><span class="p">:</span> <span class="s2">"55938.67260266"</span>
+  <span class="p">},</span> 
+  <span class="p">{</span>
+    <span class="s2">"period"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"volume"</span><span class="p">:</span> <span class="s2">"275148.09653645"</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get statistics data about symbol</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency symbol to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="funding-book">Funding Book</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">currency</span><span class="p">:</span> <span class="s1">'USD'</span><span class="p">,</span> 
+  <span class="na">limitBids</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
+  <span class="na">limitAsks</span><span class="p">:</span> <span class="mi">10</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">fundingBook</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"bids"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">"rate"</span><span class="p">:</span> <span class="s2">"9.1287"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"5000.0"</span><span class="p">,</span>
+    <span class="s2">"period"</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1444257541.0"</span><span class="p">,</span>
+    <span class="s2">"frr"</span><span class="p">:</span> <span class="s2">"No"</span>
+  <span class="p">}],</span>
+  <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">"rate"</span><span class="p">:</span> <span class="s2">"8.3695"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"407.5"</span><span class="p">,</span>
+    <span class="s2">"period"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1444260343.0"</span><span class="p">,</span>
+    <span class="s2">"frr"</span><span class="p">:</span> <span class="s2">"No"</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get the full margin funding book.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>-</td>
+<td>the currency to retrieve data for</td>
+</tr>
+<tr>
+<td>limitBids</td>
+<td>50</td>
+<td>(Optional) limit the number of bids</td>
+</tr>
+<tr>
+<td>limitAsks</td>
+<td>50</td>
+<td>(Optional) limit the number of asks</td>
+</tr>
+</tbody></table>
+
+<h2 id="order-book">Order Book</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSD'</span><span class="p">,</span>
+  <span class="na">limitBids</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
+  <span class="na">limitAsks</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> 
+  <span class="na">group</span><span class="p">:</span> <span class="mi">2</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">orderBook</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"bids"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"574.61"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"0.1439327"</span><span class="p">,</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1472506127.0"</span>
+  <span class="p">}],</span>
+  <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[{</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"574.62"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"19.1334"</span><span class="p">,</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1472506126.0"</span>
+  <span class="p">}]</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get the full order book.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency symbol to retrieve data for</td>
+</tr>
+<tr>
+<td>limitBids</td>
+<td>50</td>
+<td>(Optional) limit the number of bids</td>
+</tr>
+<tr>
+<td>limitAsks</td>
+<td>50</td>
+<td>(Optional) limit the number of asks</td>
+</tr>
+<tr>
+<td>group</td>
+<td>1</td>
+<td>(Optional) If 1, orders are grouped by price in the orderbook. If 0, orders are not grouped and sorted individually</td>
+</tr>
+</tbody></table>
+
+<h2 id="trades">Trades</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSD'</span><span class="p">,</span>
+  <span class="na">timestamp</span><span class="p">:</span> <span class="s1">'1472506126.0'</span><span class="p">,</span> 
+  <span class="na">limitTrades</span><span class="p">:</span> <span class="mi">10</span> 
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">trades</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1444266681</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="mi">11988919</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"244.8"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"0.03297384"</span><span class="p">,</span>
+    <span class="s2">"exchange"</span><span class="p">:</span> <span class="s2">"bitfinex"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"sell"</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>List most recent trades.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency symbol to retrieve data for</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>-</td>
+<td>(Optional) Only show trades at or after this timestamp</td>
+</tr>
+<tr>
+<td>limitTrades</td>
+<td>50</td>
+<td>(Optional) Limit the number of trades returned. Must be &gt;= 1</td>
+</tr>
+</tbody></table>
+
+<h2 id="lends">Lends</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">currency</span><span class="p">:</span> <span class="s1">'USD'</span><span class="p">,</span>
+  <span class="na">timestamp</span><span class="p">:</span> <span class="s1">'1472506126.0'</span><span class="p">,</span>
+  <span class="na">limitLends</span><span class="p">:</span> <span class="mi">10</span> 
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">lends</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"rate"</span><span class="p">:</span> <span class="s2">"9.8998"</span><span class="p">,</span>
+    <span class="s2">"amount_lent"</span><span class="p">:</span> <span class="s2">"22528933.77950878"</span><span class="p">,</span>
+    <span class="s2">"amount_used"</span><span class="p">:</span> <span class="s2">"0.0"</span><span class="p">,</span>
+    <span class="s2">"timestamp"</span><span class="p">:</span> <span class="mi">1444264307</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get a list of the most recent funding data for the given currency: total amount provided and Flash Return Rate (in % by 365 days) over time.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currency</td>
+<td>-</td>
+<td>the currency to retrieve data for</td>
+</tr>
+<tr>
+<td>timestamp</td>
+<td>-</td>
+<td>(Optional) Only show trades at or after this timestamp</td>
+</tr>
+<tr>
+<td>limitLends</td>
+<td>50</td>
+<td>(Optional) Limit the amount of funding data returned. Must be &gt;= 1</td>
+</tr>
+</tbody></table>
+
+<h2 id="symbols">Symbols</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">symbols</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="s2">"btcusd"</span><span class="p">,</span>
+  <span class="s2">"ltcusd"</span><span class="p">,</span>
+  <span class="s2">"ltcbtc"</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get a list of available symbol names.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>None</p>
+
+<h2 id="symbols-details">Symbols Details</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">symbolsDetails</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"btcusd"</span><span class="p">,</span>
+    <span class="s2">"price_precision"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"initial_margin"</span><span class="p">:</span> <span class="s2">"30.0"</span><span class="p">,</span>
+    <span class="s2">"minimum_margin"</span><span class="p">:</span> <span class="s2">"15.0"</span><span class="p">,</span>
+    <span class="s2">"maximum_order_size"</span><span class="p">:</span> <span class="s2">"2000.0"</span><span class="p">,</span>
+    <span class="s2">"minimum_order_size"</span><span class="p">:</span> <span class="s2">"0.01"</span><span class="p">,</span>
+    <span class="s2">"expiration"</span><span class="p">:</span> <span class="s2">"NA"</span>
+  <span class="p">},</span> 
+  <span class="p">{</span>
+    <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"ltcusd"</span><span class="p">,</span>
+    <span class="s2">"price_precision"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"initial_margin"</span><span class="p">:</span> <span class="s2">"30.0"</span><span class="p">,</span>
+    <span class="s2">"minimum_margin"</span><span class="p">:</span> <span class="s2">"15.0"</span><span class="p">,</span>
+    <span class="s2">"maximum_order_size"</span><span class="p">:</span> <span class="s2">"5000.0"</span><span class="p">,</span>
+    <span class="s2">"minimum_order_size"</span><span class="p">:</span> <span class="s2">"0.1"</span><span class="p">,</span>
+    <span class="s2">"expiration"</span><span class="p">:</span> <span class="s2">"NA"</span>
+  <span class="p">},</span> 
+  <span class="p">{</span>
+    <span class="s2">"pair"</span><span class="p">:</span> <span class="s2">"ltcbtc"</span><span class="p">,</span>
+    <span class="s2">"price_precision"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s2">"initial_margin"</span><span class="p">:</span> <span class="s2">"30.0"</span><span class="p">,</span>
+    <span class="s2">"minimum_margin"</span><span class="p">:</span> <span class="s2">"15.0"</span><span class="p">,</span>
+    <span class="s2">"maximum_order_size"</span><span class="p">:</span> <span class="s2">"5000.0"</span><span class="p">,</span>
+    <span class="s2">"minimum_order_size"</span><span class="p">:</span> <span class="s2">"0.1"</span><span class="p">,</span>
+    <span class="s2">"expiration"</span><span class="p">:</span> <span class="s2">"NA"</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get a list of symbol ID&rsquo;s and pair details.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>None</p>
+
+<h1 id="bitstamp">Bitstamp</h1>
+
+<p><strong>Bitstamp API</strong>  </p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange'</span><span class="p">;</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitstamp</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">params</span><span class="p">)</span>
+</code></pre>
+<p>Uses bitstamp exchange API&rsquo;s <a href="https://www.bitstamp.net/api/">found here</a></p>
+
+<h2 id="ticker">Ticker</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitstamp</span><span class="p">.</span><span class="nx">ticker</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btcusd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"high"</span><span class="p">:</span> <span class="s2">"1192.50"</span><span class="p">,</span>
+  <span class="s2">"last"</span><span class="p">:</span> <span class="s2">"1181.40"</span><span class="p">,</span>
+  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1492456833"</span><span class="p">,</span>
+  <span class="nx">bid</span><span class="s2">": "</span><span class="mf">1178.55</span><span class="s2">",
+  "</span><span class="nx">vwap</span><span class="s2">": "</span><span class="mf">1178.25</span><span class="s2">",
+  "</span><span class="nx">volume</span><span class="s2">": "</span><span class="mf">3300.97957797</span><span class="s2">",
+  "</span><span class="nx">low</span><span class="s2">": "</span><span class="mf">1161.00</span><span class="s2">",
+  "</span><span class="nx">ask</span><span class="s2">": "</span><span class="mf">1181.39</span><span class="s2">",
+  "</span><span class="nx">open</span><span class="s2">": "</span><span class="mf">1162.31</span><span class="err">"</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Ticker price</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="hourly-ticker">Hourly Ticker</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitstamp</span><span class="p">.</span><span class="nx">hourlyTicker</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btcusd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"high"</span><span class="p">:</span> <span class="s2">"1185.78"</span><span class="p">,</span>
+  <span class="s2">"last"</span><span class="p">:</span> <span class="s2">"1181.40"</span><span class="p">,</span>
+  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1492456970"</span><span class="p">,</span>
+  <span class="s2">"bid"</span><span class="p">:</span> <span class="s2">"1178.77"</span><span class="p">,</span>
+  <span class="s2">"vwap"</span><span class="p">:</span> <span class="s2">"1181.22"</span><span class="p">,</span>
+  <span class="s2">"volume"</span><span class="p">:</span> <span class="s2">"353.50490750"</span><span class="p">,</span>
+  <span class="s2">"low"</span><span class="p">:</span> <span class="s2">"1175.10"</span><span class="p">,</span>
+  <span class="s2">"ask"</span><span class="p">:</span> <span class="s2">"1181.40"</span><span class="p">,</span>
+  <span class="s2">"open"</span><span class="p">:</span> <span class="s2">"1162.31"</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Hourly Ticker</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="order-book">Order Book</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitstamp</span><span class="p">.</span><span class="nx">orderBook</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btcusd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"timestamp"</span><span class="p">:</span> <span class="s2">"1492457113"</span><span class="p">,</span>
+  <span class="s2">"bids"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">"1179.29"</span><span class="p">,</span>
+      <span class="s2">"0.39000000"</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">"1179.21"</span><span class="p">,</span>
+      <span class="s2">"15.85206426"</span>
+    <span class="p">],</span>
+    <span class="p">...</span>
+  <span class="p">],</span>
+  <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span>
+      <span class="s2">"1180.37"</span><span class="p">,</span>
+      <span class="s2">"0.12000000"</span>
+    <span class="p">],</span>
+    <span class="p">[</span>
+      <span class="s2">"1181.40"</span><span class="p">,</span>
+      <span class="s2">"5.72200166"</span>
+    <span class="p">],</span>
+    <span class="p">...</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Order Book</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="transactions">Transactions</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btcusd'</span><span class="p">,</span>
+  <span class="na">time</span><span class="p">:</span> <span class="s1">'hour'</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">bitstamp</span><span class="p">.</span><span class="nx">transactions</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="s2">"1492457365"</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="s2">"14208001"</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"1180.36"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"0"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"0.22949836"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="s2">"1492457343"</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="s2">"14207999"</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"1178.67"</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"1"</span><span class="p">,</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"3.00000000"</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get Transactions</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+<tr>
+<td>time</td>
+<td>hour</td>
+<td>time interval for transactions, possible values are &lsquo;minute&rsquo;, &lsquo;hour&rsquo;, &lsquo;day&rsquo;</td>
+</tr>
+</tbody></table>
+
+<h1 id="btc-e">BTC-E</h1>
+
+<p><strong>BTC-E API</strong>  </p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange'</span><span class="p">;</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">params</span><span class="p">)</span>
+</code></pre>
+<p>Uses BTC-E exchange API&rsquo;s <a href="https://btc-e.com/api/3/docs">found here</a></p>
+
+<h2 id="info">Info</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">.</span><span class="nx">info</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btc_usd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"server_time"</span><span class="p">:</span> <span class="mi">1493005594</span><span class="p">,</span>
+  <span class="s2">"pairs"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"btc_usd"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="s2">"btc_rur"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>
+      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="s2">"btc_eur"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
+      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get info.  This method provides all the information about currently active pairs, such as the maximum number of digits after the decimal point, the minimum price, the maximum price, the minimum transaction size, whether the pair is hidden, the commission for each pair.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="ticker">Ticker</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">.</span><span class="nx">ticker</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btc_usd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"btc_usd"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"high"</span><span class="p">:</span> <span class="mf">1241.987</span><span class="p">,</span>
+    <span class="s2">"low"</span><span class="p">:</span> <span class="mf">1215.5</span><span class="p">,</span>
+    <span class="s2">"avg"</span><span class="p">:</span> <span class="mf">1228.7435</span><span class="p">,</span>
+    <span class="s2">"vol"</span><span class="p">:</span> <span class="mf">5842305.3252</span><span class="p">,</span>
+    <span class="s2">"vol_cur"</span><span class="p">:</span> <span class="mf">4736.91428</span><span class="p">,</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="mf">1235.22</span><span class="p">,</span>
+    <span class="s2">"buy"</span><span class="p">:</span> <span class="mi">1240</span><span class="p">,</span>
+    <span class="s2">"sell"</span><span class="p">:</span> <span class="mf">1235.221</span><span class="p">,</span>
+    <span class="s2">"updated"</span><span class="p">:</span> <span class="mi">1493005768</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Ticker.  This method provides all the information about currently active pairs, such as: the maximum price, the minimum price, average price, trade volume, trade volume in currency, the last trade, Buy and Sell price. All information is provided over the past 24 hours.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+</tbody></table>
+
+<h2 id="depth">Depth</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btc_usd'</span><span class="p">,</span>
+  <span class="na">limit</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">.</span><span class="nx">depth</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"btc_usd"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span><span class="mf">1240.476</span><span class="p">,</span> <span class="mf">1.0708589</span><span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">"bids"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span><span class="mf">1236.077</span><span class="p">,</span> <span class="mf">1.09385775</span><span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Depth.  This method provides the information about active orders on the pair.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>150</td>
+<td>(Optional) indicates how many orders should be displayed. Must be less than 500</td>
+</tr>
+</tbody></table>
+
+<h2 id="trades">Trades</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btc_usd'</span><span class="p">,</span>
+  <span class="na">limit</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">.</span><span class="nx">trades</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"btc_usd"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span><span class="mf">1240.476</span><span class="p">,</span> <span class="mf">1.0708589</span><span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">"bids"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span><span class="mf">1236.077</span><span class="p">,</span> <span class="mf">1.09385775</span><span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Trades.  This method provides the information about the last trades.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>150</td>
+<td>(Optional) indicates how many orders should be displayed. Must be less than 500</td>
+</tr>
+</tbody></table>
+
+<h1 id="coinbase">Coinbase</h1>
+
+<p><strong>Coinbase API</strong>  </p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange'</span><span class="p">;</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">params</span><span class="p">)</span>
+</code></pre>
+<p>Uses Coinbase exchange API&rsquo;s <a href="https://developers.coinbase.com/api/v2#data-endpoints">found here</a></p>
+
+<h2 id="currencies">Currencies</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">currencies</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"AED"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"United Arab Emirates Dirham"</span><span class="p">,</span>
+      <span class="s2">"min_size"</span><span class="p">:</span> <span class="s2">"0.01000000"</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+      <span class="s2">"id"</span><span class="p">:</span> <span class="s2">"AFN"</span><span class="p">,</span>
+      <span class="s2">"name"</span><span class="p">:</span> <span class="s2">"Afghan Afghani"</span><span class="p">,</span>
+      <span class="s2">"min_size"</span><span class="p">:</span> <span class="s2">"0.01000000"</span>
+    <span class="p">}</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<p>List known currencies</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>None</p>
+
+<h2 id="exchange-rate">Exchange Rate</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">exchangeRate</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"BTC"</span><span class="p">,</span>
+    <span class="s2">"rates"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"AED"</span><span class="p">:</span> <span class="s2">"36.73"</span><span class="p">,</span>
+      <span class="s2">"AFN"</span><span class="p">:</span> <span class="s2">"589.50"</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get exchange rates for btc to different currencies</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>None</p>
+
+<h2 id="buy-price">Buy Price</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">buyPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"1020.25"</span><span class="p">,</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get the total price to buy one bitcoin or ether.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td></td>
+<td>the currency for the exchange rate</td>
+</tr>
+</tbody></table>
+
+<h2 id="sell-price">Sell Price</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"1010.25"</span><span class="p">,</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get the total price to sell one bitcoin or ether.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td></td>
+<td>the currency for the exchange rate</td>
+</tr>
+</tbody></table>
+
+<h2 id="spot-price">Spot Price</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">spotPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"1010.25"</span><span class="p">,</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get the spot price of one bitcoin or ether.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td></td>
+<td>the currency for the exchange rate</td>
+</tr>
+</tbody></table>
+
+<h2 id="time">Time</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">time</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"data"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"1010.25"</span><span class="p">,</span>
+    <span class="s2">"currency"</span><span class="p">:</span> <span class="s2">"USD"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get the API server time.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>none</p>
+
+<h1 id="kraken">Kraken</h1>
+
+<p><strong>Kraken API</strong>  </p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange'</span><span class="p">;</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">params</span><span class="p">)</span>
+</code></pre>
+<p>Uses Kraken exchange API&rsquo;s <a href="https://www.kraken.com/help/api">found here</a></p>
+
+<h2 id="server-time">Server Time</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">serverTime</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"unixtime"</span><span class="p">:</span> <span class="mi">1491077507</span><span class="p">,</span>
+    <span class="s2">"rfc1123"</span><span class="p">:</span> <span class="s2">"Sat,  1 Apr 17 20:11:47 +0000"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Server Time.  This is to aid in approximating the skew time between the server and client.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>None</p>
+
+<h2 id="assets">Assets</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">info</span><span class="p">:</span> <span class="s1">'info'</span><span class="p">,</span>
+  <span class="na">aclass</span><span class="p">:</span> <span class="s1">'currency'</span><span class="p">,</span>
+  <span class="na">asset</span><span class="p">:</span> <span class="p">[</span><span class="s1">'DASH'</span><span class="p">,</span> <span class="s1">'USDT'</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">assets</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"DASH"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"aclass"</span><span class="p">:</span> <span class="s2">"currency"</span><span class="p">,</span>
+      <span class="s2">"altname"</span><span class="p">:</span> <span class="s2">"DASH"</span><span class="p">,</span>
+      <span class="s2">"decimals"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+      <span class="s2">"display_decimals"</span><span class="p">:</span> <span class="mi">5</span>
+    <span class="p">},</span>
+    <span class="s2">"USDT"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"aclass"</span><span class="p">:</span> <span class="s2">"currency"</span><span class="p">,</span>
+      <span class="s2">"altname"</span><span class="p">:</span> <span class="s2">"USDT"</span><span class="p">,</span>
+      <span class="s2">"decimals"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+      <span class="s2">"display_decimals"</span><span class="p">:</span> <span class="mi">4</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get asset names and their info.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>info</td>
+<td>info</td>
+<td>(Optional) info to retrieve. Valid inputs = &lsquo;info&rsquo;</td>
+</tr>
+<tr>
+<td>aclass</td>
+<td>currency</td>
+<td>(Optional) asset class</td>
+</tr>
+<tr>
+<td>asset</td>
+<td>all</td>
+<td>(Optional) Array of assets to get info on</td>
+</tr>
+</tbody></table>
+
+<h2 id="asset-pairs">Asset Pairs</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">info</span><span class="p">:</span> <span class="s1">'info'</span><span class="p">,</span>
+  <span class="na">pair</span><span class="p">:</span> <span class="p">[</span><span class="s1">'USDTZUSD'</span><span class="p">,</span> <span class="s1">'DASHUSD'</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">assetPairs</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"USDTZUSD"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"altname"</span><span class="p">:</span> <span class="s2">"USDTUSD"</span><span class="p">,</span>
+      <span class="s2">"aclass_base"</span><span class="p">:</span> <span class="s2">"currency"</span><span class="p">,</span>
+      <span class="s2">"base"</span><span class="p">:</span> <span class="s2">"USDT"</span><span class="p">,</span>
+      <span class="s2">"aclass_quote"</span><span class="p">:</span> <span class="s2">"currency"</span><span class="p">,</span>
+      <span class="s2">"quote"</span><span class="p">:</span> <span class="s2">"ZUSD"</span><span class="p">,</span>
+      <span class="s2">"lot"</span><span class="p">:</span> <span class="s2">"unit"</span><span class="p">,</span>
+      <span class="s2">"pair_decimals"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+      <span class="s2">"lot_decimals"</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+      <span class="s2">"lot_multiplier"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"leverage_buy"</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">"leverage_sell"</span><span class="p">:</span> <span class="p">[],</span>
+      <span class="s2">"fees"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+          <span class="mi">0</span><span class="p">,</span>
+          <span class="mf">0.2</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+          <span class="mi">50000</span><span class="p">,</span>
+          <span class="mf">0.16</span>
+        <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s2">"fees_maker"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+          <span class="mi">0</span><span class="p">,</span>
+          <span class="mf">0.2</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+          <span class="mi">50000</span><span class="p">,</span>
+          <span class="mf">0.16</span>
+        <span class="p">],</span>
+      <span class="p">],</span>
+      <span class="s2">"fee_volume_currency"</span><span class="p">:</span> <span class="s2">"ZUSD"</span><span class="p">,</span>
+      <span class="s2">"margin_call"</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>
+      <span class="s2">"margin_stop"</span><span class="p">:</span> <span class="mi">40</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get asset pairs and their info.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>info</td>
+<td>info</td>
+<td>(Optional) info to retrieve. Valid inputs = &lsquo;info&rsquo;, &lsquo;leverage&rsquo;, &lsquo;fees&rsquo;, or &lsquo;margin&rsquo;</td>
+</tr>
+<tr>
+<td>pair</td>
+<td>all</td>
+<td>(Optional) Array of assetPairs to get info on (ex: [&lsquo;USDTZUSD&rsquo;, &lsquo;DASHUSD&rsquo;])</td>
+</tr>
+</tbody></table>
+
+<h2 id="ohlc">OHLC</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">pair</span><span class="p">:</span> <span class="s1">'USDTZUSD'</span><span class="p">,</span>
+  <span class="na">interval</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="na">since</span><span class="p">:</span> <span class="mi">1491269700</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">ohlc</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"USDTZUSD"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="mi">1491269700</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.0000"</span><span class="p">,</span>
+        <span class="s2">"0.00000000"</span><span class="p">,</span>
+        <span class="mi">0</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="mi">1491269760</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.9990"</span><span class="p">,</span>
+        <span class="s2">"0.0000"</span><span class="p">,</span>
+        <span class="s2">"0.00000000"</span><span class="p">,</span>
+        <span class="mi">0</span>
+      <span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="mi">1491269700</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get pair names and OHLC data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>all</td>
+<td>(Optional) asset pair to get OHLC data for</td>
+</tr>
+<tr>
+<td>interval</td>
+<td>1</td>
+<td>(Optional) time frame interval in minutes</td>
+</tr>
+<tr>
+<td>since</td>
+<td>-</td>
+<td>(Optional - exclusive) return trade data since given id</td>
+</tr>
+</tbody></table>
+
+<h2 id="order-book">Order Book</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">pair</span><span class="p">:</span> <span class="s1">'USDTZUSD'</span><span class="p">,</span>
+  <span class="na">count</span><span class="p">:</span> <span class="mi">5</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">orderBook</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"USDTZUSD"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+          <span class="s2">"0.99990000"</span><span class="p">,</span>
+          <span class="s2">"1197.640"</span><span class="p">,</span>
+          <span class="mi">1491270406</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+          <span class="s2">"1.00000000"</span><span class="p">,</span>
+          <span class="s2">"139591.372"</span><span class="p">,</span>
+          <span class="mi">1491264957</span>
+        <span class="p">]</span>
+      <span class="p">],</span>
+      <span class="s2">"bids"</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">[</span>
+          <span class="s2">"0.99910000"</span><span class="p">,</span>
+          <span class="s2">"193.814"</span><span class="p">,</span>
+          <span class="mi">1491271114</span>
+        <span class="p">],</span>
+        <span class="p">[</span>
+          <span class="s2">"0.99900000"</span><span class="p">,</span>
+          <span class="s2">"11840.887"</span><span class="p">,</span>
+          <span class="mi">1491269156</span>
+        <span class="p">]</span>
+      <span class="p">]</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Order Book.  Array of pair name and market depth</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>all</td>
+<td>(Optional) asset pair to get OHLC data for</td>
+</tr>
+<tr>
+<td>count</td>
+<td>-</td>
+<td>(Optional) maximum number of asks/bids (optional)</td>
+</tr>
+</tbody></table>
+
+<h2 id="recent-trades">Recent Trades</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">pair</span><span class="p">:</span> <span class="s1">'USDTZUSD'</span><span class="p">,</span>
+  <span class="na">since</span><span class="p">:</span> <span class="mi">1491269156362842889</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">recentTrades</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"USDTZUSD"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="s2">"1.00100000"</span><span class="p">,</span>
+        <span class="s2">"1000.00000000"</span><span class="p">,</span>
+        <span class="mf">1491158215.0337</span><span class="p">,</span>
+        <span class="s2">"b"</span><span class="p">,</span>
+        <span class="s2">"l"</span><span class="p">,</span>
+        <span class="s2">""</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="s2">"1.00100000"</span><span class="p">,</span>
+        <span class="s2">"1000.00000000"</span><span class="p">,</span>
+        <span class="mf">1491158215.8635</span><span class="p">,</span>
+        <span class="s2">"b"</span><span class="p">,</span>
+        <span class="s2">"l"</span><span class="p">,</span>
+        <span class="s2">""</span>
+      <span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="s2">"1491269156362842889"</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Recent Trades.  Array of pair name and recent trade data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>all</td>
+<td>(Optional) asset pair to get info on (ex: &lsquo;USDTZUSD&rsquo;)</td>
+</tr>
+<tr>
+<td>since</td>
+<td>-</td>
+<td>(Optional - exclusive) return trade data since given id</td>
+</tr>
+</tbody></table>
+
+<h2 id="recent-spread">Recent Spread</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">pair</span><span class="p">:</span> <span class="s1">'USDTZUSD'</span><span class="p">,</span>
+  <span class="na">since</span><span class="p">:</span> <span class="mi">1491269156362842889</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">kraken</span><span class="p">.</span><span class="nx">recentSpread</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"error"</span><span class="p">:</span> <span class="p">[],</span>
+  <span class="s2">"result"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"USDTZUSD"</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">[</span>
+        <span class="mi">1491208373</span><span class="p">,</span>
+        <span class="s2">"0.99800000"</span><span class="p">,</span>
+        <span class="s2">"0.99890000"</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="mi">1491208878</span><span class="p">,</span>
+        <span class="s2">"0.99810000"</span><span class="p">,</span>
+        <span class="s2">"0.99890000"</span>
+      <span class="p">],</span>
+      <span class="p">[</span>
+        <span class="mi">1491209034</span><span class="p">,</span>
+        <span class="s2">"0.99800000"</span><span class="p">,</span>
+        <span class="s2">"0.99890000"</span>
+      <span class="p">],</span>
+      <span class="p">...</span>
+    <span class="p">],</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="mi">1491271114</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get Recent Spread.  Array of pair name and recent trade data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pair</td>
+<td>all</td>
+<td>(Optional) asset pairs to get info on (ex: &lsquo;USDTZUSD&rsquo;)</td>
+</tr>
+<tr>
+<td>since</td>
+<td>-</td>
+<td>(Optional - exclusive) return trade data since given id</td>
+</tr>
+</tbody></table>
+
+<h1 id="okcoin">OkCoin</h1>
+
+<p><strong>OkCoin API</strong>  </p>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange'</span><span class="p">;</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">[</span><span class="nx">method</span><span class="p">](</span><span class="nx">params</span><span class="p">)</span>
+</code></pre>
+<p>Uses OkCoin exchange API&rsquo;s <a href="https://www.okcoin.com/about/rest_api.do">found here</a></p>
+
+<h2 id="info">Info</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">.</span><span class="nx">info</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btc_usd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"server_time"</span><span class="p">:</span> <span class="mi">1493005594</span><span class="p">,</span>
+  <span class="s2">"pairs"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"btc_usd"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="s2">"btc_rur"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>
+      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="s2">"btc_eur"</span><span class="p">:</span> <span class="p">{</span>
+      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
+      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
+      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
+    <span class="p">},</span>
+    <span class="p">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get info.  This method provides all the information about currently active pairs, such as the maximum number of digits after the decimal point, the minimum price, the maximum price, the minimum transaction size, whether the pair is hidden, the commission for each pair.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyPair</td>
+<td>-</td>
+<td>the currency pair to retrieve data for</td>
+</tr>
+</tbody></table>
+
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&lsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarily offline for maintenance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+      </div>
+    </div>
+  </body>
+</html>
