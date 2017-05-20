@@ -3,16 +3,13 @@ title: API Reference
 
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>https://github.com/jxm262/xchange.js</a>
 
-includes:
-  - errors
 
 search: true
 ---
 
-# Introduction
+# XChange.js - Intro
 ```javascript
 import xchange from 'xchange.js';
 ```  
@@ -52,7 +49,7 @@ xchange.coinbase.ticker()
     console.log(err);
   });
 ```
-Aggregates different Bitcoin exchanges api's into a convenient JS wrapper.  
+XChange.js aggregates different Bitcoin exchanges api's into a convenient JS wrapper.  
 
 - Works both on the Client or Server
 - Can use either Callbacks or Promises (es6)  
@@ -63,6 +60,8 @@ Aggregates different Bitcoin exchanges api's into a convenient JS wrapper.
    - BTC-e
    - Kraken
    - OkCoin
+
+[Github Project](https://github.com/jxm262/xchange.js)
 
 
 # Bitfinex
