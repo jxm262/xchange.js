@@ -163,40 +163,84 @@ Parameter | Default | Description
 currencyPair | | the currency for the exchange rate
 
 
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
+## Sell Price  
+```javascript
+coinbase.sellPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+  //response
+});
 ```
 
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+> Example Response
 
 ```javascript
-const kittn = require('kittn');
+{
+  "data": {
+    "amount": "1010.25",
+    "currency": "USD"
+  }
+}
+```
+Get the total price to sell one bitcoin or ether.
 
-let api = kittn.authorize('meowmeowmeow');
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | | the currency for the exchange rate
+
+
+## Spot Price  
+```javascript
+coinbase.spotPrice({currencyPair: 'BTC-USD'}, (err, response) => {
+  //response
+});
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Example Response
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+```javascript
+{
+  "data": {
+    "amount": "1010.25",
+    "currency": "USD"
+  }
+}
+```
+Get the spot price of one bitcoin or ether.
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
+
+Parameter | Default | Description
+--------- | ------- | -----------
+currencyPair | | the currency for the exchange rate
+
+
+## Time  
+```javascript
+coinbase.time(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "data": {
+    "amount": "1010.25",
+    "currency": "USD"
+  }
+}
+```
+Get the API server time.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+none
+
+
+
+
+
 
 `Authorization: meowmeowmeow`
 
