@@ -867,6 +867,365 @@ Parameter | Default | Description
 none
 
 
+# Kraken
+**Kraken API**  
+
+```javascript
+import xchange from 'xchange';
+
+xchange.kraken[method](params)
+```
+Uses Kraken exchange API's [found here](https://www.kraken.com/help/api)
+
+
+## Server Time  
+```javascript
+xchange.kraken.serverTime(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "error": [],
+  "result": {
+    "unixtime": 1491077507,
+    "rfc1123": "Sat,  1 Apr 17 20:11:47 +0000"
+  }
+}
+```
+Get Server Time.  This is to aid in approximating the skew time between the server and client.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+None
+
+
+## Assets  
+```javascript
+const params = {
+  info: 'info',
+  aclass: 'currency',
+  asset: ['DASH', 'USDT']
+}
+
+xchange.kraken.assets(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "result": {
+    "DASH": {
+      "aclass": "currency",
+      "altname": "DASH",
+      "decimals": 10,
+      "display_decimals": 5
+    },
+    "USDT": {
+      "aclass": "currency",
+      "altname": "USDT",
+      "decimals": 8,
+      "display_decimals": 4
+    }
+  }
+}
+```
+Get asset names and their info.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+info | info | (Optional) info to retrieve. Valid inputs = 'info'
+aclass | currency | (Optional) asset class
+asset | all | (Optional) Array of assets to get info on
+
+
+## Asset Pairs  
+```javascript
+const params = {
+  info: 'info',
+  pair: ['USDTZUSD', 'DASHUSD']
+}
+
+xchange.kraken.assetPairs(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "result": {
+    "USDTZUSD": {
+      "altname": "USDTUSD",
+      "aclass_base": "currency",
+      "base": "USDT",
+      "aclass_quote": "currency",
+      "quote": "ZUSD",
+      "lot": "unit",
+      "pair_decimals": 4,
+      "lot_decimals": 8,
+      "lot_multiplier": 1,
+      "leverage_buy": [],
+      "leverage_sell": [],
+      "fees": [
+        [
+          0,
+          0.2
+        ],
+        [
+          50000,
+          0.16
+        ]
+      ],
+      "fees_maker": [
+        [
+          0,
+          0.2
+        ],
+        [
+          50000,
+          0.16
+        ],
+      ],
+      "fee_volume_currency": "ZUSD",
+      "margin_call": 80,
+      "margin_stop": 40
+    },
+    ...
+  }
+}
+```
+Get asset pairs and their info.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+info | info | (Optional) info to retrieve. Valid inputs = 'info', 'leverage', 'fees', or 'margin'
+pair | all | (Optional) Array of assetPairs to get info on (ex: ['USDTZUSD', 'DASHUSD'])
+
+
+## OHLC  
+```javascript
+const params = {
+  pair: 'USDTZUSD',
+  interval: 5,
+  since: 1491269700
+}
+
+xchange.kraken.ohlc(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "result": {
+    "USDTZUSD": [
+      [
+        1491269700,
+        "0.9990",
+        "0.9990",
+        "0.9990",
+        "0.9990",
+        "0.0000",
+        "0.00000000",
+        0
+      ],
+      [
+        1491269760,
+        "0.9990",
+        "0.9990",
+        "0.9990",
+        "0.9990",
+        "0.0000",
+        "0.00000000",
+        0
+      ],
+      ...
+    ],
+    "last": 1491269700
+  }
+}
+```
+Get pair names and OHLC data
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+pair | all | (Optional) asset pair to get OHLC data for
+interval | 1 | (Optional) time frame interval in minutes  
+since | - | (Optional - exclusive) return trade data since given id
+
+
+## Order Book  
+```javascript
+const params = {
+  pair: 'USDTZUSD',
+  count: 5
+}
+
+xchange.kraken.orderBook(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "result": {
+    "USDTZUSD": {
+      "asks": [
+        [
+          "0.99990000",
+          "1197.640",
+          1491270406
+        ],
+        [
+          "1.00000000",
+          "139591.372",
+          1491264957
+        ]
+      ],
+      "bids": [
+        [
+          "0.99910000",
+          "193.814",
+          1491271114
+        ],
+        [
+          "0.99900000",
+          "11840.887",
+          1491269156
+        ]
+      ]
+    }
+  }
+}
+```
+Get Order Book.  Array of pair name and market depth
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+pair | all | (Optional) asset pair to get OHLC data for
+count | - | (Optional) maximum number of asks/bids (optional)  
+
+
+## Recent Trades  
+```javascript
+const params = {
+  pair: 'USDTZUSD',
+  since: 1491269156362842889
+}
+
+xchange.kraken.recentTrades(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "result": {
+    "USDTZUSD": [
+      [
+        "1.00100000",
+        "1000.00000000",
+        1491158215.0337,
+        "b",
+        "l",
+        ""
+      ],
+      [
+        "1.00100000",
+        "1000.00000000",
+        1491158215.8635,
+        "b",
+        "l",
+        ""
+      ],
+      ...
+    ],
+    "last": "1491269156362842889"
+  }
+}
+```
+Get Recent Trades.  Array of pair name and recent trade data
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+pair | all | (Optional) asset pair to get info on (ex: 'USDTZUSD')
+since | - | (Optional - exclusive) return trade data since given id  
+
+
+## Recent Spread  
+```javascript
+const params = {
+  pair: 'USDTZUSD',
+  since: 1491269156362842889
+}
+
+xchange.kraken.recentSpread(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "error": [],
+  "result": {
+    "USDTZUSD": [
+      [
+        1491208373,
+        "0.99800000",
+        "0.99890000"
+      ],
+      [
+        1491208878,
+        "0.99810000",
+        "0.99890000"
+      ],
+      [
+        1491209034,
+        "0.99800000",
+        "0.99890000"
+      ],
+      ...
+    ],
+    "last": 1491271114
+  }
+}
+```
+Get Recent Spread.  Array of pair name and recent trade data
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+pair | all | (Optional) asset pairs to get info on (ex: 'USDTZUSD')
+since | - | (Optional - exclusive) return trade data since given id  
+
 
 
 
