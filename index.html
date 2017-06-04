@@ -222,7 +222,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="xchange-js-intro">XChange.js - Intro</h1>
+        <h1 id="xchange-js">XChange.js</h1>
 <pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange.js'</span><span class="p">;</span>
 </code></pre>
 <blockquote>
@@ -291,11 +291,9 @@
 <pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">bitfinex</span><span class="p">.</span><span class="nx">ticker</span><span class="p">({</span><span class="na">symbol</span><span class="p">:</span> <span class="s1">'BTCUSD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">//response</span>
 <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>Example Response</p>
-</blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+
+<span class="c1">// example response</span>
+<span class="p">{</span>
   <span class="s2">"mid"</span><span class="p">:</span> <span class="s2">"244.755"</span><span class="p">,</span>
   <span class="s2">"bid"</span><span class="p">:</span> <span class="s2">"244.75"</span><span class="p">,</span>
   <span class="s2">"ask"</span><span class="p">:</span> <span class="s2">"244.76"</span><span class="p">,</span>
@@ -1675,8 +1673,8 @@
 </code></pre>
 <p>Uses OkCoin exchange API&rsquo;s <a href="https://www.okcoin.com/about/rest_api.do">found here</a></p>
 
-<h2 id="info">Info</h2>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">btce</span><span class="p">.</span><span class="nx">info</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'btc_usd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<h2 id="ticker">Ticker</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">ticker</span><span class="p">({</span><span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="c1">//response</span>
 <span class="p">});</span>
 </code></pre>
@@ -1684,37 +1682,18 @@
 <p>Example Response</p>
 </blockquote>
 <pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
-  <span class="s2">"server_time"</span><span class="p">:</span> <span class="mi">1493005594</span><span class="p">,</span>
-  <span class="s2">"pairs"</span><span class="p">:</span> <span class="p">{</span>
-    <span class="s2">"btc_usd"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
-      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
-      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
-      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
-    <span class="p">},</span>
-    <span class="s2">"btc_rur"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">,</span>
-      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
-      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
-    <span class="p">},</span>
-    <span class="s2">"btc_eur"</span><span class="p">:</span> <span class="p">{</span>
-      <span class="s2">"decimal_places"</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
-      <span class="s2">"min_price"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
-      <span class="s2">"max_price"</span><span class="p">:</span> <span class="mi">3200</span><span class="p">,</span>
-      <span class="s2">"min_amount"</span><span class="p">:</span> <span class="mf">0.001</span><span class="p">,</span>
-      <span class="s2">"hidden"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-      <span class="s2">"fee"</span><span class="p">:</span> <span class="mf">0.2</span>
-    <span class="p">},</span>
-    <span class="p">...</span>
+  <span class="s2">"date"</span><span class="p">:</span> <span class="s2">"1492737709"</span><span class="p">,</span>
+  <span class="s2">"ticker"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"buy"</span><span class="p">:</span> <span class="s2">"11.042"</span><span class="p">,</span>
+    <span class="s2">"high"</span><span class="p">:</span> <span class="s2">"11.72"</span><span class="p">,</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="s2">"11.042"</span><span class="p">,</span>
+    <span class="s2">"low"</span><span class="p">:</span> <span class="s2">"10.45"</span><span class="p">,</span>
+    <span class="s2">"sell"</span><span class="p">:</span> <span class="s2">"11.12"</span><span class="p">,</span>
+    <span class="s2">"vol"</span><span class="p">:</span> <span class="s2">"82575.557"</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<p>Get info.  This method provides all the information about currently active pairs, such as the maximum number of digits after the decimal point, the minimum price, the maximum price, the minimum transaction size, whether the pair is hidden, the commission for each pair.</p>
+<p>Get ticker price.</p>
 
 <table><thead>
 <tr>
@@ -1724,9 +1703,552 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>currencyPair</td>
+<td>symbol</td>
+<td>btc_usd</td>
+<td>(Optional) the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+</tbody></table>
+
+<h2 id="depth">Depth</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">size</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+  <span class="na">merge</span><span class="p">:</span> <span class="mi">1</span>
+
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">depth</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"asks"</span><span class="p">:</span> <span class="p">[</span>
+    <span class="p">[</span><span class="mf">28.13</span><span class="p">,</span><span class="mf">7.99</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">28.08</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">28.07</span><span class="p">,</span><span class="mf">4.866</span><span class="p">]</span>
+  <span class="p">],</span>
+  <span class="s2">"bids"</span><span class="p">:[</span>
+    <span class="p">[</span><span class="mf">27.97</span><span class="p">,</span><span class="mf">27.168</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">27.93</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span>
+    <span class="p">[</span><span class="mf">27.92</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+  <span class="p">]</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get market bid/ask depth.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>btc_usd</td>
+<td>(Optional) the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>size</td>
+<td>200</td>
+<td>(Optional) market depth (1-200)</td>
+</tr>
+<tr>
+<td>merge</td>
 <td>-</td>
-<td>the currency pair to retrieve data for</td>
+<td>(Optional) the merge depth  1, 0.1</td>
+</tr>
+</tbody></table>
+
+<h2 id="trades">Trades</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">since</span><span class="p">:</span> <span class="mi">49161630</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">trades</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"12.189"</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="mi">1492985403</span><span class="p">,</span>
+    <span class="s2">"date_ms"</span><span class="p">:</span> <span class="mi">1492985403000</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"14.551"</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="mi">49161634</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"sell"</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="s2">"10.943"</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="mi">1492985405</span><span class="p">,</span>
+    <span class="s2">"date_ms"</span><span class="p">:</span> <span class="mi">1492985405000</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="s2">"14.552"</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="mi">49161637</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"sell"</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get recent trades data.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>btc_usd</td>
+<td>(Optional) the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>since</td>
+<td>-</td>
+<td>(Optional) get recently 600 pieces of data starting from the given tid (tid = epoch millisec)</td>
+</tr>
+</tbody></table>
+
+<h2 id="kline">Kline</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'30min'</span><span class="p">,</span>
+  <span class="nx">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+  <span class="nx">since</span><span class="o">=</span><span class="mi">1417536000000</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">kline</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">[</span><span class="mi">1492981200000</span><span class="p">,</span> <span class="mf">14.55</span><span class="p">,</span> <span class="mf">14.83</span><span class="p">,</span> <span class="mf">14.247</span><span class="p">,</span> <span class="mf">14.341</span><span class="p">,</span> <span class="mf">18348.988</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">1492983000000</span><span class="p">,</span> <span class="mf">14.351</span><span class="p">,</span> <span class="mf">14.8</span><span class="p">,</span> <span class="mf">14.322</span><span class="p">,</span> <span class="mf">14.48</span><span class="p">,</span> <span class="mf">22461.64</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">1492984800000</span><span class="p">,</span> <span class="mf">14.444</span><span class="p">,</span> <span class="mf">14.7</span><span class="p">,</span> <span class="mf">14.444</span><span class="p">,</span> <span class="mf">14.664</span><span class="p">,</span> <span class="mf">10452.874</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get Kline data - approximately 2000 pieces of data are returned each cycle.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>type</td>
+<td>-</td>
+<td>candlestick data type - (1min, 3min, 5min, 15min, 30min, 1day, 3day, 1week, 1hour, 2hour, 4hour, 6hour, 12hour)</td>
+</tr>
+<tr>
+<td>size</td>
+<td>-</td>
+<td>(Optional) data size</td>
+</tr>
+<tr>
+<td>since</td>
+<td>-</td>
+<td>(Optional) get recently 600 pieces of data starting from the given tid (tid = epoch millisec)</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-ticker">Futures Ticker</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">contractType</span><span class="p">:</span> <span class="s1">'this_week'</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureTicker</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"date"</span><span class="p">:</span> <span class="s2">"1492986680"</span><span class="p">,</span>
+  <span class="s2">"ticker"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"buy"</span><span class="p">:</span> <span class="mf">11.609</span><span class="p">,</span>
+    <span class="s2">"coin_vol"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"contract_id"</span><span class="p">:</span> <span class="mi">20170428115</span><span class="p">,</span>
+    <span class="s2">"high"</span><span class="p">:</span> <span class="mf">11.962</span><span class="p">,</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="mf">11.616</span><span class="p">,</span>
+    <span class="s2">"low"</span><span class="p">:</span> <span class="mf">10.556</span><span class="p">,</span>
+    <span class="s2">"sell"</span><span class="p">:</span> <span class="mf">11.622</span><span class="p">,</span>
+    <span class="s2">"unit_amount"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"vol"</span><span class="p">:</span> <span class="mi">385672</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get futures ticker</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>-</td>
+<td>selection of one of following (this_week, next_week, quarter)</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-depth">Futures Depth</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">contractType</span><span class="p">:</span> <span class="s1">'this_week'</span><span class="p">,</span>
+  <span class="na">size</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> 
+  <span class="na">merge</span><span class="p">:</span> <span class="mi">1</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureTicker</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"date"</span><span class="p">:</span> <span class="s2">"1492986680"</span><span class="p">,</span>
+  <span class="s2">"ticker"</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s2">"buy"</span><span class="p">:</span> <span class="mf">11.609</span><span class="p">,</span>
+    <span class="s2">"coin_vol"</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="s2">"contract_id"</span><span class="p">:</span> <span class="mi">20170428115</span><span class="p">,</span>
+    <span class="s2">"high"</span><span class="p">:</span> <span class="mf">11.962</span><span class="p">,</span>
+    <span class="s2">"last"</span><span class="p">:</span> <span class="mf">11.616</span><span class="p">,</span>
+    <span class="s2">"low"</span><span class="p">:</span> <span class="mf">10.556</span><span class="p">,</span>
+    <span class="s2">"sell"</span><span class="p">:</span> <span class="mf">11.622</span><span class="p">,</span>
+    <span class="s2">"unit_amount"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"vol"</span><span class="p">:</span> <span class="mi">385672</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get futures bid/ask market depth</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>-</td>
+<td>selection of one of following (this_week, next_week, quarter)</td>
+</tr>
+<tr>
+<td>size</td>
+<td>200</td>
+<td>(Optional) size must be between 5-200</td>
+</tr>
+<tr>
+<td>merge</td>
+<td>-</td>
+<td>(Optional) the merge depth  1, 0.1</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-trades">Futures Trades</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">contractType</span><span class="p">:</span> <span class="s1">'this_week'</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureTrades</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="mi">1492987375</span><span class="p">,</span>
+    <span class="s2">"date_ms"</span><span class="p">:</span> <span class="mi">1492987375135</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="mf">11.52</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="mi">148263643</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"sell"</span>
+  <span class="p">},</span> <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span>
+    <span class="s2">"date"</span><span class="p">:</span> <span class="mi">1492987391</span><span class="p">,</span>
+    <span class="s2">"date_ms"</span><span class="p">:</span> <span class="mi">1492987391505</span><span class="p">,</span>
+    <span class="s2">"price"</span><span class="p">:</span> <span class="mf">11.52</span><span class="p">,</span>
+    <span class="s2">"tid"</span><span class="p">:</span> <span class="mi">148263773</span><span class="p">,</span>
+    <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"sell"</span>
+  <span class="p">},</span>
+  <span class="p">...</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get recent futures trades data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>-</td>
+<td>selection of one of following (this_week, next_week, quarter)</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-index">Futures Index</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureIndex</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span> <span class="s2">"future_index"</span><span class="p">:</span> <span class="mf">11.564</span> <span class="p">}</span>
+</code></pre>
+<p>Get futures index current price</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+</tbody></table>
+
+<h2 id="exchange-rate">Exchange Rate</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span>
+<span class="p">}</span>
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">exchangeRate</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span> <span class="s2">"rate"</span><span class="p">:</span> <span class="mf">6.8867</span> <span class="p">}</span>
+</code></pre>
+<p>Get exchange rate used by OkCoin (updated weekly)</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<p>-</p>
+
+<h2 id="futures-estimated-price">Futures Estimated Price</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureEstimatedPrice</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span> <span class="s2">"forecast_price"</span><span class="p">:</span> <span class="mf">5.4</span> <span class="p">}</span>
+</code></pre>
+<p>Get futures estimated price (only available within 3 hrs before delivery or settlement)</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-kline">Futures Kline</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'30min'</span><span class="p">,</span>
+  <span class="na">contractType</span><span class="p">:</span> <span class="s1">'this_week'</span><span class="p">,</span>
+  <span class="nx">size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+  <span class="nx">since</span><span class="o">=</span><span class="mi">1417536000000</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureKline</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">[</span><span class="mi">1492984800000</span><span class="p">,</span> <span class="mf">11.762</span><span class="p">,</span> <span class="mf">11.9</span><span class="p">,</span> <span class="mf">11.61</span><span class="p">,</span> <span class="mf">11.64</span><span class="p">,</span> <span class="mf">16328.0</span><span class="p">,</span> <span class="mf">13866.561123590936</span><span class="p">],</span> 
+  <span class="p">[</span><span class="mi">1492986600000</span><span class="p">,</span> <span class="mf">11.648</span><span class="p">,</span> <span class="mf">11.649</span><span class="p">,</span> <span class="mf">11.4</span><span class="p">,</span> <span class="mf">11.41</span><span class="p">,</span> <span class="mf">15568.0</span><span class="p">,</span> <span class="mf">13535.306350543768</span><span class="p">],</span>
+  <span class="p">[</span><span class="mi">1492988400000</span><span class="p">,</span> <span class="mf">11.41</span><span class="p">,</span> <span class="mf">11.48</span><span class="p">,</span> <span class="mf">11.399</span><span class="p">,</span> <span class="mf">11.419</span><span class="p">,</span> <span class="mf">8322.0</span><span class="p">,</span> <span class="mf">7281.685938501471</span><span class="p">]</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get Futures Kline data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>type</td>
+<td>-</td>
+<td>candlestick data type - (1min, 3min, 5min, 15min, 30min, 1day, 3day, 1week, 1hour, 2hour, 4hour, 6hour, 12hour)</td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>-</td>
+<td>selection of one of following (this_week, next_week, quarter)</td>
+</tr>
+<tr>
+<td>size</td>
+<td>-</td>
+<td>(Optional) data size</td>
+</tr>
+<tr>
+<td>since</td>
+<td>-</td>
+<td>(Optional) data after the timestamp will be returned</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-hold-amount">Futures Hold Amount</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">contractType</span><span class="p">:</span> <span class="s1">'this_week'</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futureHoldAmount</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">[</span>
+  <span class="p">{</span>
+    <span class="s2">"amount"</span><span class="p">:</span> <span class="mi">71530</span><span class="p">,</span>
+    <span class="s2">"contract_name"</span><span class="p">:</span> <span class="s2">"LTC0428"</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+</code></pre>
+<p>Get futures hold amount data</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>-</td>
+<td>selection of one of following (this_week, next_week, quarter)</td>
+</tr>
+</tbody></table>
+
+<h2 id="futures-price-limit">Futures Price Limit</h2>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">params</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">symbol</span><span class="p">:</span> <span class="s1">'ltc_usd'</span><span class="p">,</span>
+  <span class="na">contractType</span><span class="p">:</span> <span class="s1">'this_week'</span>
+<span class="p">}</span>
+
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">okcoin</span><span class="p">.</span><span class="nx">futurePriceLimit</span><span class="p">(</span><span class="nx">params</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">//response</span>
+<span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight javascript tab-javascript"><code><span class="p">{</span>
+  <span class="s2">"high"</span><span class="p">:</span> <span class="mf">12.014</span><span class="p">,</span>
+  <span class="s2">"low"</span><span class="p">:</span> <span class="mf">11.126</span>
+<span class="p">}</span>
+</code></pre>
+<p>Get futures price limit</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>symbol</td>
+<td>-</td>
+<td>the currency pair to retrieve data for.  Either btc_usd or ltc_usd</td>
+</tr>
+<tr>
+<td>contractType</td>
+<td>-</td>
+<td>selection of one of following (this_week, next_week, quarter)</td>
 </tr>
 </tbody></table>
 
