@@ -9,7 +9,7 @@ toc_footers:
 search: true
 ---
 
-# XChange.js
+# Introduction
 ```javascript
 import xchange from 'xchange.js';
 ```  
