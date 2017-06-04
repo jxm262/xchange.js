@@ -4,18 +4,15 @@ xchange.js  [![Build Status](https://travis-ci.org/jxm262/xchange.js.svg?branch=
 Aggregates different Bitcoin exchanges api's into a convenient JS wrapper.  
 
 
-**Documentation**
-
+#### Documentation
 [Full Documentation Found Here](https://jxm262.github.io/xchange.js/)
 
 
-**Motivation**
+#### Motivation
+Easily use _all_ of the api's of _every_ exchange in one single, simple to understand JavaScript module.  Bitcoin exchanges api's are frequently updated, often missing documentation, and occasionally confusing.  After writing lots of code to consume different api's, I realized the knowledge could/should be centralized into 1 module which addresses all of these pain-points.  Thus, xchange.js was born.  
 
-To easily use _all_ of the api's of _every_ exchange in 1 simple to understand JavaScript module.  Bitcoin exchanges api's are frequently updated, often missing documentation, and occasionally confusing.  After writing lots of code to consume different api's, I realized the knowledge could/should be centralized into 1 module which addresses all of these pain-points.  Thus, xchange.js was born.  
 
-
-**Features**
-
+#### Features
 - Works both on the Client or Server
 - Can use either Callbacks or Promises (es6)  
 - Currently supports 6 different exchanges (with more to come)
