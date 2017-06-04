@@ -9,18 +9,14 @@ toc_footers:
 search: true
 ---
 
-# Installation
-```javascript
-npm install xchange 
-
 # Introduction
+> npm install xchange.js
+
 ```javascript
 import xchange from 'xchange.js';
-```  
 
-> example usage (callbacks)
 
-```javascript
+// example usage (callbacks)
 xchange.coinbase.sellPrice({currencyPair: 'BTC-USD'}, (err, response) => {
   if (!err)
     console.log(response);  
@@ -31,11 +27,9 @@ xchange.coinbase.ticker(null, (err, response) => {
   if (!err)
     console.log(res);
 });
-```
 
-> example usage (Promises)
 
-```javascript
+// example usage (Promises)
 xchange.coinbase.sellPrice({currencyPair: 'BTC-USD'})
   .then((response) => {
     console.log(response);  
