@@ -5,7 +5,7 @@ import xchange from '../../lib/xchange';
 const should = chai.should();
 
 
-describe.only('coinbase apis', function () {
+describe('coinbase apis', function () {
 
     describe('currencies', function () {
         it('completes successfully', function (done) {
