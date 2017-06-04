@@ -36,7 +36,7 @@ Code example
 ```  
 //Example print the spot price of BTC/USD from bitfinex  
 
-var xchange = require('xchange.js');
+import xchange from 'xchange.js';
 
   
 xchange.bitfinex.ticker({symbol: 'BTCUSD'}, (err, response) => {
