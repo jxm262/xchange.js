@@ -41,8 +41,8 @@ gulp.task('test', function () {
 });
 
 gulp.task('it:test', function () {
-    return gulp.src('./test/integration/**/**.js')
-        .pipe(mocha({reporter: 'spec'}));
+    return gulp.src('./it-test/**/**.js')
+        .pipe(mocha({ reporter: 'spec', timeout: 20000 }));
 });
 
 gulp.task('build', function () {

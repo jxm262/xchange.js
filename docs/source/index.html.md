@@ -738,9 +738,9 @@ Parameter | Default | Description
 None
 
 
-## Exchange Rate  
+## Exchange Rates  
 ```javascript
-xchange.coinbase.exchangeRate(null, (err, response) => {
+xchange.coinbase.exchangeRates(null, (err, response) => {
   if (!err) {
     console.log(response);
   }
@@ -1356,8 +1356,8 @@ since | - | (Optional) get recently 600 pieces of data starting from the given t
 const params = {
   symbol: 'ltc_usd',
   type: '30min',
-  size=3,
-  since=1417536000000
+  size: 3,
+  since: 1417536000000
 }
 
 xchange.okcoin.kline(params, (err, response) => {
@@ -1536,9 +1536,6 @@ symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
 
 ## Exchange Rate  
 ```javascript
-const params = {
-  symbol: 'ltc_usd'
-}
 xchange.okcoin.exchangeRate(null, (err, response) => {
   if (!err) {
     console.log(response);
@@ -1583,8 +1580,8 @@ const params = {
   symbol: 'ltc_usd',
   type: '30min',
   contractType: 'this_week',
-  size=3,
-  since=1417536000000
+  size: 3,
+  since: 1417536000000
 }
 
 xchange.okcoin.futureKline(params, (err, response) => {
