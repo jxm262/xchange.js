@@ -78,8 +78,11 @@ Uses bitfinex exchange API's [found here](http://docs.bitfinex.com/v1/docs/publi
 ## Ticker  
 ```javascript
 xchange.bitfinex.ticker({symbol: 'BTCUSD'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
+
 
 // example response
 {
@@ -104,13 +107,13 @@ symbol | - | the currency symbol to retrieve data for
 ## Stats
 ```javascript
 xchange.bitfinex.stats({symbol: 'BTCUSD'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "period": 1,
@@ -143,13 +146,13 @@ const params = {
 }
 
 xchange.bitfinex.fundingBook(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "bids": [{
     "rate": "9.1287",
@@ -187,13 +190,13 @@ const params = {
 }
 
 xchange.bitfinex.orderBook(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "bids": [{
     "price": "574.61",
@@ -227,13 +230,13 @@ const params = {
 }
 
 xchange.bitfinex.trades(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "timestamp": 1444266681,
@@ -265,13 +268,13 @@ const params = {
 }
 
 xchange.bitfinex.lends(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "rate": "9.8998",
@@ -295,13 +298,13 @@ limitLends | 50 | (Optional) Limit the amount of funding data returned. Must be 
 ## Symbols
 ```javascript
 xchange.bitfinex.symbols(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   "btcusd",
   "ltcusd",
@@ -320,13 +323,13 @@ None
 ## Symbols Details
 ```javascript
 xchange.bitfinex.symbolsDetails(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "pair": "btcusd",
@@ -380,13 +383,13 @@ Uses bitstamp exchange API's [found here](https://www.bitstamp.net/api/)
 ## Ticker  
 ```javascript
 xchange.bitstamp.ticker({currencyPair: 'btcusd'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "high": "1192.50",
   "last": "1181.40",
@@ -410,13 +413,13 @@ currencyPair | - | the currency pair to retrieve data for
 ## Hourly Ticker  
 ```javascript
 xchange.bitstamp.hourlyTicker({currencyPair: 'btcusd'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "high": "1185.78",
   "last": "1181.40",
@@ -440,13 +443,13 @@ currencyPair | - | the currency pair to retrieve data for
 ## Order Book  
 ```javascript
 xchange.bitstamp.orderBook({currencyPair: 'btcusd'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "timestamp": "1492457113",
   "bids": [
@@ -489,13 +492,13 @@ const params = {
 }
 
 xchange.bitstamp.transactions(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "date": "1492457365",
@@ -537,13 +540,13 @@ Uses BTC-E exchange API's [found here](https://btc-e.com/api/3/docs)
 ## Info  
 ```javascript
 xchange.btce.info({currencyPair: 'btc_usd'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "server_time": 1493005594,
   "pairs": {
@@ -586,13 +589,13 @@ currencyPair | - | the currency pair to retrieve data for
 ## Ticker  
 ```javascript
 xchange.btce.ticker({currencyPair: 'btc_usd'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "btc_usd": {
     "high": 1241.987,
@@ -624,13 +627,13 @@ const params = {
 }
   
 xchange.btce.depth(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "btc_usd": {
     "asks": [
@@ -662,13 +665,13 @@ const params = {
 }
   
 xchange.btce.trades(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "btc_usd": {
     "asks": [
@@ -705,13 +708,13 @@ Uses Coinbase exchange API's [found here](https://developers.coinbase.com/api/v2
 ## Currencies  
 ```javascript
 xchange.coinbase.currencies(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "data": [
     {
@@ -738,13 +741,13 @@ None
 ## Exchange Rate  
 ```javascript
 xchange.coinbase.exchangeRate(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "data": {
     "currency": "BTC",
@@ -766,13 +769,13 @@ None
 ## Buy Price  
 ```javascript
 xchange.coinbase.buyPrice({currencyPair: 'BTC-USD'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "data": {
     "amount": "1020.25",
@@ -791,13 +794,13 @@ currencyPair | | the currency for the exchange rate
 ## Sell Price  
 ```javascript
 xchange.coinbase.sellPrice({currencyPair: 'BTC-USD'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "data": {
     "amount": "1010.25",
@@ -816,13 +819,13 @@ currencyPair | | the currency for the exchange rate
 ## Spot Price  
 ```javascript
 xchange.coinbase.spotPrice({currencyPair: 'BTC-USD'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "data": {
     "amount": "1010.25",
@@ -841,13 +844,13 @@ currencyPair | | the currency for the exchange rate
 ## Time  
 ```javascript
 xchange.coinbase.time(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "data": {
     "amount": "1010.25",
@@ -877,13 +880,13 @@ Uses Kraken exchange API's [found here](https://www.kraken.com/help/api)
 ## Server Time  
 ```javascript
 xchange.kraken.serverTime(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "error": [],
@@ -910,13 +913,13 @@ const params = {
 }
 
 xchange.kraken.assets(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "result": {
@@ -953,13 +956,13 @@ const params = {
 }
 
 xchange.kraken.assetPairs(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "result": {
@@ -1021,13 +1024,13 @@ const params = {
 }
 
 xchange.kraken.ohlc(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "result": {
@@ -1076,13 +1079,13 @@ const params = {
 }
 
 xchange.kraken.orderBook(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "result": {
@@ -1132,13 +1135,13 @@ const params = {
 }
 
 xchange.kraken.recentTrades(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "result": {
@@ -1182,13 +1185,13 @@ const params = {
 }
 
 xchange.kraken.recentSpread(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "error": [],
   "result": {
@@ -1237,13 +1240,13 @@ Uses OkCoin exchange API's [found here](https://www.okcoin.com/about/rest_api.do
 ## Ticker  
 ```javascript
 xchange.okcoin.ticker({symbol: 'ltc_usd'}, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "date": "1492737709",
   "ticker": {
@@ -1274,13 +1277,13 @@ const params = {
 }
 
 xchange.okcoin.depth(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "asks": [
     [28.13,7.99],
@@ -1312,13 +1315,13 @@ const params = {
 }
 
 xchange.okcoin.trades(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "amount": "12.189",
@@ -1358,13 +1361,13 @@ const params = {
 }
 
 xchange.okcoin.kline(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   [1492981200000, 14.55, 14.83, 14.247, 14.341, 18348.988],
   [1492983000000, 14.351, 14.8, 14.322, 14.48, 22461.64],
@@ -1390,13 +1393,13 @@ const params = {
 }
 
 xchange.okcoin.futureTicker(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "date": "1492986680",
   "ticker": {
@@ -1431,13 +1434,13 @@ const params = {
 }
 
 xchange.okcoin.futureTicker(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "date": "1492986680",
   "ticker": {
@@ -1472,13 +1475,13 @@ const params = {
 }
 
 xchange.okcoin.futureTrades(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "amount": 10,
@@ -1514,13 +1517,13 @@ const params = {
 }
 
 xchange.okcoin.futureIndex(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 { "future_index": 11.564 }
 ```
 Get futures index current price
@@ -1537,13 +1540,13 @@ const params = {
   symbol: 'ltc_usd'
 }
 xchange.okcoin.exchangeRate(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 { "rate": 6.8867 }
 ```
 Get exchange rate used by OkCoin (updated weekly)
@@ -1557,13 +1560,13 @@ Parameter | Default | Description
 ## Futures Estimated Price  
 ```javascript
 xchange.okcoin.futureEstimatedPrice(null, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 { "forecast_price": 5.4 }
 ```
 Get futures estimated price (only available within 3 hrs before delivery or settlement)
@@ -1585,13 +1588,13 @@ const params = {
 }
 
 xchange.okcoin.futureKline(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   [1492984800000, 11.762, 11.9, 11.61, 11.64, 16328.0, 13866.561123590936], 
   [1492986600000, 11.648, 11.649, 11.4, 11.41, 15568.0, 13535.306350543768],
@@ -1618,13 +1621,13 @@ const params = {
 }
 
 xchange.okcoin.futureHoldAmount(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 [
   {
     "amount": 71530,
@@ -1649,13 +1652,13 @@ const params = {
 }
 
 xchange.okcoin.futurePriceLimit(params, (err, response) => {
-  //response
+  if (!err) {
+    console.log(response);
+  }
 });
-```
 
-> Example Response
 
-```javascript
+// example response
 {
   "high": 12.014,
   "low": 11.126
