@@ -9,6 +9,10 @@ toc_footers:
 search: true
 ---
 
+# Installation
+```javascript
+npm install xchange 
+
 # Introduction
 ```javascript
 import xchange from 'xchange.js';
@@ -50,6 +54,9 @@ xchange.coinbase.ticker()
   });
 ```
 XChange.js aggregates different Bitcoin exchanges api's into a convenient JS wrapper.  
+
+
+**Features**  
 
 - Works both on the Client or Server
 - Can use either Callbacks or Promises (es6)  

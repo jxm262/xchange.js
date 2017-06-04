@@ -1,32 +1,56 @@
 xchange.js  [![Build Status](https://travis-ci.org/jxm262/xchange.js.svg?branch=master)](https://travis-ci.org/jxm262/xchange.js)  
 ==========  
 
-Please be careful, this module is still in the Alpha stage.  
-
-Aggregates different Bitcoin exchanges api's into a convenient wrapper.
+Aggregates different Bitcoin exchanges api's into a convenient JS wrapper.  
 
 
-To use just import the module and provide your own callback to the ticker function for a given exchange.  
+**Documentation**
 
+[Full Documentation Found Here](https://jxm262.github.io/xchange.js/)
+
+
+**Motivation**
+
+To easily use _all_ of the api's of _every_ exchange in 1 simple to understand JavaScript module.  Bitcoin exchanges api's are frequently updated, often missing documentation, and occasionally confusing.  After writing lots of code to consume different api's, I realized the knowledge could/should be centralized into 1 module which addresses all of these pain-points.  Thus, xchange.js was born.  
+
+
+**Features**
+
+- Works both on the Client or Server
+- Can use either Callbacks or Promises (es6)  
+- Currently supports 6 different exchanges (with more to come)
+   - Bitfinex
+   - Bitstamp
+   - Coinbase
+   - BTC-e
+   - Kraken
+   - OkCoin
+   
+
+Installation
+=======
+```
+npm install xchange.js
+```
+
+   
 Code example
 =======
 ```  
-//Example print the spot price from bitfinex  
+//Example print the spot price of BTC/USD from bitfinex  
 
 var xchange = require('xchange.js');
 
   
-xchange.bitfinex.ticker(function(err, res){
-	
-	if(err){return err;}
-	console.log(res);
-	
+xchange.bitfinex.ticker({symbol: 'BTCUSD'}, (err, response) => {
+  if (!err) {
+    console.log(response);
+  }
 });
 ```
   
   
 ## Contributors
-
 
 To help make xchange.js better please
 
@@ -56,4 +80,4 @@ Please refer to the LICENSE file for details.
   
 About the Project
 =================
-We're currently in the process of figuring out what should be in the scope of this project and what tasks are being split up.
+The end goal really is to wrap _every_ api for all exchanges into this project.  The current roadmap includes upgrading this to use authenticated api's, so users can perform actual transactions (buy, sell, etc..), and later to include more exchanges.  The concept very much follows the motivation of the popular Java [XChange](https://github.com/timmolter/XChange) library.

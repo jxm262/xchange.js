@@ -1,7 +1,7 @@
 {
   "name": "xchange.js",
-  "version": "0.1.4",
-  "description": "A bitcoin-altcoin spot price api.  Covers different alt currency exchanges and aggregates their api's into a convenient wrapper",
+  "version": "1.0.0",
+  "description": "Aggregates different Bitcoin exchanges api’s into a convenient JS wrapper.",
   "main": "./lib/xchange.js",
   "scripts": {
     "test": "gulp test",

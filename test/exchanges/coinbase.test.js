@@ -19,12 +19,12 @@ nock(rootUrl)
     .replyWithError(testErrMsg);
 
 nock(rootUrl)
-    .get(apis.unauthenticated.exchangeRate.url)
+    .get(apis.unauthenticated.exchangeRates.url)
     .twice()
-    .reply(200, apis.unauthenticated.exchangeRate.exampleResponse);
+    .reply(200, apis.unauthenticated.exchangeRates.exampleResponse);
 
 nock(rootUrl)
-    .get(apis.unauthenticated.exchangeRate.url)
+    .get(apis.unauthenticated.exchangeRates.url)
     .twice()
     .replyWithError(testErrMsg);
 
@@ -110,15 +110,15 @@ describe('coinbase', function () {
 
         context('success call', function () {
             it('retrieves exchange rate using cb', function (done) {
-                coinbase.exchangeRate(null, function (err, resp) {
-                    resp.should.deep.equal(apis.unauthenticated.exchangeRate.exampleResponse);
+                coinbase.exchangeRates(null, function (err, resp) {
+                    resp.should.deep.equal(apis.unauthenticated.exchangeRates.exampleResponse);
                     done();
                 });
             });
 
             it('retrieves exchange rate using promise', function (done) {
-                coinbase.exchangeRate().then(
-                    success(apis.unauthenticated.exchangeRate.exampleResponse, done),
+                coinbase.exchangeRates().then(
+                    success(apis.unauthenticated.exchangeRates.exampleResponse, done),
                     failure
                 );
             });
@@ -126,14 +126,14 @@ describe('coinbase', function () {
 
         context('failure call', function () {
             it('retrieves error using cb', function (done) {
-                coinbase.exchangeRate(null, function (err, resp) {
+                coinbase.exchangeRates(null, function (err, resp) {
                     err.should.deep.equal(testErrMsg)
                     done();
                 });
             });
 
             it('retrieves error using promise', function (done) {
-                coinbase.exchangeRate().then(
+                coinbase.exchangeRates().then(
                     success,
                     failure(done)
                 );
