@@ -222,17 +222,16 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="installation">Installation</h1>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">npm</span> <span class="nx">install</span> <span class="nx">xchange</span> 
+        <h1 id="introduction">Introduction</h1>
 
-<span class="err">#</span> <span class="nx">Introduction</span>
-<span class="s2">```javascript
-import xchange from 'xchange.js';
-</span></code></pre>
 <blockquote>
-<p>example usage (callbacks)</p>
+<p>npm install xchange.js</p>
 </blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<pre class="highlight javascript tab-javascript"><code><span class="kr">import</span> <span class="nx">xchange</span> <span class="nx">from</span> <span class="s1">'xchange.js'</span><span class="p">;</span>
+
+
+<span class="c1">// example usage (callbacks)</span>
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">},</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>  
 <span class="p">});</span>
@@ -242,11 +241,10 @@ import xchange from 'xchange.js';
   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">err</span><span class="p">)</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">res</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre>
-<blockquote>
-<p>example usage (Promises)</p>
-</blockquote>
-<pre class="highlight javascript tab-javascript"><code><span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">})</span>
+
+
+<span class="c1">// example usage (Promises)</span>
+<span class="nx">xchange</span><span class="p">.</span><span class="nx">coinbase</span><span class="p">.</span><span class="nx">sellPrice</span><span class="p">({</span><span class="na">currencyPair</span><span class="p">:</span> <span class="s1">'BTC-USD'</span><span class="p">})</span>
   <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">response</span><span class="p">);</span>  
   <span class="p">})</span>
