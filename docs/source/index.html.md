@@ -9,7 +9,7 @@ toc_footers:
 search: true
 ---
 
-# XChange.js - Intro
+# XChange.js
 ```javascript
 import xchange from 'xchange.js';
 ```  
@@ -80,11 +80,8 @@ Uses bitfinex exchange API's [found here](http://docs.bitfinex.com/v1/docs/publi
 xchange.bitfinex.ticker({symbol: 'BTCUSD'}, (err, response) => {
   //response
 });
-```
 
-> Example Response
-
-```javascript
+// example response
 {
   "mid": "244.755",
   "bid": "244.75",
@@ -1237,9 +1234,9 @@ xchange.okcoin[method](params)
 Uses OkCoin exchange API's [found here](https://www.okcoin.com/about/rest_api.do)
 
 
-## Info  
+## Ticker  
 ```javascript
-xchange.btce.info({currencyPair: 'btc_usd'}, (err, response) => {
+xchange.okcoin.ticker({symbol: 'ltc_usd'}, (err, response) => {
   //response
 });
 ```
@@ -1248,40 +1245,428 @@ xchange.btce.info({currencyPair: 'btc_usd'}, (err, response) => {
 
 ```javascript
 {
-  "server_time": 1493005594,
-  "pairs": {
-    "btc_usd": {
-      "decimal_places": 3,
-      "min_price": 0.1,
-      "max_price": 10000,
-      "min_amount": 0.001,
-      "hidden": 0,
-      "fee": 0.2
-    },
-    "btc_rur": {
-      "decimal_places": 5,
-      "min_price": 1,
-      "max_price": 1000000,
-      "min_amount": 0.001,
-      "hidden": 0,
-      "fee": 0.2
-    },
-    "btc_eur": {
-      "decimal_places": 5,
-      "min_price": 0.1,
-      "max_price": 3200,
-      "min_amount": 0.001,
-      "hidden": 0,
-      "fee": 0.2
-    },
-    ...
+  "date": "1492737709",
+  "ticker": {
+    "buy": "11.042",
+    "high": "11.72",
+    "last": "11.042",
+    "low": "10.45",
+    "sell": "11.12",
+    "vol": "82575.557"
   }
 }
 ```
-Get info.  This method provides all the information about currently active pairs, such as the maximum number of digits after the decimal point, the minimum price, the maximum price, the minimum transaction size, whether the pair is hidden, the commission for each pair.
+Get ticker price.
 
 
 Parameter | Default | Description
 --------- | ------- | -----------
-currencyPair | - | the currency pair to retrieve data for
+symbol | btc_usd | (Optional) the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+
+
+## Depth  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  size: 3,
+  merge: 1
+  
+}
+
+xchange.okcoin.depth(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "asks": [
+    [28.13,7.99],
+    [28.08,2],
+    [28.07,4.866]
+  ],
+  "bids":[
+    [27.97,27.168],
+    [27.93,5],
+    [27.92,2]
+  ]
+}
+```
+Get market bid/ask depth.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | btc_usd | (Optional) the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+size | 200 | (Optional) market depth (1-200)
+merge | - | (Optional) the merge depth  1, 0.1 
+
+
+## Trades  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  since: 49161630
+}
+
+xchange.okcoin.trades(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "amount": "12.189",
+    "date": 1492985403,
+    "date_ms": 1492985403000,
+    "price": "14.551",
+    "tid": 49161634,
+    "type": "sell"
+  },
+  {
+    "amount": "10.943",
+    "date": 1492985405,
+    "date_ms": 1492985405000,
+    "price": "14.552",
+    "tid": 49161637,
+    "type": "sell"
+  },
+  ...
+]
+```
+Get recent trades data.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | btc_usd | (Optional) the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+since | - | (Optional) get recently 600 pieces of data starting from the given tid (tid = epoch millisec)
+
+
+## Kline  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  type: '30min',
+  size=3,
+  since=1417536000000
+}
+
+xchange.okcoin.kline(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  [1492981200000, 14.55, 14.83, 14.247, 14.341, 18348.988],
+  [1492983000000, 14.351, 14.8, 14.322, 14.48, 22461.64],
+  [1492984800000, 14.444, 14.7, 14.444, 14.664, 10452.874]
+]
+```
+Get Kline data - approximately 2000 pieces of data are returned each cycle.
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+type | - | candlestick data type - (1min, 3min, 5min, 15min, 30min, 1day, 3day, 1week, 1hour, 2hour, 4hour, 6hour, 12hour)
+size | - | (Optional) data size
+since | - | (Optional) get recently 600 pieces of data starting from the given tid (tid = epoch millisec)
+
+
+## Futures Ticker  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  contractType: 'this_week'
+}
+
+xchange.okcoin.futureTicker(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "date": "1492986680",
+  "ticker": {
+    "buy": 11.609,
+    "coin_vol": 0,
+    "contract_id": 20170428115,
+    "high": 11.962,
+    "last": 11.616,
+    "low": 10.556,
+    "sell": 11.622,
+    "unit_amount": 10,
+    "vol": 385672
+  }
+}
+```
+Get futures ticker
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+contractType | - | selection of one of following (this_week, next_week, quarter) 
+
+
+## Futures Depth  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  contractType: 'this_week',
+  size: 1, 
+  merge: 1
+}
+
+xchange.okcoin.futureTicker(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "date": "1492986680",
+  "ticker": {
+    "buy": 11.609,
+    "coin_vol": 0,
+    "contract_id": 20170428115,
+    "high": 11.962,
+    "last": 11.616,
+    "low": 10.556,
+    "sell": 11.622,
+    "unit_amount": 10,
+    "vol": 385672
+  }
+}
+```
+Get futures bid/ask market depth
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+contractType | - | selection of one of following (this_week, next_week, quarter)
+size | 200 | (Optional) size must be between 5-200
+merge | - | (Optional) the merge depth  1, 0.1 
+
+
+## Futures Trades  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  contractType: 'this_week'
+}
+
+xchange.okcoin.futureTrades(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "amount": 10,
+    "date": 1492987375,
+    "date_ms": 1492987375135,
+    "price": 11.52,
+    "tid": 148263643,
+    "type": "sell"
+  }, {
+    "amount": 46,
+    "date": 1492987391,
+    "date_ms": 1492987391505,
+    "price": 11.52,
+    "tid": 148263773,
+    "type": "sell"
+  },
+  ...
+]
+```
+Get recent futures trades data
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+contractType | - | selection of one of following (this_week, next_week, quarter)
+
+
+## Futures Index  
+```javascript
+const params = {
+  symbol: 'ltc_usd'
+}
+
+xchange.okcoin.futureIndex(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{ "future_index": 11.564 }
+```
+Get futures index current price
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+
+
+## Exchange Rate  
+```javascript
+const params = {
+  symbol: 'ltc_usd'
+}
+xchange.okcoin.exchangeRate(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{ "rate": 6.8867 }
+```
+Get exchange rate used by OkCoin (updated weekly)
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+-
+
+
+## Futures Estimated Price  
+```javascript
+xchange.okcoin.futureEstimatedPrice(null, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{ "forecast_price": 5.4 }
+```
+Get futures estimated price (only available within 3 hrs before delivery or settlement)
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+
+
+## Futures Kline  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  type: '30min',
+  contractType: 'this_week',
+  size=3,
+  since=1417536000000
+}
+
+xchange.okcoin.futureKline(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  [1492984800000, 11.762, 11.9, 11.61, 11.64, 16328.0, 13866.561123590936], 
+  [1492986600000, 11.648, 11.649, 11.4, 11.41, 15568.0, 13535.306350543768],
+  [1492988400000, 11.41, 11.48, 11.399, 11.419, 8322.0, 7281.685938501471]
+]
+```
+Get Futures Kline data
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+type | - | candlestick data type - (1min, 3min, 5min, 15min, 30min, 1day, 3day, 1week, 1hour, 2hour, 4hour, 6hour, 12hour)
+contractType | - | selection of one of following (this_week, next_week, quarter)
+size | - | (Optional) data size
+since | - | (Optional) data after the timestamp will be returned
+
+
+## Futures Hold Amount  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  contractType: 'this_week'
+}
+
+xchange.okcoin.futureHoldAmount(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+[
+  {
+    "amount": 71530,
+    "contract_name": "LTC0428"
+  }
+]
+```
+Get futures hold amount data
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+contractType | - | selection of one of following (this_week, next_week, quarter)
+
+
+## Futures Price Limit  
+```javascript
+const params = {
+  symbol: 'ltc_usd',
+  contractType: 'this_week'
+}
+
+xchange.okcoin.futurePriceLimit(params, (err, response) => {
+  //response
+});
+```
+
+> Example Response
+
+```javascript
+{
+  "high": 12.014,
+  "low": 11.126
+}
+```
+Get futures price limit
+
+
+Parameter | Default | Description
+--------- | ------- | -----------
+symbol | - | the currency pair to retrieve data for.  Either btc_usd or ltc_usd
+contractType | - | selection of one of following (this_week, next_week, quarter)
+
 
