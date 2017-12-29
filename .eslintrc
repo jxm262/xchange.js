@@ -1,10 +1,11 @@
 {
   "extends": "airbnb",
+  "env": {
+    "mocha": true,
+    "browser": true,
+    "node": true
+  },
   "rules": {
-    "linebreak-style": "off",
-    "no-tabs": "off",
-    "indent": ["error", "tab"],
-    "max-len": ["error", 120],
-    "no-unused-expressions": "off"
+    "max-len": ["error", 120]
   }
 }
