@@ -1,194 +1,187 @@
 import nock from 'nock';
 import chai from 'chai';
-import sinon from 'sinon';
-import bitstamp, { apis } from '../../lib/exchanges/bitstamp'
-import { success, failure, testErrMsg } from './testUtils'
+import bitstamp, { apis } from '../../lib/exchanges/bitstamp';
+import { success, failure, testErrMsg } from './testUtils';
 
-const should = chai.should();
+chai.should();
 
 const rootUrl = apis.rootUrl;
 
 nock(rootUrl)
-    .get('/ticker/btcusd')
-    .twice()
-    .reply(200, apis.unauthenticated.ticker.exampleResponse);
+  .get('/ticker/btcusd')
+  .twice()
+  .reply(200, apis.unauthenticated.ticker.exampleResponse);
 
 nock(rootUrl)
-    .get('/ticker/btcusd')
-    .twice()
-    .replyWithError(testErrMsg);
+  .get('/ticker/btcusd')
+  .twice()
+  .replyWithError(testErrMsg);
 
 nock(rootUrl)
-    .get('/ticker_hour/btcusd')
-    .twice()
-    .reply(200, apis.unauthenticated.hourlyTicker.exampleResponse);
+  .get('/ticker_hour/btcusd')
+  .twice()
+  .reply(200, apis.unauthenticated.hourlyTicker.exampleResponse);
 
 nock(rootUrl)
-    .get('/ticker_hour/btcusd')
-    .twice()
-    .replyWithError(testErrMsg);
+  .get('/ticker_hour/btcusd')
+  .twice()
+  .replyWithError(testErrMsg);
 
 nock(rootUrl)
-    .get('/order_book/btcusd')
-    .twice()
-    .reply(200, apis.unauthenticated.orderBook.exampleResponse);
+  .get('/order_book/btcusd')
+  .twice()
+  .reply(200, apis.unauthenticated.orderBook.exampleResponse);
 
 nock(rootUrl)
-    .get('/order_book/btcusd')
-    .twice()
-    .replyWithError(testErrMsg);
+  .get('/order_book/btcusd')
+  .twice()
+  .replyWithError(testErrMsg);
 
 nock(rootUrl)
-    .get('/transactions/btcusd')
-    .twice()
-    .reply(200, apis.unauthenticated.transactions.exampleResponse);
+  .get('/transactions/btcusd')
+  .twice()
+  .reply(200, apis.unauthenticated.transactions.exampleResponse);
 
 nock(rootUrl)
-    .get('/transactions/btcusd')
-    .twice()
-    .replyWithError(testErrMsg);
+  .get('/transactions/btcusd')
+  .twice()
+  .replyWithError(testErrMsg);
 
 
-describe('bitstamp', function () {
-
-    describe('ticker', function () {
-
-        context('success call', function () {
-            it('retrieves ticker data using cb', function (done) {
-                bitstamp.ticker({currencyPair: 'btcusd'}, function (err, resp) {
-                    resp.should.deep.equal(apis.unauthenticated.ticker.exampleResponse);
-                    done();
-                });
-            });
-
-            it('retrieves ticker using promise', function (done) {
-                bitstamp.ticker({currencyPair: 'btcusd'}).then(
-                    success(apis.unauthenticated.ticker.exampleResponse, done),
-                    failure
-                );
-            });
+describe('bitstamp', () => {
+  describe('ticker', () => {
+    context('success call', () => {
+      it('retrieves ticker data using cb', (done) => {
+        bitstamp.ticker({ currencyPair: 'btcusd' }, (err, resp) => {
+          resp.should.deep.equal(apis.unauthenticated.ticker.exampleResponse);
+          done();
         });
+      });
 
-        context('failure call', function () {
-            it('retrieves error using cb', function (done) {
-                bitstamp.ticker({currencyPair: 'btcusd'}, function (err, resp) {
-                    err.should.deep.equal(testErrMsg)
-                    done();
-                });
-            });
-
-            it('retrieves error using promise', function (done) {
-                bitstamp.ticker({currencyPair: 'btcusd'}).then(
-                    success,
-                    failure(done)
-                );
-            });
-        });
+      it('retrieves ticker using promise', (done) => {
+        bitstamp.ticker({ currencyPair: 'btcusd' }).then(
+          success(apis.unauthenticated.ticker.exampleResponse, done),
+          failure,
+        );
+      });
     });
 
-    describe('hourly ticker', function () {
-
-        context('success call', function () {
-            it('retrieves hourly ticker data using cb', function (done) {
-                bitstamp.hourlyTicker({currencyPair: 'btcusd'}, function (err, resp) {
-                    resp.should.deep.equal(apis.unauthenticated.hourlyTicker.exampleResponse);
-                    done();
-                });
-            });
-
-            it('retrieves hourly ticker using promise', function (done) {
-                bitstamp.hourlyTicker({currencyPair: 'btcusd'}).then(
-                    success(apis.unauthenticated.hourlyTicker.exampleResponse, done),
-                    failure
-                );
-            });
+    context('failure call', () => {
+      it('retrieves error using cb', (done) => {
+        bitstamp.ticker({ currencyPair: 'btcusd' }, (err) => {
+          err.should.deep.equal(testErrMsg);
+          done();
         });
+      });
 
-        context('failure call', function () {
-            it('retrieves error using cb', function (done) {
-                bitstamp.hourlyTicker({currencyPair: 'btcusd'}, function (err, resp) {
-                    err.should.deep.equal(testErrMsg)
-                    done();
-                });
-            });
+      it('retrieves error using promise', (done) => {
+        bitstamp.ticker({ currencyPair: 'btcusd' }).then(
+          success,
+          failure(done),
+        );
+      });
+    });
+  });
 
-            it('retrieves error using promise', function (done) {
-                bitstamp.hourlyTicker({currencyPair: 'btcusd'}).then(
-                    success,
-                    failure(done)
-                );
-            });
+  describe('hourly ticker', () => {
+    context('success call', () => {
+      it('retrieves hourly ticker data using cb', (done) => {
+        bitstamp.hourlyTicker({ currencyPair: 'btcusd' }, (err, resp) => {
+          resp.should.deep.equal(apis.unauthenticated.hourlyTicker.exampleResponse);
+          done();
         });
+      });
+
+      it('retrieves hourly ticker using promise', (done) => {
+        bitstamp.hourlyTicker({ currencyPair: 'btcusd' }).then(
+          success(apis.unauthenticated.hourlyTicker.exampleResponse, done),
+          failure,
+        );
+      });
     });
 
-    describe('order book', function () {
-
-        context('success call', function () {
-            it('retrieves order book data using cb', function (done) {
-                bitstamp.orderBook({currencyPair: 'btcusd'}, function (err, resp) {
-                    resp.should.deep.equal(apis.unauthenticated.orderBook.exampleResponse);
-                    done();
-                });
-            });
-
-            it('retrieves order book using promise', function (done) {
-                bitstamp.orderBook({currencyPair: 'btcusd'}).then(
-                    success(apis.unauthenticated.orderBook.exampleResponse, done),
-                    failure
-                );
-            });
+    context('failure call', () => {
+      it('retrieves error using cb', (done) => {
+        bitstamp.hourlyTicker({ currencyPair: 'btcusd' }, (err) => {
+          err.should.deep.equal(testErrMsg);
+          done();
         });
+      });
 
-        context('failure call', function () {
-            it('retrieves error using cb', function (done) {
-                bitstamp.orderBook({currencyPair: 'btcusd'}, function (err, resp) {
-                    err.should.deep.equal(testErrMsg)
-                    done();
-                });
-            });
+      it('retrieves error using promise', (done) => {
+        bitstamp.hourlyTicker({ currencyPair: 'btcusd' }).then(
+          success,
+          failure(done),
+        );
+      });
+    });
+  });
 
-            it('retrieves error using promise', function (done) {
-                bitstamp.orderBook({currencyPair: 'btcusd'}).then(
-                    success,
-                    failure(done)
-                );
-            });
+  describe('order book', () => {
+    context('success call', () => {
+      it('retrieves order book data using cb', (done) => {
+        bitstamp.orderBook({ currencyPair: 'btcusd' }, (err, resp) => {
+          resp.should.deep.equal(apis.unauthenticated.orderBook.exampleResponse);
+          done();
         });
+      });
+
+      it('retrieves order book using promise', (done) => {
+        bitstamp.orderBook({ currencyPair: 'btcusd' }).then(
+          success(apis.unauthenticated.orderBook.exampleResponse, done),
+          failure,
+        );
+      });
     });
 
-    describe('order book', function () {
-
-        context('success call', function () {
-            it('retrieves transactions data using cb', function (done) {
-                bitstamp.transactions({currencyPair: 'btcusd'}, function (err, resp) {
-                    resp.should.deep.equal(apis.unauthenticated.transactions.exampleResponse);
-                    done();
-                });
-            });
-
-            it('retrieves transactions data using promise', function (done) {
-                bitstamp.transactions({currencyPair: 'btcusd'}).then(
-                    success(apis.unauthenticated.transactions.exampleResponse, done),
-                    failure
-                );
-            });
+    context('failure call', () => {
+      it('retrieves error using cb', (done) => {
+        bitstamp.orderBook({ currencyPair: 'btcusd' }, (err) => {
+          err.should.deep.equal(testErrMsg);
+          done();
         });
+      });
 
-        context('failure call', function () {
-            it('retrieves error using cb', function (done) {
-                bitstamp.transactions({currencyPair: 'btcusd'}, function (err, resp) {
-                    err.should.deep.equal(testErrMsg)
-                    done();
-                });
-            });
+      it('retrieves error using promise', (done) => {
+        bitstamp.orderBook({ currencyPair: 'btcusd' }).then(
+          success,
+          failure(done),
+        );
+      });
+    });
+  });
 
-            it('retrieves error using promise', function (done) {
-                bitstamp.transactions({currencyPair: 'btcusd'}).then(
-                    success,
-                    failure(done)
-                );
-            });
+  describe('order book', () => {
+    context('success call', () => {
+      it('retrieves transactions data using cb', (done) => {
+        bitstamp.transactions({ currencyPair: 'btcusd' }, (err, resp) => {
+          resp.should.deep.equal(apis.unauthenticated.transactions.exampleResponse);
+          done();
         });
+      });
+
+      it('retrieves transactions data using promise', (done) => {
+        bitstamp.transactions({ currencyPair: 'btcusd' }).then(
+          success(apis.unauthenticated.transactions.exampleResponse, done),
+          failure,
+        );
+      });
     });
 
+    context('failure call', () => {
+      it('retrieves error using cb', (done) => {
+        bitstamp.transactions({ currencyPair: 'btcusd' }, (err) => {
+          err.should.deep.equal(testErrMsg);
+          done();
+        });
+      });
+
+      it('retrieves error using promise', (done) => {
+        bitstamp.transactions({ currencyPair: 'btcusd' }).then(
+          success,
+          failure(done),
+        );
+      });
+    });
+  });
 });

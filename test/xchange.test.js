@@ -1,10 +1,10 @@
-///**
+// /**
 // * Note the use auto-managed sandboxes in sinon.test - http://sinonjs.org/docs/#sinon-test
 // */
 //
-//"use strict";
+// "use strict";
 //
-//var xchange = require("../lib/legacy/xchange")
+// var xchange = require("../lib/legacy/xchange")
 //    , apis = require("../lib/legacy/apis")
 //    , superagent = require("superagent")
 //    , assert = require("assert")
@@ -14,9 +14,9 @@
 //    , should = chai.should()
 //    , expect = chai.expect;
 //
-//chai.use(sinonChai);
+// chai.use(sinonChai);
 //
-//describe("xchange.js", function () {
+// describe("xchange.js", function () {
 //
 //    it("should contain all exchanges and corresponding function to retrieve spot price", function () {
 //        for (var apiName in apis) {
@@ -67,4 +67,4 @@
 //        }
 //    }));
 //
-//});
+// });
